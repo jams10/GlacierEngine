@@ -4,6 +4,21 @@
     <Filter Include="Glacier">
       <UniqueIdentifier>{5CF92660-C8D8-A5FB-D1F0-30D23D4F0C5D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Glacier\Utils">
+      <UniqueIdentifier>{BC8F91E7-2850-0D1E-F18A-569B5D0A52FA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Glacier\Window">
+      <UniqueIdentifier>{C366A9DD-AF34-9DE3-98C8-0D0A84357948}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ImGui">
+      <UniqueIdentifier>{C0FF640D-2C14-8DBE-F595-301E616989EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Glacier.h" />
@@ -13,12 +28,34 @@
     <ClInclude Include="src\Glacier\Core.h">
       <Filter>Glacier</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glacier\EntryPoint.h">
+      <Filter>Glacier</Filter>
+    </ClInclude>
     <ClInclude Include="src\Glacier\Log.h">
       <Filter>Glacier</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glacier\Types.h">
+      <Filter>Glacier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Utils\CustomDelegate.h">
+      <Filter>Glacier\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Utils\StringEncode.h">
+      <Filter>Glacier\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Window\Window.h">
+      <Filter>Glacier\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ImGui\ImGuiLayer.h">
+      <Filter>ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsHeaders.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\pch.h" />
-    <ClInclude Include="src\Glacier\EntryPoint.h" />
-    <ClInclude Include="src\Glacier\Utils\CustomDelegate.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -27,7 +64,18 @@
     <ClCompile Include="src\Glacier\Log.cpp">
       <Filter>Glacier</Filter>
     </ClCompile>
+    <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp">
+      <Filter>Glacier\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\ImGuiBuild.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ImGui\ImGuiLayer.cpp">
+      <Filter>ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\pch.cpp" />
-    <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp" />
   </ItemGroup>
 </Project>

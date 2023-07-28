@@ -41,6 +41,7 @@ project "Glacier"      -- Glacier 프로젝트
 	{
 	    "%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
+		"%{prj.name}/vendor/imgui",
 	}
 	
 	links -- GLFW 프로젝트와 opengl32.lib를 참조해줌.
@@ -94,6 +95,7 @@ project "Sandbox"      -- Sandbox 프로젝트
 	{
 		"Glacier/src",
 		"Glacier/vendor/spdlog/include",
+		"Glacier/vendor/imgui"
 	}
 
 	links -- 프로젝트 참조

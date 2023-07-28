@@ -4,8 +4,12 @@
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
 
-namespace Glacier {
-
+namespace Glacier 
+{
+	/*
+	*   <Log>
+	*   spdlog 라이브러리를 사용하여 간편하게 콘솔 창에 기록할 수 있도록 하는 클래스.
+	*/
 	class GLACIER_API Log
 	{
 	public:

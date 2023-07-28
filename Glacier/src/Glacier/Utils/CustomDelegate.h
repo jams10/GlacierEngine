@@ -7,7 +7,7 @@ namespace Glaicer
     *   특정 상황이 발생 했을 때만 특정 함수들을 호출할 목적으로 callback 함수들을 바인딩, broadcast를 통해 바인딩한 함수들을 모두 호출해 줄 수 있음.
     */
     template <class... ARGS>
-    class CustomDelegate
+    class GLACIER_API CustomDelegate
     {
     public:
         typedef typename std::list<std::function<void(ARGS...)>>::iterator iterator;

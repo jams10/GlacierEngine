@@ -16,4 +16,4 @@
 #include <unordered_set>
 
 #include "Glacier/Log.h"
-
+#include "Glacier/Types.h"
