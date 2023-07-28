@@ -18,6 +18,7 @@
     </ClInclude>
     <ClInclude Include="src\pch.h" />
     <ClInclude Include="src\Glacier\EntryPoint.h" />
+    <ClInclude Include="src\Glacier\Utils\CustomDelegate.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -27,5 +28,6 @@
       <Filter>Glacier</Filter>
     </ClCompile>
     <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp" />
   </ItemGroup>
 </Project>
