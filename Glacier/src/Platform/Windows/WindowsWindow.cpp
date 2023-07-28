@@ -110,12 +110,12 @@ namespace Glacier
 			return;
 		}
 
-		// Imgui Win32 구현 초기화.
-		if (ImGui_ImplWin32_Init(m_HWnd) == false)
-		{
-			GR_CORE_ERROR("Failed : ImGui_ImplWin32_Init()");
-			return;
-		}
+		//// Imgui Win32 구현 초기화.
+		//if (ImGui_ImplWin32_Init(m_HWnd) == false)
+		//{
+		//	GR_CORE_ERROR("Failed : ImGui_ImplWin32_Init()");
+		//	return;
+		//}
 
 		// 윈도우 화면에 띄우기.
 		ShowWindow(m_HWnd, SW_SHOWDEFAULT);

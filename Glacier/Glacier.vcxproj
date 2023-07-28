@@ -147,22 +147,31 @@
     <ClInclude Include="src\Glacier\Application.h" />
     <ClInclude Include="src\Glacier\Core.h" />
     <ClInclude Include="src\Glacier\EntryPoint.h" />
+    <ClInclude Include="src\Glacier\Layer\Layer.h" />
+    <ClInclude Include="src\Glacier\Layer\LayerStack.h" />
     <ClInclude Include="src\Glacier\Log.h" />
+    <ClInclude Include="src\Glacier\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Glacier\Types.h" />
     <ClInclude Include="src\Glacier\Utils\CustomDelegate.h" />
     <ClInclude Include="src\Glacier\Utils\StringEncode.h" />
     <ClInclude Include="src\Glacier\Window\Window.h" />
-    <ClInclude Include="src\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Glacier\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Platform\DirectX\DirectX11Context.h" />
+    <ClInclude Include="src\Platform\DirectX\DirectX11System.h" />
     <ClInclude Include="src\Platform\Windows\WindowsHeaders.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp" />
+    <ClCompile Include="src\Glacier\Layer\Layer.cpp" />
+    <ClCompile Include="src\Glacier\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Glacier\Log.cpp" />
     <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp" />
-    <ClCompile Include="src\ImGui\ImGuiBuild.cpp" />
-    <ClCompile Include="src\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Glacier\ImGui\ImGuiBuild.cpp" />
+    <ClCompile Include="src\Glacier\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Platform\DirectX\DirectX11Context.cpp" />
+    <ClCompile Include="src\Platform\DirectX\DirectX11System.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

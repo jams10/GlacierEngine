@@ -46,7 +46,7 @@
     <ClInclude Include="src\Glacier\Window\Window.h">
       <Filter>Glacier\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\ImGui\ImGuiLayer.h">
+    <ClInclude Include="src\Glacier\ImGui\ImGuiLayer.h">
       <Filter>ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsHeaders.h">
@@ -56,6 +56,11 @@
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Glacier\Layer\Layer.h" />
+    <ClInclude Include="src\Glacier\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Platform\DirectX\DirectX11Context.h" />
+    <ClInclude Include="src\Platform\DirectX\DirectX11System.h" />
+    <ClInclude Include="src\Glacier\Layer\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -67,15 +72,19 @@
     <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp">
       <Filter>Glacier\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\ImGui\ImGuiBuild.cpp">
+    <ClCompile Include="src\Glacier\ImGui\ImGuiBuild.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\ImGui\ImGuiLayer.cpp">
+    <ClCompile Include="src\Glacier\ImGui\ImGuiLayer.cpp">
       <Filter>ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\Glacier\Layer\Layer.cpp" />
+    <ClCompile Include="src\Platform\DirectX\DirectX11Context.cpp" />
+    <ClCompile Include="src\Platform\DirectX\DirectX11System.cpp" />
+    <ClCompile Include="src\Glacier\Layer\LayerStack.cpp" />
   </ItemGroup>
 </Project>
