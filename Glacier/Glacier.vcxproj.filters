@@ -61,6 +61,9 @@
     <ClInclude Include="src\Platform\DirectX\DirectX11Context.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11System.h" />
     <ClInclude Include="src\Glacier\Layer\LayerStack.h" />
+    <ClInclude Include="src\Glacier\Input\Input.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Glacier\Input\InputKeys.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -86,5 +89,6 @@
     <ClCompile Include="src\Platform\DirectX\DirectX11Context.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11System.cpp" />
     <ClCompile Include="src\Glacier\Layer\LayerStack.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

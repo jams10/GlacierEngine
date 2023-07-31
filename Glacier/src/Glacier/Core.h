@@ -1,6 +1,7 @@
 #pragma once
 
 #define GLACIER_API
+#define USE_WIN32_WINDOWS
 #define GR_ENABLE_ASSERTS
 
 #ifdef GR_ENABLE_ASSERTS
