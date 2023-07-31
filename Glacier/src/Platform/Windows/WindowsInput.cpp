@@ -32,7 +32,7 @@ namespace Glacier
 		}
 		ScreenToClient(static_cast<HWND>(Application::Get().GetWindow().GetNativeWindow()), &mousePos);
 
-		return std::pair<float, float>(mousePos.x, mousePos.y);
+		return std::pair<float, float>(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 	}
 
 	float WindowsInput::GetMouseXImpl()

@@ -3,7 +3,7 @@
 #include "pch.h"
 
 #include "Glacier/Core.h"
-#include "Glacier/Utils/CustomDelegate.h"
+#include "Glacier/Event/Event.h"
 
 namespace Glacier
 {
@@ -27,6 +27,8 @@ namespace Glacier
 	class GLACIER_API Window
 	{
 	public:
+		using EventCallbackFn = std::function<void(Event&)>; // 리턴 타입이 void, 인자로 Event 참조 타입을 받아주는 함수 객체.
+
 		virtual ~Window() {}
 
 		virtual int OnUpdate() = 0;
@@ -34,10 +36,11 @@ namespace Glacier
 		virtual uint16 GetWidth() const = 0;
 		virtual uint16 GetHeight() const = 0;
 
+		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 		virtual void* GetNativeWindow() const = 0;
 
-		static Window* Create(const WindowInfo& infos = WindowInfo());
+		static Window* Create(const EventCallbackFn& callback, const WindowInfo& infos = WindowInfo());
 	};
 }

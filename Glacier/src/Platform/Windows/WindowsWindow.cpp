@@ -2,6 +2,7 @@
 #include "WindowsWindow.h"
 
 #include "Glacier/Utils/StringEncode.h"
+#include "Glacier/Event/ApplicationEvent.h"
 
 #include "backends/imgui_impl_win32.h"
 
@@ -56,18 +57,17 @@ namespace Glacier
 	}
 #pragma endregion
 
-	Window* Window::Create(const WindowInfo& info) // Window 클래스에서 만들어준 static 함수를 플랫폼별로(여기서는 windows) 구현해줌.
+	Window* Window::Create(const EventCallbackFn& callback, const WindowInfo& info) // Window 클래스에서 만들어준 static 함수를 플랫폼별로(여기서는 windows) 구현해줌.
 	{
-		return new WindowsWindow(info);
+		return new WindowsWindow(callback, info);
 	}
 
 	// Window 클래스 생성자. 윈도우 생성 및 설정
-	WindowsWindow::WindowsWindow(const WindowInfo& info)
+	WindowsWindow::WindowsWindow(const EventCallbackFn& callback, const WindowInfo& info)
 		:
-		m_Width(0),
-		m_Height(0),
 		m_HWnd(nullptr)
 	{
+		m_Data.EventCallback = callback;
 		Initialize(info.Title.c_str(), info.Width, info.Height);
 	}
 
@@ -109,13 +109,6 @@ namespace Glacier
 			GR_CORE_ERROR("Failed : Create WindowsWindow");
 			return;
 		}
-
-		//// Imgui Win32 구현 초기화.
-		//if (ImGui_ImplWin32_Init(m_HWnd) == false)
-		//{
-		//	GR_CORE_ERROR("Failed : ImGui_ImplWin32_Init()");
-		//	return;
-		//}
 
 		// 윈도우 화면에 띄우기.
 		ShowWindow(m_HWnd, SW_SHOWDEFAULT);
@@ -201,12 +194,21 @@ namespace Glacier
 		switch (msg)
 		{
 		case WM_SIZE:
-			m_Width = uint32(LOWORD(lParam));
-			m_Height = uint32(HIWORD(lParam));
+		{
+			WindowsWindow* const pWnd = reinterpret_cast<WindowsWindow*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+			pWnd->m_Data.Width = uint32(LOWORD(lParam));
+			pWnd->m_Data.Height = uint32(HIWORD(lParam));
 
+			WindowResizeEvent event(pWnd->m_Data.Width, pWnd->m_Data.Height);
+			pWnd->m_Data.EventCallback(event);
+		}
 			break;
 		case WM_DESTROY:
-			PostQuitMessage(0);
+			// PostQuitMessage(0);
+			WindowsWindow* const pWnd = reinterpret_cast<WindowsWindow*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+
+			WindowCloseEvent event;
+			pWnd->m_Data.EventCallback(event);
 			return 0;
 		}
 

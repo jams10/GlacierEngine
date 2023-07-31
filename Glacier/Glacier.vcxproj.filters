@@ -64,6 +64,10 @@
     <ClInclude Include="src\Glacier\Input\Input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Glacier\Input\InputKeys.h" />
+    <ClInclude Include="src\Glacier\Event\Event.h" />
+    <ClInclude Include="src\Glacier\Event\ApplicationEvent.h" />
+    <ClInclude Include="src\Glacier\Event\MouseEvent.h" />
+    <ClInclude Include="src\Glacier\Event\KeyboardEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">

@@ -10,8 +10,13 @@ public:
 
 	void OnUpdate() override
 	{
-		std::pair<float, float> pos = Glacier::Input::GetMousePosition();
-		GR_TRACE("{0}/{1}", pos.first, pos.second);
+		//std::pair<float, float> pos = Glacier::Input::GetMousePosition();
+		//GR_TRACE("{0}/{1}", pos.first, pos.second);
+	}
+
+	void OnEvent(Glacier::Event& event) override
+	{
+		GR_TRACE({ "0" }, event);
 	}
 };
 

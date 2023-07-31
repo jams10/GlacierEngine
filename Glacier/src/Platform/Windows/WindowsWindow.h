@@ -29,22 +29,24 @@ namespace Glacier
 		};
 #pragma endregion
 	public:
-		WindowsWindow(const WindowInfo& info);
+		WindowsWindow(const EventCallbackFn& callback, const WindowInfo& info);
 		virtual ~WindowsWindow();
 
 		virtual int OnUpdate();
 
-		virtual uint16 GetWidth() const override { return m_Width; }
-		virtual uint16 GetHeight() const override { return m_Height; }
+		virtual uint16 GetWidth() const override { return m_Data.Width; }
+		virtual uint16 GetHeight() const override { return m_Data.Height; }
 
+		// 이벤트 콜백 함수 설정. Application 쪽에서 호출해 윈도우에서 이벤트 발생 시 호출할 콜백 함수를 바인딩 해줌.
+		inline virtual void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 		virtual void SetVSync(bool enabled) override {}
 		virtual bool IsVSync() const override { return true; }
 		virtual void* GetNativeWindow() const override { return m_HWnd; }
 
 		static int ProcessMessages(); // 모든 윈도우에 대한 메시지를 처리해야 하므로 static으로 선언함.
 
-	private:
 		void Initialize(const wchar_t* name, int width, int height);
+	private:
 		void SetTitle(const wstring& title);
 
 		static LRESULT CALLBACK HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -52,8 +54,18 @@ namespace Glacier
 		LRESULT HandleMsg(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 	private:
-		uint16 m_Width;
-		uint16 m_Height;
 		HWND m_HWnd;
+
+		// 윈도우 이벤트 발생 시 
+		struct WindowData 
+		{
+			std::string Title;
+			uint16 Width, Height;
+			bool VSync;
+
+			EventCallbackFn EventCallback; // 이벤트 콜백 함수. Application의 ProcessEvent를 호출하게 됨.
+		};
+
+		WindowData m_Data;
 	};
 }

@@ -6,6 +6,7 @@
 
 #include "ImGui/ImGuiLayer.h"
 #include "Renderer/GraphicsContext.h"
+#include "Glacier/Event/ApplicationEvent.h"
 
 namespace Glacier
 {
@@ -22,6 +23,12 @@ namespace Glacier
 
 		inline Window& GetWindow() { return *m_Window; }
 		inline static Application& Get() { return *s_Instance; }
+
+		void ProcessEvent(Event& event);
+
+	private:
+		bool OnWindowClose(WindowCloseEvent event);
+
 	private:
 		std::unique_ptr<Window> m_Window;
 		std::unique_ptr<GraphicsContext> m_Context;
