@@ -10,13 +10,18 @@ public:
 
 	void OnUpdate() override
 	{
-		//std::pair<float, float> pos = Glacier::Input::GetMousePosition();
-		//GR_TRACE("{0}/{1}", pos.first, pos.second);
 	}
 
 	void OnEvent(Glacier::Event& event) override
 	{
-		GR_TRACE({ "0" }, event);
+		if (event.GetEventType() == Glacier::EventType::KeyPressed)
+		{
+			Glacier::KeyPressedEvent& e = (Glacier::KeyPressedEvent&)event;
+			if (e.GetKeyCode() == GR_VK_TAB)
+			{
+				GR_TRACE("Tab key is pressed (event)!");
+			}
+		}
 	}
 };
 

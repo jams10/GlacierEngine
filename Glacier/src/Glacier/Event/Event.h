@@ -63,7 +63,7 @@ namespace Glacier
 	public:
 		// 이벤트가 처리되었는지 알려주는 변수.
 		// 상위 레이어에서 하위 레이어로 이벤트를 더 이상 전파하고 싶지 않다면, 이 값을 true로 만들어 하위 레이어에 이벤트가 도달하지 않도록 함.
-		bool m_Handled = false;
+		bool Handled = false;
 
 	};
 
@@ -90,7 +90,7 @@ namespace Glacier
 			{
 				// m_Event 객체를 T 타입으로 캐스팅해서 callback 함수의 인자로 전달, callback 함수를 호출.
 				// 리턴 타입으로 이벤트 처리 여부를 bool 타입으로 받아서 m_Event에 저장.
-				m_Event.m_Handled = eventCallbackFunc(*(T*)&m_Event);
+				m_Event.Handled = eventCallbackFunc(*(T*)&m_Event);
 				return true;
 			}
 			return false;

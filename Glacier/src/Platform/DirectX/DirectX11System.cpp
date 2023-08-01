@@ -116,9 +116,7 @@ namespace Glacier
 
 #pragma endregion Depth Buffer
 
-		//ImGui_ImplDX11_Init(m_device.Get(), m_context.Get());
-
-		GR_CORE_TRACE("DirectX11 has initialized successfully!");
+		GR_CORE_WARN("DirectX11 has initialized successfully!");
 	}
 
 	DirectX11System* DirectX11System::GetInstance()

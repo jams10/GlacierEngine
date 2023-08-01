@@ -3,6 +3,8 @@
 
 #include "Glacier/Utils/StringEncode.h"
 #include "Glacier/Event/ApplicationEvent.h"
+#include "Glacier/Event/KeyboardEvent.h"
+#include "Glacier/Event/MouseEvent.h"
 
 #include "backends/imgui_impl_win32.h"
 
@@ -117,7 +119,7 @@ namespace Glacier
 		// 콘솔창이 렌더링 창을 덮는 것을 방지.
 		SetForegroundWindow(m_HWnd);
 
-		GR_CORE_TRACE("Initialized WindowsWindow successfully!");
+		GR_CORE_WARN("Initialized WindowsWindow successfully!");
 		return;
 	}
 
@@ -191,11 +193,12 @@ namespace Glacier
 		if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
 			return true;
 
+		WindowsWindow* const pWnd = reinterpret_cast<WindowsWindow*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+
 		switch (msg)
 		{
 		case WM_SIZE:
 		{
-			WindowsWindow* const pWnd = reinterpret_cast<WindowsWindow*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 			pWnd->m_Data.Width = uint32(LOWORD(lParam));
 			pWnd->m_Data.Height = uint32(HIWORD(lParam));
 
@@ -203,9 +206,65 @@ namespace Glacier
 			pWnd->m_Data.EventCallback(event);
 		}
 			break;
+		case WM_KEYDOWN:
+		case WM_SYSKEYDOWN:
+		{
+			if (lParam & 0x40000000) // 이전에도 키를 누른 경우.
+			{
+				KeyPressedEvent event(static_cast<int>(wParam), 1);
+				pWnd->m_Data.EventCallback(event);
+			}
+			else
+			{
+				KeyPressedEvent event(static_cast<int>(wParam), 0);
+				pWnd->m_Data.EventCallback(event);
+			}
+		}
+			break;
+		case WM_KEYUP:
+		case WM_SYSKEYUP:
+		{
+			KeyReleasedEvent event(static_cast<int>(wParam));
+			pWnd->m_Data.EventCallback(event);
+		}
+			break;
+		case WM_MOUSEMOVE:
+		{
+			POINT pt;
+			pt.x = LOWORD(lParam);
+			pt.y = HIWORD(wParam);
+			ScreenToClient(hWnd, &pt);
+
+			MouseMovedEvent event(static_cast<float>(pt.x), static_cast<float>(pt.y));
+			pWnd->m_Data.EventCallback(event);
+		}
+			break;
+		case WM_LBUTTONDOWN:
+		{
+			MouseButtonPressedEvent event(static_cast<int>(VK_LBUTTON));
+			pWnd->m_Data.EventCallback(event);
+		}
+			break;
+		case WM_RBUTTONDOWN:
+		{
+			MouseButtonPressedEvent event(static_cast<int>(VK_RBUTTON));
+			pWnd->m_Data.EventCallback(event);
+		}
+			break;
+		case WM_LBUTTONUP:
+		{
+			MouseButtonReleasedEvent event(static_cast<int>(VK_LBUTTON));
+			pWnd->m_Data.EventCallback(event);
+		}
+			break;
+		case WM_RBUTTONUP:
+		{
+			MouseButtonReleasedEvent event(static_cast<int>(VK_RBUTTON));
+			pWnd->m_Data.EventCallback(event);
+		}
+			break;
 		case WM_DESTROY:
-			// PostQuitMessage(0);
-			WindowsWindow* const pWnd = reinterpret_cast<WindowsWindow*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+			//PostQuitMessage(0);
 
 			WindowCloseEvent event;
 			pWnd->m_Data.EventCallback(event);

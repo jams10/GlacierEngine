@@ -10,7 +10,10 @@ namespace Glacier
 	LayerStack::~LayerStack()
 	{
 		for (Layer* layer : m_Layers)
+		{
+			layer->OnDetach();
 			delete layer;
+		}
 	}
 
 	void LayerStack::PushLayer(Layer* layer) // 앞에서 부터 넣음.

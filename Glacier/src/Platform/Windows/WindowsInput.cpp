@@ -13,13 +13,13 @@ namespace Glacier
 	bool WindowsInput::IsKeyPressedImpl(int keycode)
 	{
 		SHORT state = GetKeyState(keycode);
-		return state & 0xf000;
+		return state & 0x8000;
 	}
 
 	bool WindowsInput::IsMouseButtonPressedImpl(int button)
 	{
 		SHORT state = GetKeyState(button);
-		return state & 0xf000;
+		return state & 0x8000;
 	}
 
 	std::pair<float, float> WindowsInput::GetMousePositionImpl()

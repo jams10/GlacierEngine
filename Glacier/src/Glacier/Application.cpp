@@ -67,7 +67,14 @@ namespace Glacier
 		// 들어온 이벤트가 WindowCloseEvent인 경우, OnWindowClose 함수를 호출하도록 함.
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_CALLBACK(&Application::OnWindowClose);
 
-		GR_CORE_TRACE("{0}", event); // 이벤트 로그.
+		// 상위 레이어부터 이벤트를 받도록 함. 이벤트를 받은 레이어가 하위 레이어로 이벤트를 전파하지 않기 위해 Handled 값을 true로 바꾸면 
+		// 해당 이벤트를 더 이상 처리하지 않고 빠져나감.
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+		{
+			(*--it)->OnEvent(event);
+			if (event.Handled)
+				break;
+		}
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent event)
