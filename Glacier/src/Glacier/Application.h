@@ -5,7 +5,6 @@
 #include "Layer/LayerStack.h"
 
 #include "ImGui/ImGuiLayer.h"
-#include "Renderer/GraphicsContext.h"
 #include "Glacier/Event/ApplicationEvent.h"
 
 namespace Glacier
@@ -31,7 +30,6 @@ namespace Glacier
 
 	private:
 		std::unique_ptr<Window> m_Window;
-		std::unique_ptr<GraphicsContext> m_Context;
 
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_IsRunning = true;

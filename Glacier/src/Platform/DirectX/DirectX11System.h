@@ -32,6 +32,10 @@ namespace Glacier
 		ComPtr<ID3D11DeviceContext> GetDirectX11DeviceContext() const { return m_Context; }
 		ComPtr<ID3D11RenderTargetView> GetDirectX11RenderTargetView() const { return m_BackbufferRTV; }
 
+		ComPtr<IDXGIDevice> GetDirectX11DXGIDevice() const { return m_DXGIDevice; }
+		ComPtr<IDXGIAdapter> GetDirectX11Adapter() const { return m_Adapter; }
+		DXGI_ADAPTER_DESC* GetDirectX11AdapterDescription() const { return m_AdapterDescription; }
+
 		void BeginFrame();
 
 	private:
@@ -50,6 +54,10 @@ namespace Glacier
 		ComPtr<ID3D11RenderTargetView> m_BackbufferRTV = nullptr;
 		ComPtr<ID3D11Texture2D> m_DepthStencilBuffer = nullptr;
 		ComPtr<ID3D11DepthStencilView> m_DepthStencilView = nullptr;
+
+		ComPtr<IDXGIDevice> m_DXGIDevice = nullptr;
+		ComPtr<IDXGIAdapter> m_Adapter = nullptr;
+		DXGI_ADAPTER_DESC* m_AdapterDescription = nullptr;
 
 		UINT m_NumQualityLevels;
 		UINT m_WholeScreenWidth;

@@ -14,7 +14,10 @@ namespace Glacier
 		virtual void Init() override;
 		virtual void SwapBuffers() override;
 
+		void SetContextInfo();
+
 	private:
 		void* m_WindowHandle;
+		ContextInfo m_ContextInfo;
 	};
 }

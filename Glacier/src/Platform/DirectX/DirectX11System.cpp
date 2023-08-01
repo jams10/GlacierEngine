@@ -8,6 +8,10 @@ namespace Glacier
 
 	DirectX11System::~DirectX11System()
 	{
+		if (m_AdapterDescription)
+		{
+			delete m_AdapterDescription;
+		}
 		delete s_Instance;
 		s_Instance = nullptr;
 	}
@@ -51,6 +55,11 @@ namespace Glacier
 		THROWFAILED(device.As(&m_Device));
 
 		THROWFAILED(context.As(&m_Context));
+
+		m_Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&m_DXGIDevice);
+		m_DXGIDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&m_Adapter);
+		m_AdapterDescription = new DXGI_ADAPTER_DESC();
+		m_Adapter->GetDesc(m_AdapterDescription);
 
 #pragma endregion Create Device & Context
 

@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "Application.h"
 
-#include "Platform/DirectX/DirectX11Context.h"
-
 namespace Glacier
 {
 
@@ -18,9 +16,6 @@ namespace Glacier
 		// 이 시점에서는 콜백 함수가 바인딩 되어 있지 않기 때문에 빈 함수 객체를 호출하기 때문에 bad_function_call 오류 발생.
 		// 따라서, 윈도우 클래스 객체 생성 시점에 콜백 함수도 같이 바인딩 해줌.
 		m_Window = std::unique_ptr<Window>(Window::Create(BIND_EVENT_CALLBACK(&Application::ProcessEvent));			
-
-		m_Context = std::unique_ptr<GraphicsContext>(new DirectX11Context(m_Window->GetNativeWindow()));
-		m_Context->Init();
 
 		m_ImGuiLayer = new ImGuiLayer(); // ImGuiLayer 생성.
 		PushOverlay(m_ImGuiLayer);       // ImGuiLayer를 Overlay 레이어에 추가.
@@ -47,7 +42,6 @@ namespace Glacier
 				layer->OnImGuiRender();
 			m_ImGuiLayer->End();
 
-			m_Context->SwapBuffers();
 		}
 	}
 

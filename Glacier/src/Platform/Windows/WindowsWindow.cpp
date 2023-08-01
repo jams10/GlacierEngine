@@ -6,6 +6,8 @@
 #include "Glacier/Event/KeyboardEvent.h"
 #include "Glacier/Event/MouseEvent.h"
 
+#include "Platform/DirectX/DirectX11Context.h"
+
 #include "backends/imgui_impl_win32.h"
 
 // imgui_impl_win32.cpp에 정의된 메시지 처리 함수에 대한 전방 선언
@@ -80,9 +82,10 @@ namespace Glacier
 		DestroyWindow(m_HWnd);
 	}
 
-	int WindowsWindow::OnUpdate()
+	void WindowsWindow::OnUpdate()
 	{
-		return ProcessMessages();
+		ProcessMessages();
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::Initialize(const wchar_t* name, int width, int height)
@@ -120,6 +123,10 @@ namespace Glacier
 		SetForegroundWindow(m_HWnd);
 
 		GR_CORE_WARN("Initialized WindowsWindow successfully!");
+
+		m_Context = new DirectX11Context(m_HWnd);
+		m_Context->Init();
+
 		return;
 	}
 

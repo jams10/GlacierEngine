@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Glacier/Window/Window.h"
+#include "Glacier/Renderer/GraphicsContext.h"
 #include "WindowsHeaders.h"
 
 namespace Glacier
@@ -32,7 +33,7 @@ namespace Glacier
 		WindowsWindow(const EventCallbackFn& callback, const WindowInfo& info);
 		virtual ~WindowsWindow();
 
-		virtual int OnUpdate();
+		virtual void OnUpdate();
 
 		virtual uint16 GetWidth() const override { return m_Data.Width; }
 		virtual uint16 GetHeight() const override { return m_Data.Height; }
@@ -55,6 +56,7 @@ namespace Glacier
 
 	private:
 		HWND m_HWnd;
+		GraphicsContext* m_Context;
 
 		// 윈도우 이벤트 발생 시 
 		struct WindowData 

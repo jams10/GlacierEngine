@@ -31,7 +31,7 @@ namespace Glacier
 
 		virtual ~Window() {}
 
-		virtual int OnUpdate() = 0;
+		virtual void OnUpdate() = 0;
 
 		virtual uint16 GetWidth() const = 0;
 		virtual uint16 GetHeight() const = 0;
