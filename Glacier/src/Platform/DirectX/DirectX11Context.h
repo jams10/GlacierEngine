@@ -6,7 +6,7 @@ struct GLFWwindow;
 
 namespace Glacier
 {
-	class DirectX11Context : public GraphicsContext
+	class GLACIER_API DirectX11Context : public GraphicsContext
 	{
 	public:
 		DirectX11Context(void* windowHandle);

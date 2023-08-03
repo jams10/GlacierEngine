@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Glacier/Core.h"
 #include "Platform/Windows/WindowsHeaders.h"
 
 #include <d3d11.h>
@@ -20,7 +21,7 @@ namespace Glacier
 		}
 	}
 
-	class DirectX11System {
+	class GLACIER_API DirectX11System {
 	public:
 		~DirectX11System();
 
@@ -31,6 +32,7 @@ namespace Glacier
 		ComPtr<IDXGISwapChain> GetDirectX11SwapChain() const { return m_Swapchain; }
 		ComPtr<ID3D11DeviceContext> GetDirectX11DeviceContext() const { return m_Context; }
 		ComPtr<ID3D11RenderTargetView> GetDirectX11RenderTargetView() const { return m_BackbufferRTV; }
+		ComPtr<ID3D11RasterizerState> GetRasterizerState() const { return m_RasterizerState; }
 
 		ComPtr<IDXGIDevice> GetDirectX11DXGIDevice() const { return m_DXGIDevice; }
 		ComPtr<IDXGIAdapter> GetDirectX11Adapter() const { return m_Adapter; }
@@ -54,6 +56,9 @@ namespace Glacier
 		ComPtr<ID3D11RenderTargetView> m_BackbufferRTV = nullptr;
 		ComPtr<ID3D11Texture2D> m_DepthStencilBuffer = nullptr;
 		ComPtr<ID3D11DepthStencilView> m_DepthStencilView = nullptr;
+
+		ComPtr<ID3D11RasterizerState> m_RasterizerState = nullptr;
+		ComPtr<ID3D11DepthStencilState> m_DepthStencilState;
 
 		ComPtr<IDXGIDevice> m_DXGIDevice = nullptr;
 		ComPtr<IDXGIAdapter> m_Adapter = nullptr;

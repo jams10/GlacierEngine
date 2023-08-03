@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Glacier/Core.h"
+
 namespace Glacier
 {
 	struct ContextInfo 
@@ -10,7 +12,7 @@ namespace Glacier
 		std::string Version;
 	};
 
-	class GraphicsContext
+	class GLACIER_API GraphicsContext
 	{
 	public:
 		virtual void Init() = 0;

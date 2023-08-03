@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Application.h"
 
+#include "Platform/DirectX/DirectX11System.h"
+
 namespace Glacier
 {
 
@@ -19,6 +21,35 @@ namespace Glacier
 
 		m_ImGuiLayer = new ImGuiLayer(); // ImGuiLayer 생성.
 		PushOverlay(m_ImGuiLayer);       // ImGuiLayer를 Overlay 레이어에 추가.
+
+		/*
+		*	임시 테스트 도형 그리기.
+		*/
+		//  정점 버퍼 생성.
+		//  인덱스 버퍼 생성.
+		//  쉐이더 생성.
+		//  인풋 레이아웃 생성.
+
+		float vertices[3 * 6] = {
+			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+			 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+		};
+		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+
+		BufferLayout layout = {
+			{ ShaderDataType::Float3, "Position" },
+			{ ShaderDataType::Float3, "Color" }
+		};
+		m_VertexBuffer->SetLayout(layout);
+
+		uint32 indices[3] = { 0,1,2 };
+		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32)));
+
+		m_VertexShader.reset(VertexShader::Create(L"../Glacier/resources/shaders/VertexColorVS.hlsl"));
+		m_FragmentShader.reset(FragmentShader::Create(L"../Glacier/resources/shaders/VertexColorPS.hlsl"));
+
+		m_InputLayout.reset(VertexLayout::Create(m_VertexShader.get()));
 	}
 
 	Application::~Application()
@@ -31,7 +62,24 @@ namespace Glacier
 	{
 		while (m_IsRunning)
 		{
-			m_Window->OnUpdate();
+			// begin frame
+			DirectX11System::GetInstance()->BeginFrame();
+
+			// 쉐이더 바인딩.
+			// 정점, 인덱스 버퍼 바인딩.
+			// 인풋 레이아웃 바인딩.
+			m_VertexShader->Bind();
+			m_FragmentShader->Bind();
+			m_InputLayout->Bind();
+			DirectX11System::GetInstance()->GetDirectX11DeviceContext()->RSSetState(
+				DirectX11System::GetInstance()->GetRasterizerState().Get()
+			);
+
+			m_VertexBuffer->Bind(m_InputLayout->GetVertexStride());
+			m_IndexBuffer->Bind();
+
+			// drawindexed
+			DirectX11System::GetInstance()->GetDirectX11DeviceContext()->DrawIndexed(m_IndexBuffer->GetCount(), 0, 0);
 
 			for (Layer* layer : m_LayerStack) // 레이어들의 update 호출.
 				layer->OnUpdate();
@@ -42,6 +90,8 @@ namespace Glacier
 				layer->OnImGuiRender();
 			m_ImGuiLayer->End();
 
+			// swap buffer
+			m_Window->OnUpdate();
 		}
 	}
 

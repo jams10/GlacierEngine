@@ -84,12 +84,16 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>resources/shaders/outputs/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -108,13 +112,17 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>resources/shaders/outputs/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -133,13 +141,17 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
+    <FxCompile>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>resources/shaders/outputs/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d3dcompiler.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -151,19 +163,28 @@
     <ClInclude Include="src\Glacier\Event\Event.h" />
     <ClInclude Include="src\Glacier\Event\KeyboardEvent.h" />
     <ClInclude Include="src\Glacier\Event\MouseEvent.h" />
+    <ClInclude Include="src\Glacier\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Glacier\Input\Input.h" />
     <ClInclude Include="src\Glacier\Input\InputKeys.h" />
     <ClInclude Include="src\Glacier\Layer\Layer.h" />
     <ClInclude Include="src\Glacier\Layer\LayerStack.h" />
     <ClInclude Include="src\Glacier\Log.h" />
+    <ClInclude Include="src\Glacier\Renderer\Buffer.h" />
     <ClInclude Include="src\Glacier\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Glacier\Renderer\Renderer.h" />
+    <ClInclude Include="src\Glacier\Renderer\Shader.h" />
+    <ClInclude Include="src\Glacier\Renderer\VertexLayout.h" />
     <ClInclude Include="src\Glacier\Types.h" />
     <ClInclude Include="src\Glacier\Utils\CustomDelegate.h" />
     <ClInclude Include="src\Glacier\Utils\StringEncode.h" />
     <ClInclude Include="src\Glacier\Window\Window.h" />
-    <ClInclude Include="src\Glacier\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11Context.h" />
+    <ClInclude Include="src\Platform\DirectX\DirectX11IndexBuffer.h" />
+    <ClInclude Include="src\Platform\DirectX\DirectX11InputLayout.h" />
+    <ClInclude Include="src\Platform\DirectX\DirectX11PixelShader.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11System.h" />
+    <ClInclude Include="src\Platform\DirectX\DirectX11VertexBuffer.h" />
+    <ClInclude Include="src\Platform\DirectX\DirectX11VertexShader.h" />
     <ClInclude Include="src\Platform\Windows\WindowsHeaders.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -171,19 +192,40 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp" />
+    <ClCompile Include="src\Glacier\ImGui\ImGuiBuild.cpp" />
+    <ClCompile Include="src\Glacier\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Glacier\Layer\Layer.cpp" />
     <ClCompile Include="src\Glacier\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Glacier\Log.cpp" />
+    <ClCompile Include="src\Glacier\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Glacier\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Glacier\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Glacier\Renderer\VertexLayout.cpp" />
     <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp" />
-    <ClCompile Include="src\Glacier\ImGui\ImGuiBuild.cpp" />
-    <ClCompile Include="src\Glacier\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11Context.cpp" />
+    <ClCompile Include="src\Platform\DirectX\DirectX11IndexBuffer.cpp" />
+    <ClCompile Include="src\Platform\DirectX\DirectX11InputLayout.cpp" />
+    <ClCompile Include="src\Platform\DirectX\DirectX11PixelShader.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11System.cpp" />
+    <ClCompile Include="src\Platform\DirectX\DirectX11VertexBuffer.cpp" />
+    <ClCompile Include="src\Platform\DirectX\DirectX11VertexShader.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="resources\shaders\VertexColorPS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">Pixel</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\VertexColorVS.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">Vertex</ShaderType>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -29,7 +29,8 @@ project "Glacier"      -- Glacier 프로젝트
 	files -- 프로젝트에 추가할 파일들.
 	{	-- ** : 해당 폴더 부터 재귀적으로 하위 폴더를 탐색함.
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/resources/shaders/**.hlsl"
 	}
 
 	defines
@@ -47,8 +48,12 @@ project "Glacier"      -- Glacier 프로젝트
 	links -- GLFW 프로젝트와 opengl32.lib를 참조해줌.
 	{ 
 		"d3d11.lib",
-		"d3dcompiler.lib"
+		"d3dcompiler.lib",
+		"dxguid.lib"
 	}
+	
+	shadermodel ("5.0")
+	shaderobjectfileoutput "resources/shaders/outputs/%%(Filename).cso"
 
 	-- 특정 플랫폼에 대한 특정 프로젝트 설정(configurations)시 사용. 조건문과 비슷. 윈도우 플랫폼에서만 아래 설정들을 적용함.
 	filter "system:windows"

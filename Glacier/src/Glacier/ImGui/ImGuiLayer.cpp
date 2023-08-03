@@ -46,6 +46,7 @@ namespace Glacier
 		ImGui_ImplDX11_Shutdown();
 		ImGui_ImplWin32_Shutdown();
 		ImGui::DestroyContext();
+		GR_CORE_WARN("ImGui Context has destroyed!");
 	}
 
 	void ImGuiLayer::OnImGuiRender()
@@ -59,7 +60,6 @@ namespace Glacier
 		ImGui_ImplDX11_NewFrame();
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
-		DirectX11System::GetInstance()->BeginFrame();
 	}
 
 	void ImGuiLayer::End()

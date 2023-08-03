@@ -10,7 +10,8 @@ int main(int argc, char** argv)
 	GR_CORE_WARN("Initialize Log!");
 	int a = 5;
 
-	auto app = Glacier::CreateApplication();
+	//auto app = Glacier::CreateApplication();
+	auto app = new Glacier::Application();
 	app->Run();
 	delete app;
 }

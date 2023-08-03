@@ -1,98 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Glacier">
-      <UniqueIdentifier>{5CF92660-C8D8-A5FB-D1F0-30D23D4F0C5D}</UniqueIdentifier>
+    <Filter Include="resources">
+      <UniqueIdentifier>{202B5BA7-8C95-0F1E-D5D3-C0C3417DED72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Glacier\Utils">
-      <UniqueIdentifier>{BC8F91E7-2850-0D1E-F18A-569B5D0A52FA}</UniqueIdentifier>
+    <Filter Include="resources\shaders">
+      <UniqueIdentifier>{19081037-851E-0ECD-CE95-99EE3AEBDE54}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Glacier\Window">
-      <UniqueIdentifier>{C366A9DD-AF34-9DE3-98C8-0D0A84357948}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ImGui">
-      <UniqueIdentifier>{C0FF640D-2C14-8DBE-F595-301E616989EF}</UniqueIdentifier>
+    <Filter Include="src\Glacier">
+      <UniqueIdentifier>{73F96069-DFAE-D95E-68A3-D335D457D062}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform">
-      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    <Filter Include="src\Glacier\Event">
+      <UniqueIdentifier>{0485A65D-709B-A4F3-B912-30152568757B}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\Windows">
-      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    <Filter Include="src\Glacier\ImGui">
+      <UniqueIdentifier>{DD78E95D-498F-E7F3-9206-7315FE5BB87B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Glacier\Input">
+      <UniqueIdentifier>{B2B3EA5D-1ECA-E8F3-6741-7415D396B97B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Glacier\Layer">
+      <UniqueIdentifier>{7F001A5E-EB16-18F4-348E-A315A0E3E87B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Glacier\Renderer">
+      <UniqueIdentifier>{798ED383-651D-5D4D-0E3C-7148FAA96DF3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Glacier\Utils">
+      <UniqueIdentifier>{1305C75E-7F1B-C5F4-C892-501634E8957C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Glacier\Window">
+      <UniqueIdentifier>{FA868D3B-E66A-4E91-4FCB-48E43BCE3813}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\DirectX">
+      <UniqueIdentifier>{E33DFBCB-CFCC-8495-78EB-98906459953B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\Windows">
+      <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Glacier.h" />
+    <ClInclude Include="src\Glacier.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="src\Glacier\Application.h">
-      <Filter>Glacier</Filter>
+      <Filter>src\Glacier</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Core.h">
-      <Filter>Glacier</Filter>
+      <Filter>src\Glacier</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\EntryPoint.h">
-      <Filter>Glacier</Filter>
+      <Filter>src\Glacier</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Log.h">
-      <Filter>Glacier</Filter>
+    <ClInclude Include="src\Glacier\Event\ApplicationEvent.h">
+      <Filter>src\Glacier\Event</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Types.h">
-      <Filter>Glacier</Filter>
+    <ClInclude Include="src\Glacier\Event\Event.h">
+      <Filter>src\Glacier\Event</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Utils\CustomDelegate.h">
-      <Filter>Glacier\Utils</Filter>
+    <ClInclude Include="src\Glacier\Event\KeyboardEvent.h">
+      <Filter>src\Glacier\Event</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Utils\StringEncode.h">
-      <Filter>Glacier\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Glacier\Window\Window.h">
-      <Filter>Glacier\Window</Filter>
+    <ClInclude Include="src\Glacier\Event\MouseEvent.h">
+      <Filter>src\Glacier\Event</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\ImGui\ImGuiLayer.h">
-      <Filter>ImGui</Filter>
+      <Filter>src\Glacier\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Input\Input.h">
+      <Filter>src\Glacier\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Input\InputKeys.h">
+      <Filter>src\Glacier\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Layer\Layer.h">
+      <Filter>src\Glacier\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Layer\LayerStack.h">
+      <Filter>src\Glacier\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Log.h">
+      <Filter>src\Glacier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\Buffer.h">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\GraphicsContext.h">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\Renderer.h">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\Shader.h">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\VertexLayout.h">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Types.h">
+      <Filter>src\Glacier</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Utils\CustomDelegate.h">
+      <Filter>src\Glacier\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Utils\StringEncode.h">
+      <Filter>src\Glacier\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Window\Window.h">
+      <Filter>src\Glacier\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\DirectX11Context.h">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\DirectX11IndexBuffer.h">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\DirectX11InputLayout.h">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\DirectX11PixelShader.h">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\DirectX11System.h">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\DirectX11VertexBuffer.h">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\DirectX11VertexShader.h">
+      <Filter>src\Platform\DirectX</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsHeaders.h">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\pch.h" />
-    <ClInclude Include="src\Glacier\Layer\Layer.h" />
-    <ClInclude Include="src\Glacier\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\Platform\DirectX\DirectX11Context.h" />
-    <ClInclude Include="src\Platform\DirectX\DirectX11System.h" />
-    <ClInclude Include="src\Glacier\Layer\LayerStack.h" />
-    <ClInclude Include="src\Glacier\Input\Input.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
-    <ClInclude Include="src\Glacier\Input\InputKeys.h" />
-    <ClInclude Include="src\Glacier\Event\Event.h" />
-    <ClInclude Include="src\Glacier\Event\ApplicationEvent.h" />
-    <ClInclude Include="src\Glacier\Event\MouseEvent.h" />
-    <ClInclude Include="src\Glacier\Event\KeyboardEvent.h" />
+    <ClInclude Include="src\pch.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
-      <Filter>Glacier</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Glacier\Log.cpp">
-      <Filter>Glacier</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp">
-      <Filter>Glacier\Utils</Filter>
+      <Filter>src\Glacier</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\ImGui\ImGuiBuild.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>src\Glacier\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\ImGui\ImGuiLayer.cpp">
-      <Filter>ImGui</Filter>
+      <Filter>src\Glacier\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Layer\Layer.cpp">
+      <Filter>src\Glacier\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Layer\LayerStack.cpp">
+      <Filter>src\Glacier\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Log.cpp">
+      <Filter>src\Glacier</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\Buffer.cpp">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\Renderer.cpp">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\Shader.cpp">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\VertexLayout.cpp">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp">
+      <Filter>src\Glacier\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\DirectX11Context.cpp">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\DirectX11IndexBuffer.cpp">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\DirectX11InputLayout.cpp">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\DirectX11PixelShader.cpp">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\DirectX11System.cpp">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\DirectX11VertexBuffer.cpp">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\DirectX11VertexShader.cpp">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\pch.cpp" />
-    <ClCompile Include="src\Glacier\Layer\Layer.cpp" />
-    <ClCompile Include="src\Platform\DirectX\DirectX11Context.cpp" />
-    <ClCompile Include="src\Platform\DirectX\DirectX11System.cpp" />
-    <ClCompile Include="src\Glacier\Layer\LayerStack.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\pch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="resources\shaders\VertexColorPS.hlsl">
+      <Filter>resources\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\VertexColorVS.hlsl">
+      <Filter>resources\shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

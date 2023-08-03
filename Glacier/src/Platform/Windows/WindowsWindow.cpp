@@ -78,7 +78,7 @@ namespace Glacier
 	// Window 클래스 소멸자. 생성한 윈도우 파괴.
 	WindowsWindow::~WindowsWindow()
 	{
-		GR_CORE_TRACE("Destroy Windows window.");
+		GR_CORE_WARN("Destroy Windows window!");
 		DestroyWindow(m_HWnd);
 	}
 
