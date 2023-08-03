@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "Application.h"
 
-#include "Platform/DirectX/DirectX11System.h"
+#include "Glacier/Renderer/Renderer.h"
 
 namespace Glacier
 {
@@ -62,24 +62,16 @@ namespace Glacier
 	{
 		while (m_IsRunning)
 		{
-			// begin frame
-			DirectX11System::GetInstance()->BeginFrame();
+			RenderCommand::SetClearColor({0.1f, 0.1f, 0.1f, 1.0f});
+			RenderCommand::Clear();
 
-			// 쉐이더 바인딩.
-			// 정점, 인덱스 버퍼 바인딩.
-			// 인풋 레이아웃 바인딩.
+			Renderer::BeginScene();
+
 			m_VertexShader->Bind();
 			m_FragmentShader->Bind();
 			m_InputLayout->Bind();
-			DirectX11System::GetInstance()->GetDirectX11DeviceContext()->RSSetState(
-				DirectX11System::GetInstance()->GetRasterizerState().Get()
-			);
 
-			m_VertexBuffer->Bind(m_InputLayout->GetVertexStride());
-			m_IndexBuffer->Bind();
-
-			// drawindexed
-			DirectX11System::GetInstance()->GetDirectX11DeviceContext()->DrawIndexed(m_IndexBuffer->GetCount(), 0, 0);
+			Renderer::Submit(m_VertexBuffer, m_IndexBuffer, m_InputLayout);
 
 			for (Layer* layer : m_LayerStack) // 레이어들의 update 호출.
 				layer->OnUpdate();

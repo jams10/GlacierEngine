@@ -11,8 +11,8 @@ namespace Glacier
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::DirectX11:  return new DirectX11VertexShader(shaderFilePath);
+		case RenderAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RenderAPI::API::DirectX11:  return new DirectX11VertexShader(shaderFilePath);
 		}
 
 		GR_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -23,8 +23,8 @@ namespace Glacier
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RendererAPI::DirectX11:  return new DirectX11PixelShader(shaderFilePath);
+		case RenderAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case RenderAPI::API::DirectX11:  return new DirectX11PixelShader(shaderFilePath);
 		}
 
 		GR_CORE_ASSERT(false, "Unknown RendererAPI!");

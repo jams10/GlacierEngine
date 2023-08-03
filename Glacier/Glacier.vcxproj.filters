@@ -147,6 +147,9 @@
     <ClInclude Include="src\pch.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\RenderAPI.h" />
+    <ClInclude Include="src\Platform\DirectX\DirectX11RenderAPI.h" />
+    <ClInclude Include="src\Glacier\Renderer\RenderCommand.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -212,6 +215,9 @@
     <ClCompile Include="src\pch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\RenderAPI.cpp" />
+    <ClCompile Include="src\Platform\DirectX\DirectX11RenderAPI.cpp" />
+    <ClCompile Include="src\Glacier\Renderer\RenderCommand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resources\shaders\VertexColorPS.hlsl">

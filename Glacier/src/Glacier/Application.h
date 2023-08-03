@@ -37,9 +37,9 @@ namespace Glacier
 
 		std::unique_ptr<VertexShader> m_VertexShader;
 		std::unique_ptr<FragmentShader> m_FragmentShader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
-		std::unique_ptr<VertexLayout> m_InputLayout;
+		std::shared_ptr<VertexBuffer> m_VertexBuffer;
+		std::shared_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<VertexLayout> m_InputLayout;
 
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_IsRunning = true;

@@ -151,18 +151,24 @@ namespace Glacier
 		return s_Instance;
 	}
 
+	void DirectX11System::ClearRenderTargetView()
+	{
+		m_Context->ClearRenderTargetView(m_BackbufferRTV.Get(), m_clearColor);
+	}
+
+	void DirectX11System::ClearDepthStencilView()
+	{
+		m_Context->ClearDepthStencilView(m_DepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	}
+
 	void DirectX11System::BeginFrame()
 	{
 		SetViewport(m_WholeScreenWidth, m_WholeScreenHeight); // 그려줄 영역인 뷰포트 설정.
 
-		// RTV와 DSV 초기화. 화면을 지정 색상으로 날려주고, 깊이 버퍼도 초기화 해줌.
-		float clearColor[4] = { 0.f, 0.f, 0.0f, 1.0f };
-		m_Context->ClearRenderTargetView(m_BackbufferRTV.Get(), clearColor);
-		m_Context->ClearDepthStencilView(m_DepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-
 		ID3D11RenderTargetView* targets[] = { m_BackbufferRTV.Get() };
 		m_Context->OMSetRenderTargets(1, targets, m_DepthStencilView.Get());
 		m_Context->OMSetDepthStencilState(m_DepthStencilState.Get(), 0);
+		m_Context->RSSetState(m_RasterizerState.Get());
 	}
 
 	void DirectX11System::CreateBackbufferViews()

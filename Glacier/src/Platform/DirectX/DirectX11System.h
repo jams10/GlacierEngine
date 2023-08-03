@@ -38,6 +38,10 @@ namespace Glacier
 		ComPtr<IDXGIAdapter> GetDirectX11Adapter() const { return m_Adapter; }
 		DXGI_ADAPTER_DESC* GetDirectX11AdapterDescription() const { return m_AdapterDescription; }
 
+		void SetClearColor(float clearColor[4]) { std::copy(clearColor, clearColor + 4, m_clearColor); }
+		void ClearRenderTargetView();
+		void ClearDepthStencilView();
+
 		void BeginFrame();
 
 	private:
@@ -67,6 +71,7 @@ namespace Glacier
 		UINT m_NumQualityLevels;
 		UINT m_WholeScreenWidth;
 		UINT m_WholeScreenHeight;
+		float m_clearColor[4];
 
 		D3D11_VIEWPORT m_ScreenViewport;
 	};

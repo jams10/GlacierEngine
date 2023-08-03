@@ -13,6 +13,7 @@ namespace Glacier
 	{
 	public:
 		DirectX11VertexBuffer(float* vertices, uint32 size);
+		// 버퍼 서술자의 StructureByteStride를 사용하는 경우, layout을 통해 정점 데이터의 크기를먼저 계산해 주어야 함.
 		DirectX11VertexBuffer(float* vertices, uint32 size, BufferLayout& layout);
 		virtual ~DirectX11VertexBuffer();
 

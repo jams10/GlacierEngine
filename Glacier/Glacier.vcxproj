@@ -171,6 +171,8 @@
     <ClInclude Include="src\Glacier\Log.h" />
     <ClInclude Include="src\Glacier\Renderer\Buffer.h" />
     <ClInclude Include="src\Glacier\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Glacier\Renderer\RenderAPI.h" />
+    <ClInclude Include="src\Glacier\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Glacier\Renderer\Renderer.h" />
     <ClInclude Include="src\Glacier\Renderer\Shader.h" />
     <ClInclude Include="src\Glacier\Renderer\VertexLayout.h" />
@@ -182,6 +184,7 @@
     <ClInclude Include="src\Platform\DirectX\DirectX11IndexBuffer.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11InputLayout.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11PixelShader.h" />
+    <ClInclude Include="src\Platform\DirectX\DirectX11RenderAPI.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11System.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11VertexBuffer.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11VertexShader.h" />
@@ -198,6 +201,8 @@
     <ClCompile Include="src\Glacier\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Glacier\Log.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Glacier\Renderer\RenderAPI.cpp" />
+    <ClCompile Include="src\Glacier\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Shader.cpp" />
     <ClCompile Include="src\Glacier\Renderer\VertexLayout.cpp" />
@@ -206,6 +211,7 @@
     <ClCompile Include="src\Platform\DirectX\DirectX11IndexBuffer.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11InputLayout.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11PixelShader.cpp" />
+    <ClCompile Include="src\Platform\DirectX\DirectX11RenderAPI.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11System.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11VertexBuffer.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11VertexShader.cpp" />
