@@ -2,6 +2,7 @@
 #include "Application.h"
 
 #include "Glacier/Renderer/Renderer.h"
+#include "Platform/DirectX/DirectX11Device.h"
 
 namespace Glacier
 {
@@ -22,18 +23,13 @@ namespace Glacier
 		m_ImGuiLayer = new ImGuiLayer(); // ImGuiLayer 생성.
 		PushOverlay(m_ImGuiLayer);       // ImGuiLayer를 Overlay 레이어에 추가.
 
-		/*
-		*	임시 테스트 도형 그리기.
-		*/
-		//  정점 버퍼 생성.
-		//  인덱스 버퍼 생성.
-		//  쉐이더 생성.
-		//  인풋 레이아웃 생성.
-
+		// OPENGL의 경우 반 시계 방향, DirectX에서는 반 시계 방향일 경우 뒷면을 나타내며, rasterizer state가 backfaceculling을 사용하는 경우에
+		// rasterization 단계에서 필터링 되게 됨.
+		// 깊이 테스트의 경우 pixel shader 이후의 output merger 단계에서 수행.
 		float vertices[3 * 6] = {
-			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
 			 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
 		};
 		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
@@ -46,10 +42,6 @@ namespace Glacier
 		uint32 indices[3] = { 0,1,2 };
 		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32)));
 
-		m_VertexShader.reset(VertexShader::Create(L"../Glacier/resources/shaders/VertexColorVS.hlsl"));
-		m_FragmentShader.reset(FragmentShader::Create(L"../Glacier/resources/shaders/VertexColorPS.hlsl"));
-
-		m_InputLayout.reset(VertexLayout::Create(m_VertexShader.get()));
 	}
 
 	Application::~Application()
@@ -65,13 +57,11 @@ namespace Glacier
 			RenderCommand::SetClearColor({0.1f, 0.1f, 0.1f, 1.0f});
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
+			Renderer::BeginRenderScene(); // set render target, viewport.
 
-			m_VertexShader->Bind();
-			m_FragmentShader->Bind();
-			m_InputLayout->Bind();
+			Glacier::vertexColorPipelineState.Bind();
 
-			Renderer::Submit(m_VertexBuffer, m_IndexBuffer, m_InputLayout);
+			Renderer::Submit(m_VertexBuffer, m_IndexBuffer, Glacier::vertexColorPipelineState.m_InputLayout);
 
 			for (Layer* layer : m_LayerStack) // 레이어들의 update 호출.
 				layer->OnUpdate();

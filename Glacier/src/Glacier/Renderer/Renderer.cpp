@@ -3,12 +3,12 @@
 
 namespace Glacier
 {
-	void Renderer::BeginScene()
+	void Renderer::BeginRenderScene()
 	{
 		RenderCommand::BeginRenderFrame();
 	}
 
-	void Renderer::EndScene()
+	void Renderer::EndRenderScene()
 	{
 	}
 

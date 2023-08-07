@@ -6,7 +6,8 @@
 #include "Glacier/Event/KeyboardEvent.h"
 #include "Glacier/Event/MouseEvent.h"
 
-#include "Platform/DirectX/DirectX11Context.h"
+#include "Platform/DirectX/DirectX11Common.h"
+#include "Platform/DirectX/DirectX11Manager.h"
 
 #include "backends/imgui_impl_win32.h"
 
@@ -85,7 +86,7 @@ namespace Glacier
 	void WindowsWindow::OnUpdate()
 	{
 		ProcessMessages();
-		m_Context->SwapBuffers();
+		m_GraphicsManager->SwapBuffers();
 	}
 
 	void WindowsWindow::Initialize(const wchar_t* name, int width, int height)
@@ -124,8 +125,11 @@ namespace Glacier
 
 		GR_CORE_WARN("Initialized WindowsWindow successfully!");
 
-		m_Context = new DirectX11Context(m_HWnd);
-		m_Context->Init();
+		m_GraphicsManager = new DirectX11Manager(m_HWnd);
+		m_GraphicsManager->Init();
+
+		// PipelineState √ ±‚»≠.
+		Glacier::InitCommonStates();
 
 		return;
 	}

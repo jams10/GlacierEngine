@@ -7,7 +7,7 @@
 #include "backends/imgui_impl_dx11.h"
 #include "backends/imgui_impl_win32.h"
 
-#include "Platform/DirectX/DirectX11System.h"
+#include "Platform/DirectX/DirectX11Device.h"
 
 namespace Glacier
 {
@@ -37,8 +37,8 @@ namespace Glacier
 		HWND hWnd = static_cast<HWND>(app.GetWindow().GetNativeWindow());
 
 		ImGui_ImplWin32_Init(hWnd);
-		ImGui_ImplDX11_Init(DirectX11System::GetInstance()->GetDirectX11Device().Get(),
-							DirectX11System::GetInstance()->GetDirectX11DeviceContext().Get());
+		ImGui_ImplDX11_Init(DirectX11Device::GetDevice().Get(),
+							DirectX11Device::GetDeviceContext().Get());
 	}
 
 	void ImGuiLayer::OnDetach()

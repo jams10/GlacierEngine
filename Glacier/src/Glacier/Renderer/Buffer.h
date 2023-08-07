@@ -9,6 +9,7 @@ namespace Glacier
 	/* 
 		정점의 경우 유연하게 구성할 수 있음.
 		정점 버퍼를 만들 때 각 정점 데이터의 크기를 알아야 하기 때문에 유연하게 구성할 수 있는 정점 데이터의 크기를 계산하기 위해 아래와 같은 작업들을 수행.
+		또한 상수 버퍼의 경우에도 자유롭게 데이터들을 구성할 수 있기 때문에 런타임에 버퍼의 데이터 구조를 파악할 수 있어야 함.
 	*/
 	enum class ShaderDataType
 	{
@@ -36,13 +37,13 @@ namespace Glacier
 		return 0;
 	}
 
-	// 정점 데이터를 구성하는 각 element.
+	// 버퍼를 구성하는 각 element.
 	struct BufferElement
 	{
 		std::string Name;    // element의 이름.
 		ShaderDataType Type; // 해당 element의 데이터 유형.
 		uint32 Size;         // 해당 element의 데이터 크기.
-		uint32 Offset;       // 각 element의 정점 데이터안에서의 시작 지점. [float4, float2]로 정점 데이터가 구성될 경우, 두 번째 element의 경우 시작 지점이 4가 됨.
+		uint32 Offset;       // 각 element의 정점 데이터안에서의 시작 지점. [float4, float2]로 데이터가 구성될 경우, 두 번째 element의 경우 시작 지점이 4가 됨.
 		bool Normalized;     // 해당 element를 해석할 때 정규화된 값[0~1]으로 해석할 것인지 여부.
 
 		BufferElement() {}
@@ -74,7 +75,7 @@ namespace Glacier
 		}
 	};
 
-	// 정점 버퍼를 구성하는 정점 데이터의 구조를 정의.
+	// 버퍼를 구성하는 데이터의 구조를 정의.
 	class GLACIER_API BufferLayout
 	{
 	public:
@@ -107,7 +108,7 @@ namespace Glacier
 		}
 	private:
 		std::vector<BufferElement> m_Elements;
-		uint32 m_Stride = 0; // 정점 데이터 간의 간격. [정점1]<->[정점2]
+		uint32 m_Stride = 0; // 데이터 간의 간격. ex) [정점1]<->[정점2]
 	};
 
 
@@ -146,4 +147,18 @@ namespace Glacier
 		static IndexBuffer* Create(uint32* indices, uint32 size);
 	};
 
+	/*
+		쉐이더 버퍼 클래스. (DirectX의 상수 버퍼)
+	*/
+	class ShaderBuffer
+	{
+		virtual ~ShaderBuffer() {}
+
+		virtual void Bind() const = 0;
+		virtual void Unbind() const = 0;
+
+		virtual uint32 GetCount() const = 0;
+
+		static ShaderBuffer* Create(uint32* indices, uint32 size);
+	};
 }

@@ -2,8 +2,8 @@
 #include "Buffer.h"
 
 #include "Renderer.h"
-#include "Platform/DirectX/DirectX11VertexBuffer.h"
-#include "Platform/DirectX/DirectX11IndexBuffer.h"
+#include "Platform/DirectX/Buffer/DirectX11VertexBuffer.h"
+#include "Platform/DirectX/Buffer/DirectX11IndexBuffer.h"
 
 namespace Glacier
 {
@@ -12,8 +12,8 @@ namespace Glacier
 		// 사용하는 그래픽스 API에 따라 정점, 인덱스 버퍼를 생성하는 방법이 다르기 때문에 각 API에 따라 구현한 정점, 인덱스 버퍼 클래스의 인스턴스를 생성해줌.
 		switch (Renderer::GetAPI())
 		{
-		case RenderAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case RenderAPI::API::DirectX11:  return new DirectX11VertexBuffer(vertices, size);
+		case GraphicsAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case GraphicsAPI::API::DirectX11:  return new DirectX11VertexBuffer(vertices, size);
 		}
 
 		GR_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -24,8 +24,8 @@ namespace Glacier
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RenderAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RenderAPI::API::DirectX11:  return new DirectX11VertexBuffer(vertices, size, layout);
+			case GraphicsAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case GraphicsAPI::API::DirectX11:  return new DirectX11VertexBuffer(vertices, size, layout);
 		}
 
 		GR_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -36,8 +36,8 @@ namespace Glacier
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RenderAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-			case RenderAPI::API::DirectX11:  return new DirectX11IndexBuffer(indices, size);
+			case GraphicsAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+			case GraphicsAPI::API::DirectX11:  return new DirectX11IndexBuffer(indices, size);
 		}
 
 		GR_CORE_ASSERT(false, "Unknown RendererAPI!");

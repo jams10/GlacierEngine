@@ -10,7 +10,7 @@ namespace Glacier
 {
 	using Microsoft::WRL::ComPtr;
 
-	class DirectX11InputLayout : public VertexLayout
+	class GLACIER_API DirectX11InputLayout : public VertexLayout
 	{
 	public:
 		DirectX11InputLayout(VertexShader* vertexShdaer);

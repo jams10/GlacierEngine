@@ -1,10 +1,11 @@
 #pragma once
 
+#include "Glacier/Core.h"
 #include "Glacier/Input/Input.h"
 
 namespace Glacier
 {
-	class WindowsInput : public Input
+	class GLACIER_API WindowsInput : public Input
 	{
 	protected:
 		virtual bool IsKeyPressedImpl(int keycode) override;

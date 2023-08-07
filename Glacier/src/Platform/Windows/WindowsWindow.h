@@ -1,14 +1,15 @@
 #pragma once
 
+#include "Glacier/Core.h"
 #include "Glacier/Window/Window.h"
-#include "Glacier/Renderer/GraphicsContext.h"
+#include "Glacier/Renderer/GraphicsManager.h"
 #include "WindowsHeaders.h"
 
 namespace Glacier
 {
 	using std::wstring;
 
-	class WindowsWindow : public Window
+	class GLACIER_API WindowsWindow : public Window
 	{
 #pragma region WindowClass
 	private:
@@ -56,7 +57,7 @@ namespace Glacier
 
 	private:
 		HWND m_HWnd;
-		GraphicsContext* m_Context;
+		GraphicsManager* m_GraphicsManager;
 
 		// 윈도우 이벤트 발생 시 
 		struct WindowData 

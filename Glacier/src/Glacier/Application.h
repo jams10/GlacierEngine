@@ -6,10 +6,9 @@
 
 #include "ImGui/ImGuiLayer.h"
 
-#include "Glacier/Renderer/Shader.h"
 #include "Glacier/Event/ApplicationEvent.h"
 #include "Glacier/Renderer/Buffer.h"
-#include "Glacier/Renderer/VertexLayout.h"
+#include "Platform/DirectX/DirectX11Common.h"
 
 namespace Glacier
 {
@@ -35,11 +34,8 @@ namespace Glacier
 	private:
 		std::unique_ptr<Window> m_Window;
 
-		std::unique_ptr<VertexShader> m_VertexShader;
-		std::unique_ptr<FragmentShader> m_FragmentShader;
 		std::shared_ptr<VertexBuffer> m_VertexBuffer;
 		std::shared_ptr<IndexBuffer> m_IndexBuffer;
-		std::shared_ptr<VertexLayout> m_InputLayout;
 
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_IsRunning = true;

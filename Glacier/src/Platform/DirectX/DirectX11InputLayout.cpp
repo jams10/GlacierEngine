@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "DirectX11InputLayout.h"
-#include "DirectX11VertexShader.h"
-#include "DirectX11System.h"
+#include "Shader/DirectX11VertexShader.h"
+#include "DirectX11Device.h"
 
 #include <d3d11shader.h>
 #include <d3dcompiler.inl>
@@ -20,13 +20,12 @@ namespace Glacier
 
 	void DirectX11InputLayout::Bind() const
 	{
-		DirectX11System::GetInstance()->GetDirectX11DeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		DirectX11System::GetInstance()->GetDirectX11DeviceContext()->IASetInputLayout(m_InputLayout.Get());
+		DirectX11Device::GetDeviceContext()->IASetInputLayout(m_InputLayout.Get());
 	}
 
 	void DirectX11InputLayout::Unbind() const
 	{
-		DirectX11System::GetInstance()->GetDirectX11DeviceContext()->IASetInputLayout(nullptr);
+		DirectX11Device::GetDeviceContext()->IASetInputLayout(nullptr);
 	}
 
 	void DirectX11InputLayout::CreateInputLayoutFromVertexShader(VertexShader* vertexShdaer)
@@ -118,7 +117,7 @@ namespace Glacier
 			m_Stride += ShaderDataTypeSizeMap.at(elementDescription.Format);
 		}
 
-		DirectX11System::GetInstance()->GetDirectX11Device()->CreateInputLayout(
+		DirectX11Device::GetDevice()->CreateInputLayout(
 			&inputLayoutDescriptions[0], static_cast<uint32>(inputLayoutDescriptions.size()),
 			vertexShaderBinary->GetBufferPointer(), vertexShaderBinary->GetBufferSize(), &m_InputLayout);
 
