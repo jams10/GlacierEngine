@@ -192,6 +192,7 @@
     <ClInclude Include="vendor\directxtk\SimpleMath.inl">
       <Filter>vendor\directxtk</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glacier\Utils\GameTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -281,6 +282,7 @@
     <ClCompile Include="src\pch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Glacier\Utils\GameTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resources\shaders\VertexColorPS.hlsl">

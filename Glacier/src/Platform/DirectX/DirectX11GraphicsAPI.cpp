@@ -5,10 +5,9 @@
 
 namespace Glacier
 {
-	void DirectX11GraphicsAPI::SetClearColor(const glm::vec4& color)
+	void DirectX11GraphicsAPI::SetClearColor(float colors[4])
 	{
-		float clearColor[4] = { color.r, color.g, color.b,color.a };
-		DirectX11RenderContext::GetInstance()->SetClearColor(clearColor);
+		DirectX11RenderContext::GetInstance()->SetClearColor(colors);
 	}
 
 	void DirectX11GraphicsAPI::Clear()

@@ -7,7 +7,7 @@ namespace Glacier
 	class GLACIER_API DirectX11GraphicsAPI : public GraphicsAPI
 	{
 	public:
-		virtual void SetClearColor(const glm::vec4& color) override;
+		virtual void SetClearColor(float colors[4]) override;
 		virtual void Clear() override;
 
 		virtual void BeginRenderFrame() override;

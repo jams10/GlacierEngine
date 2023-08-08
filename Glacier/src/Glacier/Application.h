@@ -7,10 +7,7 @@
 #include "ImGui/ImGuiLayer.h"
 
 #include "Glacier/Event/ApplicationEvent.h"
-#include "Glacier/Renderer/Camera.h"
-#include "Glacier/Renderer/Buffer.h"
-#include "Platform/DirectX/DirectX11Common.h"
-#include "Platform/DirectX/Buffer/ConstantBufferData.h"
+#include "Glacier/Utils/GameTimer.h"
 
 namespace Glacier
 {
@@ -36,14 +33,16 @@ namespace Glacier
 	private:
 		std::unique_ptr<Window> m_Window;
 
-		std::shared_ptr<VertexBuffer> m_VertexBuffer;
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
-		std::shared_ptr<ShaderBuffer> m_WorldTransformBuffer;
-		std::shared_ptr<ShaderBuffer> m_CameraTransformBuffer;
+		//std::shared_ptr<VertexBuffer> m_VertexBuffer;
+		//std::shared_ptr<IndexBuffer> m_IndexBuffer;
+		//std::shared_ptr<ShaderBuffer> m_WorldTransformBuffer;
+		//std::shared_ptr<ShaderBuffer> m_CameraTransformBuffer;
 
-		Camera m_Camera;
-		WorldTransformConstant m_WorldTransformConstant;
-		CameraTransformConstant m_CameraTransformConstant;
+		//Camera m_Camera;
+		//WorldTransformConstant m_WorldTransformConstant;
+		//CameraTransformConstant m_CameraTransformConstant;
+
+		GameTimer m_GameTimer;
 
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_IsRunning = true;

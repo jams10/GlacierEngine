@@ -134,7 +134,7 @@ namespace Glacier
 	/*
 		인덱스 버퍼 클래스.
 	*/
-	class IndexBuffer
+	class GLACIER_API IndexBuffer
 	{
 	public:
 		virtual ~IndexBuffer() {}
@@ -154,14 +154,17 @@ namespace Glacier
 	/*
 		쉐이더 버퍼 클래스. (DirectX의 상수 버퍼)
 	*/
-	class ShaderBuffer
+	class GLACIER_API ShaderBuffer
 	{
 	public:
 		virtual ~ShaderBuffer() {}
 
+		virtual void Bind() const = 0;
+		virtual void Unbind() const = 0;
+
 		virtual void UpdateData(void* data, uint32 size) = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 
-		static ShaderBuffer* Create(void* data, uint32 size, ShaderBufferType type);
+		static ShaderBuffer* Create(void* data, uint32 size, ShaderBufferType type, uint8 bindingSlot);
 	};
 }

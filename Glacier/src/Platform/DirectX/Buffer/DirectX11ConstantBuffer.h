@@ -13,8 +13,11 @@ namespace Glacier
 	class GLACIER_API DirectX11ConstantBuffer : public ShaderBuffer
 	{
 	public:
-		DirectX11ConstantBuffer(void* data, uint32 size, ShaderBufferType type);
+		DirectX11ConstantBuffer(void* data, uint32 size, ShaderBufferType type, uint8 bindingSlot);
 		virtual ~DirectX11ConstantBuffer();
+
+		virtual void Bind() const override;
+		virtual void Unbind() const override;
 
 		virtual void UpdateData(void* data, uint32 size) override;
 		virtual void SetLayout(const BufferLayout& layout) override;
@@ -25,5 +28,6 @@ namespace Glacier
 	private:
 		ComPtr<ID3D11Buffer> m_GpuBuffer;
 		ShaderBufferType m_BufferType;
+		uint8 m_BindingSlot;
 	};
 }

@@ -12,9 +12,9 @@ namespace Glacier
 	class GLACIER_API RenderCommand
 	{
 	public:
-		inline static void SetClearColor(const glm::vec4& color)
+		inline static void SetClearColor(float colors[4])
 		{
-			s_GraphicsAPI->SetClearColor(color);
+			s_GraphicsAPI->SetClearColor(colors);
 		}
 
 		inline static void Clear()

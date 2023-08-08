@@ -182,6 +182,7 @@
     <ClInclude Include="src\Glacier\Renderer\VertexLayout.h" />
     <ClInclude Include="src\Glacier\Types.h" />
     <ClInclude Include="src\Glacier\Utils\CustomDelegate.h" />
+    <ClInclude Include="src\Glacier\Utils\GameTimer.h" />
     <ClInclude Include="src\Glacier\Utils\StringEncode.h" />
     <ClInclude Include="src\Glacier\Window\Window.h" />
     <ClInclude Include="src\Platform\DirectX\Buffer\ConstantBufferData.h" />
@@ -219,6 +220,7 @@
     <ClCompile Include="src\Glacier\Renderer\Shader.cpp" />
     <ClCompile Include="src\Glacier\Renderer\VertexLayout.cpp" />
     <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp" />
+    <ClCompile Include="src\Glacier\Utils\GameTimer.cpp" />
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11ConstantBuffer.cpp" />
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11IndexBuffer.cpp" />
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.cpp" />

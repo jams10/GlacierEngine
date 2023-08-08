@@ -45,12 +45,12 @@ namespace Glacier
 		return nullptr;
 	}
 
-	ShaderBuffer* ShaderBuffer::Create(void* data, uint32 size, ShaderBufferType type)
+	ShaderBuffer* ShaderBuffer::Create(void* data, uint32 size, ShaderBufferType type, uint8 bindingSlot)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case GraphicsAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case GraphicsAPI::API::DirectX11:  return new DirectX11ConstantBuffer(data, size, type);
+		case GraphicsAPI::API::DirectX11:  return new DirectX11ConstantBuffer(data, size, type, bindingSlot);
 		}
 
 		GR_CORE_ASSERT(false, "Unknown RendererAPI!");
