@@ -40,8 +40,20 @@
     <Filter Include="src\Platform\DirectX">
       <UniqueIdentifier>{E33DFBCB-CFCC-8495-78EB-98906459953B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\DirectX\Buffer">
+      <UniqueIdentifier>{6CE21816-D8EF-46FC-61D6-42E7CDE212B3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\DirectX\Shader">
+      <UniqueIdentifier>{2990D23C-959D-0023-1E84-FC0D8A90CCD9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor">
+      <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\directxtk">
+      <UniqueIdentifier>{5442D63C-403B-F58E-696D-DA1355C5D49A}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -90,7 +102,16 @@
     <ClInclude Include="src\Glacier\Renderer\Buffer.h">
       <Filter>src\Glacier\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\Camera.h">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\GraphicsAPI.h">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\GraphicsManager.h">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\RenderCommand.h">
       <Filter>src\Glacier\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\Renderer.h">
@@ -114,26 +135,44 @@
     <ClInclude Include="src\Glacier\Window\Window.h">
       <Filter>src\Glacier\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\DirectX\DirectX11Manager.h">
-      <Filter>src\Platform\DirectX</Filter>
+    <ClInclude Include="src\Platform\DirectX\Buffer\ConstantBufferData.h">
+      <Filter>src\Platform\DirectX\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11ConstantBuffer.h">
+      <Filter>src\Platform\DirectX\Buffer</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11IndexBuffer.h">
-      <Filter>src\Platform\DirectX</Filter>
+      <Filter>src\Platform\DirectX\Buffer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\DirectX\DirectX11InputLayout.h">
-      <Filter>src\Platform\DirectX</Filter>
+    <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.h">
+      <Filter>src\Platform\DirectX\Buffer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\DirectX\Shader\DirectX11PixelShader.h">
+    <ClInclude Include="src\Platform\DirectX\DirectX11Common.h">
       <Filter>src\Platform\DirectX</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\DirectX\DirectX11Device.h">
       <Filter>src\Platform\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.h">
+    <ClInclude Include="src\Platform\DirectX\DirectX11GraphicsAPI.h">
       <Filter>src\Platform\DirectX</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\DirectX\Shader\DirectX11VertexShader.h">
+    <ClInclude Include="src\Platform\DirectX\DirectX11InputLayout.h">
       <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\DirectX11Manager.h">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\DirectX11PipelineState.h">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\DirectX11RenderContext.h">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\Shader\DirectX11PixelShader.h">
+      <Filter>src\Platform\DirectX\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\Shader\DirectX11VertexShader.h">
+      <Filter>src\Platform\DirectX\Shader</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsHeaders.h">
       <Filter>src\Platform\Windows</Filter>
@@ -147,12 +186,12 @@
     <ClInclude Include="src\pch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Renderer\GraphicsAPI.h" />
-    <ClInclude Include="src\Platform\DirectX\DirectX11GraphicsAPI.h" />
-    <ClInclude Include="src\Glacier\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\DirectX\DirectX11RenderContext.h" />
-    <ClInclude Include="src\Platform\DirectX\DirectX11PipelineState.h" />
-    <ClInclude Include="src\Platform\DirectX\DirectX11Common.h" />
+    <ClInclude Include="vendor\directxtk\SimpleMath.h">
+      <Filter>vendor\directxtk</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\directxtk\SimpleMath.inl">
+      <Filter>vendor\directxtk</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -176,6 +215,15 @@
     <ClCompile Include="src\Glacier\Renderer\Buffer.cpp">
       <Filter>src\Glacier\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\Camera.cpp">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\GraphicsAPI.cpp">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\RenderCommand.cpp">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\Renderer.cpp">
       <Filter>src\Glacier\Renderer</Filter>
     </ClCompile>
@@ -188,26 +236,41 @@
     <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp">
       <Filter>src\Glacier\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\DirectX\DirectX11Manager.cpp">
-      <Filter>src\Platform\DirectX</Filter>
+    <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11ConstantBuffer.cpp">
+      <Filter>src\Platform\DirectX\Buffer</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11IndexBuffer.cpp">
-      <Filter>src\Platform\DirectX</Filter>
+      <Filter>src\Platform\DirectX\Buffer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\DirectX\DirectX11InputLayout.cpp">
-      <Filter>src\Platform\DirectX</Filter>
+    <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.cpp">
+      <Filter>src\Platform\DirectX\Buffer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\DirectX\Shader\DirectX11PixelShader.cpp">
+    <ClCompile Include="src\Platform\DirectX\DirectX11Common.cpp">
       <Filter>src\Platform\DirectX</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\DirectX\DirectX11Device.cpp">
       <Filter>src\Platform\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.cpp">
+    <ClCompile Include="src\Platform\DirectX\DirectX11GraphicsAPI.cpp">
       <Filter>src\Platform\DirectX</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\DirectX\Shader\DirectX11VertexShader.cpp">
+    <ClCompile Include="src\Platform\DirectX\DirectX11InputLayout.cpp">
       <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\DirectX11Manager.cpp">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\DirectX11PipelineState.cpp">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\DirectX11RenderContext.cpp">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\Shader\DirectX11PixelShader.cpp">
+      <Filter>src\Platform\DirectX\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\Shader\DirectX11VertexShader.cpp">
+      <Filter>src\Platform\DirectX\Shader</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
@@ -218,12 +281,6 @@
     <ClCompile Include="src\pch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Glacier\Renderer\GraphicsAPI.cpp" />
-    <ClCompile Include="src\Platform\DirectX\DirectX11GraphicsAPI.cpp" />
-    <ClCompile Include="src\Glacier\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\DirectX\DirectX11RenderContext.cpp" />
-    <ClCompile Include="src\Platform\DirectX\DirectX11PipelineState.cpp" />
-    <ClCompile Include="src\Platform\DirectX\DirectX11Common.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resources\shaders\VertexColorPS.hlsl">

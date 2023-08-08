@@ -15,8 +15,8 @@ namespace Glacier
 		DirectX11IndexBuffer(uint32* indices, uint32 count);
 		virtual ~DirectX11IndexBuffer();
 
-		virtual void Bind() const;
-		virtual void Unbind() const;
+		virtual void Bind() const override;
+		virtual void Unbind() const override;
 
 		virtual uint32 GetCount() const { return m_Count; }
 	private:

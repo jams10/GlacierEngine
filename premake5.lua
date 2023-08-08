@@ -30,7 +30,9 @@ project "Glacier"      -- Glacier 프로젝트
 	{	-- ** : 해당 폴더 부터 재귀적으로 하위 폴더를 탐색함.
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/resources/shaders/**.hlsl"
+		"%{prj.name}/resources/shaders/**.hlsl",
+		"%{prj.name}/vendor/directxtk/**.h",
+		"%{prj.name}/vendor/directxtk/**.inl"
 	}
 
 	defines
@@ -43,13 +45,20 @@ project "Glacier"      -- Glacier 프로젝트
 	    "%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/vendor/imgui",
+		"%{prj.name}/vendor/directxtk"
 	}
 	
-	links -- GLFW 프로젝트와 opengl32.lib를 참조해줌.
+	libdirs 
+	{ 
+		"%{prj.name}/vendor/directxtk"
+	}
+	
+	links
 	{ 
 		"d3d11.lib",
 		"d3dcompiler.lib",
-		"dxguid.lib"
+		"dxguid.lib",
+		"DirectXTK.lib"
 	}
 	
 	shadermodel ("5.0")
@@ -100,7 +109,8 @@ project "Sandbox"      -- Sandbox 프로젝트
 	{
 		"Glacier/src",
 		"Glacier/vendor/spdlog/include",
-		"Glacier/vendor/imgui"
+		"Glacier/vendor/imgui",
+		"Glacier/vendor/directxtk"
 	}
 
 	links -- 프로젝트 참조

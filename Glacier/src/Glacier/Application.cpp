@@ -3,6 +3,7 @@
 
 #include "Glacier/Renderer/Renderer.h"
 #include "Platform/DirectX/DirectX11Device.h"
+#include "Platform/DirectX/Buffer/DirectX11ConstantBuffer.h"
 
 namespace Glacier
 {
@@ -42,6 +43,14 @@ namespace Glacier
 		uint32 indices[3] = { 0,1,2 };
 		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32)));
 
+		// 상수 버퍼 세팅.
+		m_WorldTransformConstant.world = Matrix::CreateTranslation(Vector3::Zero);
+		m_CameraTransformConstant.view = m_Camera.GetViewMatrix();
+		m_CameraTransformConstant.proj = m_Camera.GetProjectionMatrix();
+
+		m_WorldTransformBuffer.reset(ShaderBuffer::Create(&m_WorldTransformConstant, sizeof(m_WorldTransformConstant), ShaderBufferType::VERTEX));
+		m_CameraTransformBuffer.reset(ShaderBuffer::Create(&m_CameraTransformConstant, sizeof(m_CameraTransformConstant), ShaderBufferType::VERTEX));
+		m_Camera.SetAspectRatio(1280.f / 720.f);
 	}
 
 	Application::~Application()
@@ -54,6 +63,24 @@ namespace Glacier
 	{
 		while (m_IsRunning)
 		{
+			m_Camera.SetPosition(Vector3(0.0f, 0.0, -2.0f));
+			m_Camera.Update();
+			m_CameraTransformConstant.view = m_Camera.GetViewMatrix();
+			m_CameraTransformConstant.proj = m_Camera.GetProjectionMatrix();
+			m_CameraTransformBuffer->UpdateData(&m_CameraTransformConstant, sizeof(m_CameraTransformConstant));
+
+			std::vector<ID3D11Buffer*> vsConstantBuffers;
+			DirectX11ConstantBuffer* b1 = reinterpret_cast<DirectX11ConstantBuffer*>(m_WorldTransformBuffer.get());
+			DirectX11ConstantBuffer* b2 = reinterpret_cast<DirectX11ConstantBuffer*>(m_CameraTransformBuffer.get());
+			if (b1->GetBufferType() == ShaderBufferType::VERTEX)
+			{
+				vsConstantBuffers.push_back(b1->GetGPUBuffer().Get());
+			}
+			if (b2->GetBufferType() == ShaderBufferType::VERTEX)
+			{
+				vsConstantBuffers.push_back(b2->GetGPUBuffer().Get());
+			}
+			
 			RenderCommand::SetClearColor({0.1f, 0.1f, 0.1f, 1.0f});
 			RenderCommand::Clear();
 
@@ -61,16 +88,18 @@ namespace Glacier
 
 			Glacier::vertexColorPipelineState.Bind();
 
+			DirectX11Device::GetDeviceContext()->VSSetConstantBuffers(0, (UINT)vsConstantBuffers.size(), vsConstantBuffers.data());
+
 			Renderer::Submit(m_VertexBuffer, m_IndexBuffer, Glacier::vertexColorPipelineState.m_InputLayout);
 
 			for (Layer* layer : m_LayerStack) // 레이어들의 update 호출.
 				layer->OnUpdate();
 
 			// ImGui GUI를 그려줌.
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
-			m_ImGuiLayer->End();
+			//m_ImGuiLayer->Begin();
+			//for (Layer* layer : m_LayerStack)
+			//	layer->OnImGuiRender();
+			//m_ImGuiLayer->End();
 
 			// swap buffer
 			m_Window->OnUpdate();

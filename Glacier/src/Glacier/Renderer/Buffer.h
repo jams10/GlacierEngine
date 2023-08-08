@@ -147,18 +147,21 @@ namespace Glacier
 		static IndexBuffer* Create(uint32* indices, uint32 size);
 	};
 
+	enum class ShaderBufferType
+	{
+		VERTEX = 0, PIXEL, 
+	};
 	/*
 		쉐이더 버퍼 클래스. (DirectX의 상수 버퍼)
 	*/
 	class ShaderBuffer
 	{
+	public:
 		virtual ~ShaderBuffer() {}
 
-		virtual void Bind() const = 0;
-		virtual void Unbind() const = 0;
+		virtual void UpdateData(void* data, uint32 size) = 0;
+		virtual void SetLayout(const BufferLayout& layout) = 0;
 
-		virtual uint32 GetCount() const = 0;
-
-		static ShaderBuffer* Create(uint32* indices, uint32 size);
+		static ShaderBuffer* Create(void* data, uint32 size, ShaderBufferType type);
 	};
 }

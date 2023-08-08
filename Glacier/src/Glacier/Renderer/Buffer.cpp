@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "Platform/DirectX/Buffer/DirectX11VertexBuffer.h"
 #include "Platform/DirectX/Buffer/DirectX11IndexBuffer.h"
+#include "Platform/DirectX/Buffer/DirectX11ConstantBuffer.h"
 
 namespace Glacier
 {
@@ -38,6 +39,18 @@ namespace Glacier
 		{
 			case GraphicsAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
 			case GraphicsAPI::API::DirectX11:  return new DirectX11IndexBuffer(indices, size);
+		}
+
+		GR_CORE_ASSERT(false, "Unknown RendererAPI!");
+		return nullptr;
+	}
+
+	ShaderBuffer* ShaderBuffer::Create(void* data, uint32 size, ShaderBufferType type)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case GraphicsAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
+		case GraphicsAPI::API::DirectX11:  return new DirectX11ConstantBuffer(data, size, type);
 		}
 
 		GR_CORE_ASSERT(false, "Unknown RendererAPI!");

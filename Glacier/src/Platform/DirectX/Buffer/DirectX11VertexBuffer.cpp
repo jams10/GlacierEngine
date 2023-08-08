@@ -7,7 +7,7 @@ namespace Glacier
 {
 #pragma region Vertex Buffer
 
-	DirectX11VertexBuffer::DirectX11VertexBuffer(float* vertices, uint32 size)
+	DirectX11VertexBuffer::DirectX11VertexBuffer(void* vertices, uint32 size)
 	{
 		m_stride = 0;
 		m_offset = 0;
@@ -29,7 +29,7 @@ namespace Glacier
 		THROWFAILED(DirectX11Device::GetDevice()->CreateBuffer(&bufferDesc, &vertexBufferData, m_gpuBuffer.GetAddressOf()));
 	}
 
-	DirectX11VertexBuffer::DirectX11VertexBuffer(float* vertices, uint32 size, BufferLayout& layout)
+	DirectX11VertexBuffer::DirectX11VertexBuffer(void* vertices, uint32 size, BufferLayout& layout)
 	{
 		m_Layout = layout;
 		m_stride = layout.GetStride();
