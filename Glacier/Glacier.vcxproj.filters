@@ -46,6 +46,9 @@
     <Filter Include="src\Platform\DirectX\Shader">
       <UniqueIdentifier>{2990D23C-959D-0023-1E84-FC0D8A90CCD9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\DirectX\Texture">
+      <UniqueIdentifier>{4396C81E-2F51-B8CA-D808-3115C4A2025B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
@@ -54,6 +57,9 @@
     </Filter>
     <Filter Include="vendor\directxtk">
       <UniqueIdentifier>{5442D63C-403B-F58E-696D-DA1355C5D49A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +126,9 @@
     <ClInclude Include="src\Glacier\Renderer\Shader.h">
       <Filter>src\Glacier\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\Texture.h">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\VertexLayout.h">
       <Filter>src\Glacier\Renderer</Filter>
     </ClInclude>
@@ -127,6 +136,9 @@
       <Filter>src\Glacier</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Utils\CustomDelegate.h">
+      <Filter>src\Glacier\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Utils\GameTimer.h">
       <Filter>src\Glacier\Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Utils\StringEncode.h">
@@ -174,6 +186,9 @@
     <ClInclude Include="src\Platform\DirectX\Shader\DirectX11VertexShader.h">
       <Filter>src\Platform\DirectX\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\Texture\DirectX11Texture2D.h">
+      <Filter>src\Platform\DirectX\Texture</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsHeaders.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -192,7 +207,66 @@
     <ClInclude Include="vendor\directxtk\SimpleMath.inl">
       <Filter>vendor\directxtk</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Utils\GameTimer.h" />
+    <ClInclude Include="vendor\stb_image\stb_c_lexer.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_connected_components.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_divide.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_ds.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_dxt.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_easy_font.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_herringbone_wang_tile.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_hexwave.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_image_resize.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_image_write.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_include.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_leakcheck.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_perlin.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_rect_pack.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_sprintf.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_textedit.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_tilemap_editor.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_truetype.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\stb_image\stb_voxel_render.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -231,10 +305,16 @@
     <ClCompile Include="src\Glacier\Renderer\Shader.cpp">
       <Filter>src\Glacier\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\Texture.cpp">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\VertexLayout.cpp">
       <Filter>src\Glacier\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp">
+      <Filter>src\Glacier\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Utils\GameTimer.cpp">
       <Filter>src\Glacier\Utils</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11ConstantBuffer.cpp">
@@ -273,6 +353,9 @@
     <ClCompile Include="src\Platform\DirectX\Shader\DirectX11VertexShader.cpp">
       <Filter>src\Platform\DirectX\Shader</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\Texture\DirectX11Texture2D.cpp">
+      <Filter>src\Platform\DirectX\Texture</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -282,13 +365,21 @@
     <ClCompile Include="src\pch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Glacier\Utils\GameTimer.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="resources\shaders\VertexColorPS.hlsl">
+    <FxCompile Include="resources\shaders\TextureSample_PS.hlsl">
       <Filter>resources\shaders</Filter>
     </FxCompile>
-    <FxCompile Include="resources\shaders\VertexColorVS.hlsl">
+    <FxCompile Include="resources\shaders\TextureSample_VS.hlsl">
+      <Filter>resources\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\VertexColor_PS.hlsl">
+      <Filter>resources\shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="resources\shaders\VertexColor_VS.hlsl">
       <Filter>resources\shaders</Filter>
     </FxCompile>
   </ItemGroup>

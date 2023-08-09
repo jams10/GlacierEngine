@@ -7,29 +7,33 @@
 namespace Glacier
 {
 	// Samplers
-	ComPtr<ID3D11SamplerState> samplerState_LinearWrap;
-	ComPtr<ID3D11SamplerState> samplerState_LinearClamp;
-	std::vector<ID3D11SamplerState*> samplerStates;
+	ComPtr<ID3D11SamplerState> SamplerState_LinearWrap;
+	ComPtr<ID3D11SamplerState> SamplerState_LinearClamp;
+	std::vector<ID3D11SamplerState*> SamplerStates;
 
 	// Rasterizer States
-	ComPtr<ID3D11RasterizerState> rasterizerState_SolidCW;
-	ComPtr<ID3D11RasterizerState> rasterizerState_CullNone;
-	ComPtr<ID3D11RasterizerState> rasterizerState_WireCW;
-	ComPtr<ID3D11RasterizerState> rasterizerState_ImageFilter;
+	ComPtr<ID3D11RasterizerState> RasterizerState_SolidCW;
+	ComPtr<ID3D11RasterizerState> RasterizerState_CullNone;
+	ComPtr<ID3D11RasterizerState> RasterizerState_WireCW;
+	ComPtr<ID3D11RasterizerState> RasterizerState_ImageFilter;
 
 	// Depth Stencil States
-	ComPtr<ID3D11DepthStencilState> depthStencilState_Default;
+	ComPtr<ID3D11DepthStencilState> DepthStencilState_Default;
 
 	// Shaders
-	std::shared_ptr<VertexShader> vertexShader_Color;
-	std::shared_ptr<FragmentShader> pixelShader_Color;
+	std::shared_ptr<VertexShader> VertexShader_Color;
+	std::shared_ptr<FragmentShader> PixelShader_Color;
+	std::shared_ptr<VertexShader> VertexShader_TextureSample;
+	std::shared_ptr<FragmentShader> PixelShader_TextureSample;
 
 	// Input Layouts
-	std::shared_ptr<VertexLayout> inputLayout_Color;
+	std::shared_ptr<VertexLayout> InputLayout_Color;
+	std::shared_ptr<VertexLayout> InputLayout_TextureSample;
 
 	// Pipeline States
-	DirectX11PipelineState vertexColorPipelineState;
-	DirectX11PipelineState vertexColorWirePipelineState;
+	DirectX11PipelineState VertexColorPipelineState;
+	DirectX11PipelineState VertexColorWirePipelineState;
+	DirectX11PipelineState TexureSamplingPipelineState;
 
 	void Glacier::InitCommonStates()
 	{
@@ -51,15 +55,15 @@ namespace Glacier
 		sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
 		sampDesc.MinLOD = 0;
 		sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
-		DirectX11Device::GetDevice()->CreateSamplerState(&sampDesc, samplerState_LinearWrap.GetAddressOf());
+		DirectX11Device::GetDevice()->CreateSamplerState(&sampDesc, SamplerState_LinearWrap.GetAddressOf());
 		sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
 		sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
 		sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
-		DirectX11Device::GetDevice()->CreateSamplerState(&sampDesc, samplerState_LinearClamp.GetAddressOf());
+		DirectX11Device::GetDevice()->CreateSamplerState(&sampDesc, SamplerState_LinearClamp.GetAddressOf());
 
 		// 샘플러 순서가 "Common.hlsli"에서와 일관성 있어야 함
-		samplerStates.push_back(samplerState_LinearWrap.Get());
-		samplerStates.push_back(samplerState_LinearClamp.Get());
+		SamplerStates.push_back(SamplerState_LinearWrap.Get());
+		SamplerStates.push_back(SamplerState_LinearClamp.Get());
 	}
 
 	void Glacier::InitRasterizerStates()
@@ -72,17 +76,17 @@ namespace Glacier
 		rastDesc.FrontCounterClockwise = false;
 		rastDesc.DepthClipEnable = true;
 		rastDesc.MultisampleEnable = true;
-		THROWFAILED(DirectX11Device::GetDevice()->CreateRasterizerState(&rastDesc, rasterizerState_SolidCW.GetAddressOf()));
+		THROWFAILED(DirectX11Device::GetDevice()->CreateRasterizerState(&rastDesc, RasterizerState_SolidCW.GetAddressOf()));
 
 		rastDesc.CullMode = D3D11_CULL_MODE::D3D11_CULL_NONE;
-		THROWFAILED(DirectX11Device::GetDevice()->CreateRasterizerState(&rastDesc, rasterizerState_CullNone.GetAddressOf()));
+		THROWFAILED(DirectX11Device::GetDevice()->CreateRasterizerState(&rastDesc, RasterizerState_CullNone.GetAddressOf()));
 
 		rastDesc.FillMode = D3D11_FILL_MODE::D3D11_FILL_WIREFRAME;
-		THROWFAILED(DirectX11Device::GetDevice()->CreateRasterizerState(&rastDesc, rasterizerState_WireCW.GetAddressOf()));
+		THROWFAILED(DirectX11Device::GetDevice()->CreateRasterizerState(&rastDesc, RasterizerState_WireCW.GetAddressOf()));
 
 		rastDesc.FillMode = D3D11_FILL_MODE::D3D11_FILL_SOLID;
 		rastDesc.DepthClipEnable = false;
-		THROWFAILED(DirectX11Device::GetDevice()->CreateRasterizerState(&rastDesc, rasterizerState_ImageFilter.GetAddressOf()));
+		THROWFAILED(DirectX11Device::GetDevice()->CreateRasterizerState(&rastDesc, RasterizerState_ImageFilter.GetAddressOf()));
 	}
 
 	void Glacier::InitDepthStencilStates()
@@ -93,27 +97,36 @@ namespace Glacier
 		depthStencilDesc.DepthEnable = true;
 		depthStencilDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK::D3D11_DEPTH_WRITE_MASK_ALL;
 		depthStencilDesc.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_LESS_EQUAL;
-		THROWFAILED(DirectX11Device::GetDevice()->CreateDepthStencilState(&depthStencilDesc, depthStencilState_Default.GetAddressOf()));
+		THROWFAILED(DirectX11Device::GetDevice()->CreateDepthStencilState(&depthStencilDesc, DepthStencilState_Default.GetAddressOf()));
 	}
 
 	void Glacier::InitShaders()
 	{
-		vertexShader_Color.reset(VertexShader::Create(L"../Glacier/resources/shaders/VertexColorVS.hlsl"));
-		inputLayout_Color.reset(VertexLayout::Create(vertexShader_Color.get()));
-		pixelShader_Color.reset(FragmentShader::Create(L"../Glacier/resources/shaders/VertexColorPS.hlsl"));
+		VertexShader_Color.reset(VertexShader::Create(L"../Glacier/resources/shaders/VertexColor_VS.hlsl"));
+		InputLayout_Color.reset(VertexLayout::Create(VertexShader_Color.get()));
+		PixelShader_Color.reset(FragmentShader::Create(L"../Glacier/resources/shaders/VertexColor_PS.hlsl"));
+
+		VertexShader_TextureSample.reset(VertexShader::Create(L"../Glacier/resources/shaders/TextureSample_VS.hlsl"));
+		InputLayout_TextureSample.reset(VertexLayout::Create(VertexShader_TextureSample.get()));
+		PixelShader_TextureSample.reset(FragmentShader::Create(L"../Glacier/resources/shaders/TextureSample_PS.hlsl"));
 	}
 
 	void Glacier::InitPipelineStates()
 	{
-		vertexColorPipelineState.m_VertexShader = vertexShader_Color;
-		vertexColorPipelineState.m_PixelShader = pixelShader_Color;
-		vertexColorPipelineState.m_InputLayout = inputLayout_Color;
-		vertexColorPipelineState.m_DepthStencilState = depthStencilState_Default;
-		vertexColorPipelineState.m_RasterizerState = rasterizerState_SolidCW;
-		vertexColorPipelineState.m_PrimitiveTopology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+		VertexColorPipelineState.m_VertexShader = VertexShader_Color;
+		VertexColorPipelineState.m_PixelShader = PixelShader_Color;
+		VertexColorPipelineState.m_InputLayout = InputLayout_Color;
+		VertexColorPipelineState.m_DepthStencilState = DepthStencilState_Default;
+		VertexColorPipelineState.m_RasterizerState = RasterizerState_SolidCW;
+		VertexColorPipelineState.m_PrimitiveTopology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 
-		vertexColorWirePipelineState = vertexColorPipelineState;
-		vertexColorWirePipelineState.m_RasterizerState = rasterizerState_WireCW;
+		VertexColorWirePipelineState = VertexColorPipelineState;
+		VertexColorWirePipelineState.m_RasterizerState = RasterizerState_WireCW;
+
+		TexureSamplingPipelineState = VertexColorPipelineState;
+		TexureSamplingPipelineState.m_VertexShader = VertexShader_TextureSample;
+		TexureSamplingPipelineState.m_InputLayout = InputLayout_TextureSample;
+		TexureSamplingPipelineState.m_PixelShader = PixelShader_TextureSample;
 
 		GR_CORE_WARN("DirectX11 Pipeline states have initialized successfully!");
 	}

@@ -32,7 +32,9 @@ project "Glacier"      -- Glacier 프로젝트
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/resources/shaders/**.hlsl",
 		"%{prj.name}/vendor/directxtk/**.h",
-		"%{prj.name}/vendor/directxtk/**.inl"
+		"%{prj.name}/vendor/directxtk/**.inl",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp"
 	}
 
 	defines
@@ -45,7 +47,8 @@ project "Glacier"      -- Glacier 프로젝트
 	    "%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/vendor/imgui",
-		"%{prj.name}/vendor/directxtk"
+		"%{prj.name}/vendor/directxtk",
+		"%{prj.name}/vendor/stb_image"
 	}
 	
 	libdirs 
@@ -63,6 +66,10 @@ project "Glacier"      -- Glacier 프로젝트
 	
 	shadermodel ("5.0")
 	shaderobjectfileoutput "resources/shaders/outputs/%%(Filename).cso"
+	filter { "files:**_PS.hlsl" }
+		shadertype "Pixel"
+	filter { "files:**_VS.hlsl" }
+		shadertype "Vertex"
 
 	-- 특정 플랫폼에 대한 특정 프로젝트 설정(configurations)시 사용. 조건문과 비슷. 윈도우 플랫폼에서만 아래 설정들을 적용함.
 	filter "system:windows"
@@ -110,7 +117,8 @@ project "Sandbox"      -- Sandbox 프로젝트
 		"Glacier/src",
 		"Glacier/vendor/spdlog/include",
 		"Glacier/vendor/imgui",
-		"Glacier/vendor/directxtk"
+		"Glacier/vendor/directxtk",
+		"Glacier/vendor/stb_image"
 	}
 
 	links -- 프로젝트 참조

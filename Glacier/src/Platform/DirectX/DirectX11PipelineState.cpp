@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "DirectX11PipelineState.h"
 
+#include "DirectX11Common.h"
 #include "DirectX11Device.h"
 
 namespace Glacier
@@ -24,6 +25,8 @@ namespace Glacier
         DirectX11Device::GetDeviceContext()->OMSetDepthStencilState(m_DepthStencilState.Get(), 0);
         DirectX11Device::GetDeviceContext()->RSSetState(m_RasterizerState.Get());
         DirectX11Device::GetDeviceContext()->IASetPrimitiveTopology(m_PrimitiveTopology);
+        DirectX11Device::GetDeviceContext()->VSSetSamplers(0, UINT(Glacier::SamplerStates.size()), Glacier::SamplerStates.data());
+        DirectX11Device::GetDeviceContext()->PSSetSamplers(0, UINT(Glacier::SamplerStates.size()), Glacier::SamplerStates.data());
     }
 
     void DirectX11PipelineState::UnBind()
