@@ -51,6 +51,24 @@ namespace Glacier
 		float m_XOffset, m_YOffset;
 	};
 
+	class GLACIER_API MouseWheelUpEvent : public MouseScrolledEvent
+	{
+	public:
+		MouseWheelUpEvent(float xOffset, float yOffset)
+			: MouseScrolledEvent(xOffset, yOffset){}
+
+		EVENT_CLASS_TYPE(MouseWheelUp)
+	};
+
+	class GLACIER_API MouseWheelDownEvent : public MouseScrolledEvent
+	{
+	public:
+		MouseWheelDownEvent(float xOffset, float yOffset)
+			: MouseScrolledEvent(xOffset, yOffset) {}
+
+		EVENT_CLASS_TYPE(MouseWheelDown)
+	};
+
 	// 마우스 버튼 이벤트들의 추상 클래스. 이를 구현해 구체적인 버튼 이벤트를 만들어줌.
 	class GLACIER_API MouseButtonEvent : public Event 
 	{

@@ -4,10 +4,9 @@
 
 namespace Glacier
 {
-	DirectX11ConstantBuffer::DirectX11ConstantBuffer(void* data, uint32 size, ShaderBufferType type, uint8 bindingSlot)
+	DirectX11ConstantBuffer::DirectX11ConstantBuffer(void* data, uint32 size, ShaderBufferType type)
 	{
 		m_BufferType = type;
-		m_BindingSlot = bindingSlot;
 
 		D3D11_BUFFER_DESC desc;
 		desc.ByteWidth = size;
@@ -30,15 +29,17 @@ namespace Glacier
 		m_GpuBuffer = nullptr;
 	}
 
-	void DirectX11ConstantBuffer::Bind() const
+	void DirectX11ConstantBuffer::Bind(uint8 slot)
 	{
+		m_BindingSlot = slot;
+
 		switch (m_BufferType)
 		{
 		case ShaderBufferType::VERTEX:
-			DirectX11Device::GetDeviceContext()->VSSetConstantBuffers(m_BindingSlot, 1, m_GpuBuffer.GetAddressOf());
+			DirectX11Device::GetDeviceContext()->VSSetConstantBuffers(slot, 1, m_GpuBuffer.GetAddressOf());
 			break;
 		case ShaderBufferType::PIXEL:
-			DirectX11Device::GetDeviceContext()->PSSetConstantBuffers(m_BindingSlot, 1, m_GpuBuffer.GetAddressOf());
+			DirectX11Device::GetDeviceContext()->PSSetConstantBuffers(slot, 1, m_GpuBuffer.GetAddressOf());
 			break;
 		}
 	}

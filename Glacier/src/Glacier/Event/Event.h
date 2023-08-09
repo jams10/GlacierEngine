@@ -15,7 +15,7 @@ namespace Glacier
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
 		KeyPressed, KeyReleased,
-		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
+		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled, MouseWheelUp, MouseWheelDown
 	};
 
 	// 이벤트를 필터링 하기 위한 이벤트 카테고리 enum. 특정 이벤트만 가져오고 싶을 때 사용.

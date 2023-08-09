@@ -3,7 +3,8 @@
 
 namespace Glacier
 {
-	Camera::Camera()
+	Camera::Camera(float aspectRatio)
+		:m_AspectRatio(aspectRatio)
 	{
 	}
 
@@ -23,49 +24,16 @@ namespace Glacier
 	{
 		// 원근 투영을 사용하는 경우 XMMatrixPerspectiveFovLH(), 직교 투영을 사용하는 경우 XMMatrixOrthographicOffCenterLH() 함수를 통해 투영 행렬 구함.
 		Matrix proj = m_UsePerspectiveProjection
-			? DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(m_ProjFovAngleY),
+			? DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(m_Fov),
 				m_AspectRatio, m_NearZ, m_FarZ)
-			: DirectX::XMMatrixOrthographicOffCenterLH(-m_AspectRatio, m_AspectRatio, -1.0f,
-				1.0f, m_NearZ, m_FarZ);
+			//: DirectX::XMMatrixOrthographicOffCenterLH(-m_AspectRatio, m_AspectRatio, -1.0f,
+			//	1.0f, m_NearZ, m_FarZ);
+			  : DirectX::XMMatrixOrthographicOffCenterLH(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel,
+				  m_ZoomLevel, m_NearZ, m_FarZ);
 		return proj.Transpose(); // DirectX의 경우 row-major 행렬을 사용하기 때문에 column-major를 사용하는 hlsl 쉐이더로 데이터를 보낼 때는 전치 시켜서 보내줘야 함.
 	}
 
-	void Camera::SetAspectRatio(float aspectRatio)
-	{
-		m_AspectRatio = aspectRatio;
-	}
-
-	void Camera::SetPosition(Vector3 pos)
-	{
-		m_Position = pos;
-	}
-
-	void Camera::SetYaw(float yaw)
-	{
-		m_Yaw = yaw;
-	}
-
-	void Camera::SetPitch(float pitch)
-	{
-		m_Pitch = pitch;
-	}
-
-	void Camera::MoveForward(float dt)
-	{
-		m_Position += m_ViewDir * m_Speed * dt;
-	}
-
-	void Camera::MoveRight(float dt)
-	{
-		m_Position += m_RightDir * m_Speed * dt;
-	}
-
-	void Camera::MoveUpward(float dt)
-	{
-		m_Position += m_UpDir * m_Speed * dt;
-	}
-
-	void Camera::Update()
+	void Camera::UpdateDirection()
 	{
 		// 현재 사용하고 있는 좌표계는 z-forward 왼손 좌표계.
 		// 카메라 초기 방향은 z축 양의 방향을 바라 보도록 했기 때문에 yaw 회전에 따라 달라지는 카메라가 보는 방향을 다시 계산함.
@@ -76,8 +44,28 @@ namespace Glacier
 		m_RightDir = m_UpDir.Cross(m_ViewDir);
 	}
 
-	void Camera::ToggleFlyingCam()
+	void Camera::MoveForward(float dt)
 	{
-		m_UseFlyingCam = !m_UseFlyingCam;
+		m_Position += m_ViewDir * m_MoveSpeed * dt;
+	}
+
+	void Camera::MoveRight(float dt)
+	{
+		m_Position += m_RightDir * m_MoveSpeed * dt;
+	}
+
+	void Camera::MoveUp(float dt)
+	{
+		m_Position += m_UpDir * m_MoveSpeed * dt;
+	}
+
+	void Camera::TurnRight(float dt)
+	{
+		m_Yaw += m_RotateSpeed * dt;
+	}
+
+	void Camera::LookUp(float dt)
+	{
+		m_Pitch -= m_RotateSpeed * dt;
 	}
 }

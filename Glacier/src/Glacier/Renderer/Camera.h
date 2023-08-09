@@ -2,6 +2,9 @@
 
 #include "Glacier/Core.h"
 
+#include "Glacier/Event/ApplicationEvent.h"
+#include "Glacier/Event/MouseEvent.h"
+
 #include "SimpleMath.h"
 
 namespace Glacier
@@ -12,21 +15,29 @@ namespace Glacier
 	class GLACIER_API Camera
 	{
 	public:
-		Camera();
+		Camera(float aspectRatio);
 
 		Matrix GetViewMatrix() const;
 		Matrix GetProjectionMatrix() const;
 
-		void SetAspectRatio(float aspectRatio);
-		void SetPosition(Vector3 pos);
-		void SetYaw(float yaw);
-		void SetPitch(float pitch);
+		inline void SetFov(float fov) { m_Fov = fov; }
+		inline void SetAspectRatio(float aspectRatio) { m_AspectRatio = aspectRatio; }
+		inline void SetMoveSpeed(float speed) { m_MoveSpeed = speed; }
+		inline void SetRotateSpeed(float speed) { m_RotateSpeed = speed; }
+		inline void SetOrthoZoomLevel(float level) { m_ZoomLevel = level; }
+
+		inline float GetFov() { return m_Fov; }
+
 		void MoveForward(float dt);
 		void MoveRight(float dt);
-		void MoveUpward(float dt);
+		void MoveUp(float dt);
+		void TurnRight(float dt);
+		void LookUp(float dt);
 
-		void Update();
-		void ToggleFlyingCam();
+		bool m_UsePerspectiveProjection = false;
+
+	private:
+		void UpdateDirection();
 
 	private:
 		// 카메라 트랜스폼.
@@ -38,13 +49,13 @@ namespace Glacier
 		float m_Yaw = 0.f;
 
 		// Projection 변환 행렬 관련 변수.
-		float m_ProjFovAngleY = 90.0f;
+		float m_Fov = 90.f;
+		float m_AspectRatio = 16.f / 9.f;
 		float m_NearZ = 0.01f;
 		float m_FarZ = 100.0f;
-		float m_AspectRatio = 16.f / 9.f;
-		bool m_UsePerspectiveProjection = true;
-		bool m_UseFlyingCam = false;
+		float m_ZoomLevel = 1.0f;
 
-		float m_Speed = 1.0f;
+		float m_MoveSpeed = 1.0f;
+		float m_RotateSpeed = 1.0f;
 	};
 }

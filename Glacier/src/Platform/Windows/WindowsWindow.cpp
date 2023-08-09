@@ -274,6 +274,26 @@ namespace Glacier
 			pWnd->m_Data.EventCallback(event);
 		}
 			break;
+		case WM_MOUSEWHEEL:
+		{
+			const POINTS pt = MAKEPOINTS(lParam);
+			const int delta = GET_WHEEL_DELTA_WPARAM(wParam);
+
+			uint16 offsetX = static_cast<uint16>(pt.x);
+			uint16 offsetY = static_cast<uint16>(pt.y);
+
+			if (delta >= 0)
+			{
+				MouseWheelUpEvent event(offsetX, offsetY);
+				pWnd->m_Data.EventCallback(event);
+			}
+			else if (delta <= -WHEEL_DELTA)
+			{
+				MouseWheelDownEvent event(offsetX, offsetY);
+				pWnd->m_Data.EventCallback(event);
+			}
+		}
+			break;
 		case WM_DESTROY:
 			//PostQuitMessage(0);
 

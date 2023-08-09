@@ -23,6 +23,7 @@
 #include "Platform/DirectX/Buffer/ConstantBufferData.h"
 
 #include "Glacier/Renderer/Camera.h"
+#include "Glacier/Renderer/CameraController.h"
 //---------------------------------
 
 // -------ÁøÀÔÁ¡(Entry Point)-------
