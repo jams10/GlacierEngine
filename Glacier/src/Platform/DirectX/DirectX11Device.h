@@ -36,19 +36,18 @@ namespace Glacier
 		static const ComPtr<IDXGIDevice> GetDXGIDevice() { return s_Instance->m_DXGIDevice; }
 		static const ComPtr<IDXGIAdapter> GetAdapter() { return s_Instance->m_Adapter; }
 		static const DXGI_ADAPTER_DESC* GetAdapterDescription() { return s_Instance->m_AdapterDescription; }
+		static void ResizeSwapchainBuffer(uint32 width, uint32 height);
 
 	private:
 		DirectX11Device() = default;
 
 	private:
 		static DirectX11Device* s_Instance;
+
 	private:
 		ComPtr<ID3D11Device> m_Device = nullptr;
 		ComPtr<IDXGISwapChain> m_Swapchain = nullptr;
 		ComPtr<ID3D11DeviceContext> m_Context = nullptr;
-
-		//ComPtr<ID3D11RasterizerState> m_RasterizerState = nullptr;
-		//ComPtr<ID3D11DepthStencilState> m_DepthStencilState;
 
 		ComPtr<IDXGIDevice> m_DXGIDevice = nullptr;
 		ComPtr<IDXGIAdapter> m_Adapter = nullptr;

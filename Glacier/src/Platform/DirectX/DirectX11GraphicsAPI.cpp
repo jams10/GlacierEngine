@@ -5,6 +5,16 @@
 
 namespace Glacier
 {
+	void DirectX11GraphicsAPI::ResizeWindow(uint32 width, uint32 height)
+	{
+		DirectX11RenderContext::GetInstance()->ResizeWindow(width, height);
+	}
+
+	void DirectX11GraphicsAPI::SetViewport(uint32 x, uint32 y, uint32 width, uint32 height)
+	{
+		DirectX11RenderContext::GetInstance()->SetViewport((UINT)x, (UINT)y, (UINT)width, (UINT)height);
+	}
+
 	void DirectX11GraphicsAPI::SetClearColor(float colors[4])
 	{
 		DirectX11RenderContext::GetInstance()->SetClearColor(colors);
@@ -16,7 +26,7 @@ namespace Glacier
 		DirectX11RenderContext::GetInstance()->ClearDepthStencilView();
 	}
 
-	void DirectX11GraphicsAPI::BeginRenderFrame()
+	void DirectX11GraphicsAPI::SetRenderTarget()
 	{
 		DirectX11RenderContext::GetInstance()->SetRenderTarget();
 	}

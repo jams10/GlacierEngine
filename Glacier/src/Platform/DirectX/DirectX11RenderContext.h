@@ -21,13 +21,14 @@ namespace Glacier
 		void SetClearColor(float clearColor[4]);
 		void ClearRenderTargetView();
 		void ClearDepthStencilView();
+		void SetViewport(UINT startX , UINT startY, UINT screenWidth, UINT screenHeight);
+		void ResizeWindow(uint32 width, uint32 height);
 		void SetRenderTarget();
 
 	private:
 		DirectX11RenderContext() = default;
 
 		void CreateBackbufferViews();
-		void SetViewport(UINT screenWidth, UINT screenHeight);
 		void CreateDepthBuffer(UINT screenWidth, UINT screenHeight, ComPtr<ID3D11Texture2D>& depthTexture, ComPtr<ID3D11DepthStencilView>& depthTextureDSV);
 
 	private:
@@ -37,8 +38,6 @@ namespace Glacier
 		ComPtr<ID3D11RenderTargetView> m_BackbufferRTV = nullptr;
 		ComPtr<ID3D11Texture2D> m_DepthStencilBuffer = nullptr;
 		ComPtr<ID3D11DepthStencilView> m_DepthStencilView = nullptr;
-		ComPtr<ID3D11RasterizerState> m_RasterizerState = nullptr;
-		ComPtr<ID3D11DepthStencilState> m_DepthStencilState = nullptr;
 
 		float m_ClearColor[4];
 		UINT m_WholeScreenWidth;

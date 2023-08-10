@@ -70,6 +70,7 @@ namespace Glacier
 		};
 
 		WindowData m_Data;
+		// bool m_EnterResizeWindow = false;
 		//uint32 m_WheelDeltaCarry = 0; // wheeldelta 값을 누적, MS에서 정한 WHEEL_DELTA 값인 120을 넘어서는 경우에 휠 이벤트를 생성할 수 있도록 함.
 	};
 }

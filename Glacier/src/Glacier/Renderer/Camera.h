@@ -34,7 +34,7 @@ namespace Glacier
 		void TurnRight(float dt);
 		void LookUp(float dt);
 
-		bool m_UsePerspectiveProjection = false;
+		bool m_UsePerspectiveProjection = true;
 
 	private:
 		void UpdateDirection();

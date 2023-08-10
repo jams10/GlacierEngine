@@ -78,6 +78,10 @@ namespace Glacier
 
 	bool CameraController::OnWindowResized(WindowResizeEvent& e)
 	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0) return false;
+
+		float aspectRatio = static_cast<float>(e.GetWidth()) / static_cast<float>(e.GetHeight());
+		m_Camera.SetAspectRatio(aspectRatio);
 		return false;
 	}
 }

@@ -37,8 +37,11 @@ namespace Glacier
 		{
 			m_GameTimer.Tick();
 
-			for (Layer* layer : m_LayerStack) // 레이어들의 update 호출.
-				layer->OnUpdate(m_GameTimer.GetDeltaTime());
+			if (!m_Minimized)
+			{
+				for (Layer* layer : m_LayerStack) // 레이어들의 update 호출.
+					layer->OnUpdate(m_GameTimer.GetDeltaTime());
+			}
 
 			// ImGui GUI를 그려줌.
 			m_ImGuiLayer->Begin();
@@ -66,6 +69,7 @@ namespace Glacier
 		EventDispatcher dispatcher(event);
 		// 들어온 이벤트가 WindowCloseEvent인 경우, OnWindowClose 함수를 호출하도록 함.
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_CALLBACK(&Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_CALLBACK(&Application::OnWindowResize));
 
 		// 상위 레이어부터 이벤트를 받도록 함. 이벤트를 받은 레이어가 하위 레이어로 이벤트를 전파하지 않기 위해 Handled 값을 true로 바꾸면 
 		// 해당 이벤트를 더 이상 처리하지 않고 빠져나감.
@@ -83,4 +87,17 @@ namespace Glacier
 		return true; // 하위 레이어에 이벤트를 전파하지 않도록 true 리턴.
 	}
 
+	bool Application::OnWindowResize(WindowResizeEvent event)
+	{
+		if (event.GetWidth() == 0 || event.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+
+		m_Minimized = false;
+		Renderer::OnWindowResize(event.GetWidth(), event.GetHeight());
+
+		return false;
+	}
 }

@@ -29,24 +29,18 @@ namespace Glacier
 
 	private:
 		bool OnWindowClose(WindowCloseEvent event);
+		bool OnWindowResize(WindowResizeEvent event);
 
 	private:
 		std::unique_ptr<Window> m_Window;
 
-		//std::shared_ptr<VertexBuffer> m_VertexBuffer;
-		//std::shared_ptr<IndexBuffer> m_IndexBuffer;
-		//std::shared_ptr<ShaderBuffer> m_WorldTransformBuffer;
-		//std::shared_ptr<ShaderBuffer> m_CameraTransformBuffer;
-
-		//Camera m_Camera;
-		//WorldTransformConstant m_WorldTransformConstant;
-		//CameraTransformConstant m_CameraTransformConstant;
-
 		GameTimer m_GameTimer;
 
-		ImGuiLayer* m_ImGuiLayer;
-		bool m_IsRunning = true;
 		LayerStack m_LayerStack; // application 내부에 레이어 스택을 가지고 있음.
+		ImGuiLayer* m_ImGuiLayer;
+
+		bool m_IsRunning = true;		
+		bool m_Minimized = false;
 
 		static Application* s_Instance;
 	};

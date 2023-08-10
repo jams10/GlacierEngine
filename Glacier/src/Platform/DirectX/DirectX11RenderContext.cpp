@@ -15,8 +15,8 @@ namespace Glacier
 
 	void DirectX11RenderContext::Init()
 	{
-		SetViewport(m_WholeScreenWidth, m_WholeScreenHeight);
 		CreateBackbufferViews();
+		SetViewport(0, 0, m_WholeScreenWidth, m_WholeScreenHeight);
 		CreateDepthBuffer(m_WholeScreenWidth, m_WholeScreenHeight, m_DepthStencilBuffer, m_DepthStencilView);
 
 		GR_CORE_WARN("DirectX11RenderContext has initialized successfully!");
@@ -40,20 +40,34 @@ namespace Glacier
 
 	void DirectX11RenderContext::SetRenderTarget()
 	{
-		SetViewport(m_WholeScreenWidth, m_WholeScreenHeight);
-
 		ID3D11RenderTargetView* targets[] = { m_BackbufferRTV.Get() };
 		DirectX11Device::GetDeviceContext()->OMSetRenderTargets(1, targets, m_DepthStencilView.Get());
 	}
 
+	void DirectX11RenderContext::ResizeWindow(uint32 width, uint32 height)
+	{
+		if (width == 0 || height == 0) return;
+
+		m_DepthStencilView = nullptr;
+		m_DepthStencilBuffer = nullptr;
+
+		m_BackbufferRTV = nullptr; // swapchain의 back buffer resize를 수행하기 위해서는 swapchain의 back buffer에 대한 모든 참조를 제거해야 함.
+		DirectX11Device::ResizeSwapchainBuffer(width, height);
+		CreateBackbufferViews();
+		SetViewport(0, 0, m_WholeScreenWidth, m_WholeScreenHeight);
+		CreateDepthBuffer(width, height, m_DepthStencilBuffer, m_DepthStencilView);
+	}
+
 	void DirectX11RenderContext::CreateBackbufferViews()
 	{
+		if (DirectX11Device::GetSwapChain() == nullptr) return;
+
 		// 스왑 체인에 들어 있는 Backbuffer를 얻어와 이를 렌더 타겟으로 설정함.
 		ComPtr<ID3D11Texture2D> backBuffer;
 		DirectX11Device::GetSwapChain()->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
 		if (backBuffer)
 		{
-			if (m_BackbufferRTV != nullptr) m_BackbufferRTV.Reset();
+			if (m_BackbufferRTV != nullptr) m_BackbufferRTV = nullptr;
 
 			D3D11_TEXTURE2D_DESC desc;
 			backBuffer->GetDesc(&desc);
@@ -69,13 +83,17 @@ namespace Glacier
 		}
 	}
 
-	void DirectX11RenderContext::SetViewport(UINT screenWidth, UINT screenHeight)
+	void DirectX11RenderContext::SetViewport(UINT topLeftX, UINT topLeftY, UINT width, UINT height)
 	{
+		// 윈도우 생성 후 곧바로 window resize 메시지가 발생하기 때문에 device context 생성 전에 이벤트를 통해 SetViewport 함수가 호출될 수 있음.
+		// 따라서, DeviceContext가 생성된 후에 context에 접근해 viewport를 설정할 수 있도록 함.
+		if (DirectX11Device::GetDeviceContext() == nullptr) return;
+
 		ZeroMemory(&m_ScreenViewport, sizeof(D3D11_VIEWPORT));
-		m_ScreenViewport.TopLeftX = 0;
-		m_ScreenViewport.TopLeftY = 0;
-		m_ScreenViewport.Width = static_cast<FLOAT>(screenWidth);
-		m_ScreenViewport.Height = static_cast<FLOAT>(screenHeight);
+		m_ScreenViewport.TopLeftX = static_cast<FLOAT>(topLeftX);
+		m_ScreenViewport.TopLeftY = static_cast<FLOAT>(topLeftY);
+		m_ScreenViewport.Width = static_cast<FLOAT>(width);
+		m_ScreenViewport.Height = static_cast<FLOAT>(height);
 		m_ScreenViewport.MinDepth = 0.0f;
 		m_ScreenViewport.MaxDepth = 1.0f; // Note: important for depth buffering
 
@@ -84,7 +102,9 @@ namespace Glacier
 
 	void DirectX11RenderContext::CreateDepthBuffer(UINT screenWidth, UINT screenHeight, ComPtr<ID3D11Texture2D>& depthTexture, ComPtr<ID3D11DepthStencilView>& depthTextureDSV)
 	{
+		if (DirectX11Device::GetDevice() == nullptr) return;
 		if (screenWidth <= 0.0001f || screenHeight <= 0.0001f) return;
+
 		if (depthTexture != nullptr) depthTexture.Reset();
 		if (depthTextureDSV != nullptr) depthTextureDSV.Reset();
 

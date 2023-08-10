@@ -13,6 +13,7 @@ namespace Glacier
 	public:
 		static void BeginRenderScene();
 		static void EndRenderScene();
+		static void OnWindowResize(uint32_t width, uint32_t height);
 
 		static void Submit(const std::shared_ptr<VertexBuffer>& vertexBuffer, const std::shared_ptr<IndexBuffer>& indexBuffer,
 			const std::shared_ptr<VertexLayout>& vertexLayout);

@@ -212,9 +212,13 @@ namespace Glacier
 		{
 			pWnd->m_Data.Width = uint32(LOWORD(lParam));
 			pWnd->m_Data.Height = uint32(HIWORD(lParam));
-
+		}
+			break;
+		case WM_EXITSIZEMOVE: // 윈도우 크기 조절이 끝날 때 호출되는 메시지.
+		{
 			WindowResizeEvent event(pWnd->m_Data.Width, pWnd->m_Data.Height);
 			pWnd->m_Data.EventCallback(event);
+			return 0; // WM_EXITSIZEMOVE를 직접 처리 했다면 0을 반환하라고 나와 있음.
 		}
 			break;
 		case WM_KEYDOWN:
