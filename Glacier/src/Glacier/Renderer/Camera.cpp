@@ -26,8 +26,6 @@ namespace Glacier
 		Matrix proj = m_UsePerspectiveProjection
 			? DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(m_Fov),
 				m_AspectRatio, m_NearZ, m_FarZ)
-			//: DirectX::XMMatrixOrthographicOffCenterLH(-m_AspectRatio, m_AspectRatio, -1.0f,
-			//	1.0f, m_NearZ, m_FarZ);
 			  : DirectX::XMMatrixOrthographicOffCenterLH(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel,
 				  m_ZoomLevel, m_NearZ, m_FarZ);
 		return proj.Transpose(); // DirectX의 경우 row-major 행렬을 사용하기 때문에 column-major를 사용하는 hlsl 쉐이더로 데이터를 보낼 때는 전치 시켜서 보내줘야 함.

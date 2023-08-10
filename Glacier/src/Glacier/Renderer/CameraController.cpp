@@ -27,9 +27,11 @@ namespace Glacier
 		{
 			if (Input::IsKeyPressed(GR_VK_Q))
 				m_Camera.TurnRight(-dt);
-			if (Input::IsKeyPressed(GR_VK_Q))
+			if (Input::IsKeyPressed(GR_VK_E))
 				m_Camera.TurnRight(dt);
 		}
+
+		m_Camera.UpdateDirection();
 	}
 
 	void CameraController::OnEvent(Event& e)

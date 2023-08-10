@@ -30,6 +30,6 @@ namespace Glacier
 		float m_ZoomFactor = 1.0f; // ortho 카메라 zoom에 사용. 
 		float m_ZoomSpeed = 5.0f;  // perspective 카메라 zoom에 사용.
 
-		bool m_CanRotate = false;
+		bool m_CanRotate = true;
 	};
 }

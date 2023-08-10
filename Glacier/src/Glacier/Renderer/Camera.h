@@ -33,11 +33,9 @@ namespace Glacier
 		void MoveUp(float dt);
 		void TurnRight(float dt);
 		void LookUp(float dt);
+		void UpdateDirection();
 
 		bool m_UsePerspectiveProjection = true;
-
-	private:
-		void UpdateDirection();
 
 	private:
 		// 카메라 트랜스폼.
