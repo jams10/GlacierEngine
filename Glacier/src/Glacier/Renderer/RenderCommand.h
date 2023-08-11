@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Glacier/Core.h"
+#include "Glacier/Core/Core.h"
 #include "GraphicsAPI.h"
 
 namespace Glacier 

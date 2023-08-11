@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Glacier/Core.h"
+#include "Glacier/Core/Core.h"
 #include "Glacier/Renderer/Buffer.h"
 
 #include <d3d11.h>

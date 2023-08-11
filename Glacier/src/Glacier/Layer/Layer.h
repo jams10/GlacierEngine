@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Glacier/Core.h"
+#include "Glacier/Core/Core.h"
 #include "Glacier/Event/Event.h"
 #include <string>
 

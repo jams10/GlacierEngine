@@ -25,7 +25,3 @@
 #include "Glacier/Renderer/Camera.h"
 #include "Glacier/Renderer/CameraController.h"
 //---------------------------------
-
-// -------ÁøÀÔÁ¡(Entry Point)-------
-#include "Glacier/EntryPoint.h"
-// --------------------------------

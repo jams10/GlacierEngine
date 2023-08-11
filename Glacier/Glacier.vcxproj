@@ -160,8 +160,8 @@
   <ItemGroup>
     <ClInclude Include="src\Glacier.h" />
     <ClInclude Include="src\Glacier\Application.h" />
-    <ClInclude Include="src\Glacier\Core.h" />
-    <ClInclude Include="src\Glacier\EntryPoint.h" />
+    <ClInclude Include="src\Glacier\Core\Core.h" />
+    <ClInclude Include="src\Glacier\Core\EntryPoint.h" />
     <ClInclude Include="src\Glacier\Event\ApplicationEvent.h" />
     <ClInclude Include="src\Glacier\Event\Event.h" />
     <ClInclude Include="src\Glacier\Event\KeyboardEvent.h" />

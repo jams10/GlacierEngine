@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Glacier/Core.h"
+#include "Glacier/Core/Core.h"
 #include "Glacier/Window/Window.h"
 #include "Glacier/Renderer/GraphicsManager.h"
 #include "WindowsHeaders.h"

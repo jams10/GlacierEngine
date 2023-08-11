@@ -69,10 +69,10 @@
     <ClInclude Include="src\Glacier\Application.h">
       <Filter>src\Glacier</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Core.h">
+    <ClInclude Include="src\Glacier\Core\Core.h">
       <Filter>src\Glacier</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\EntryPoint.h">
+    <ClInclude Include="src\Glacier\Core\EntryPoint.h">
       <Filter>src\Glacier</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Event\ApplicationEvent.h">
@@ -109,6 +109,9 @@
       <Filter>src\Glacier\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\Camera.h">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\CameraController.h">
       <Filter>src\Glacier\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\GraphicsAPI.h">
@@ -267,7 +270,6 @@
     <ClInclude Include="vendor\stb_image\stb_voxel_render.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Renderer\CameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -292,6 +294,9 @@
       <Filter>src\Glacier\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\Camera.cpp">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\CameraController.cpp">
       <Filter>src\Glacier\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\GraphicsAPI.cpp">
@@ -369,7 +374,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Glacier\Renderer\CameraController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resources\shaders\TextureSample_PS.hlsl">

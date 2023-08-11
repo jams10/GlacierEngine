@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Glacier/Core.h"
+#include "Glacier/Core/Core.h"
 #include "DirectX11PipelineState.h"
 
 #include "Glacier/Renderer/Shader.h"
