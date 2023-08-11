@@ -5,6 +5,7 @@
 
 #include "Buffer.h"
 #include "VertexLayout.h"
+#include "Glacier/Model/Model.h"
 
 namespace Glacier
 {
@@ -15,6 +16,7 @@ namespace Glacier
 		static void EndRenderScene();
 		static void OnWindowResize(uint32_t width, uint32_t height);
 
+		static void Submit(const std::shared_ptr<Model>& model, const std::shared_ptr<VertexLayout>& vertexLayout);
 		static void Submit(const std::shared_ptr<VertexBuffer>& vertexBuffer, const std::shared_ptr<IndexBuffer>& indexBuffer,
 			const std::shared_ptr<VertexLayout>& vertexLayout);
 

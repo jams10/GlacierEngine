@@ -8,25 +8,7 @@ SandBox3D::SandBox3D()
 
 void SandBox3D::OnAttach()
 {
-	// OPENGL의 경우 반 시계 방향, DirectX에서는 반 시계 방향일 경우 뒷면을 나타내며, rasterizer state가 backfaceculling을 사용하는 경우에
-	// rasterization 단계에서 필터링 되게 됨.
-	// 깊이 테스트의 경우 pixel shader 이후의 output merger 단계에서 수행.
-	float vertices[4 * 5] = {
-		-0.5f,  0.5f, 0.0f, 0.0f, 0.0f,
-		 0.5f,  0.5f, 0.0f, 1.0f, 0.0f,
-		 0.5f, -0.5f, 0.0f, 1.0f, 1.0f,
-		-0.5f, -0.5f, 0.0f, 0.0f, 1.0f
-	};
-	m_VertexBuffer.reset(Glacier::VertexBuffer::Create(vertices, sizeof(vertices)));
-
-	Glacier::BufferLayout layout = {
-		{ Glacier::ShaderDataType::Float3, "Position" },
-		{ Glacier::ShaderDataType::Float2, "Texcoord" }
-	};
-	m_VertexBuffer->SetLayout(layout);
-
-	uint32 indices[6] = { 0,1,2,2,3,0 };
-	m_IndexBuffer.reset(Glacier::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32)));
+	m_Model = std::make_shared<Glacier::Model>(Glacier::MeshGenerator::MakeSqaure());
 
 	// 텍스쳐 자원 생성.
 	m_TextureResource = Glacier::Texture2D::Create(L"../Resources/Texture/rabbit.png");
@@ -69,7 +51,8 @@ void SandBox3D::OnUpdate(float dt)
 	m_CameraTransformBuffer->Bind(1);
 
 	// 정점, 인덱스 버퍼 바인딩. draw indexed 호출.
-	Glacier::Renderer::Submit(m_VertexBuffer, m_IndexBuffer, Glacier::TexureSamplingPipelineState.m_InputLayout);
+	//Glacier::Renderer::Submit(m_VertexBuffer, m_IndexBuffer, Glacier::TexureSamplingPipelineState.m_InputLayout);
+	Glacier::Renderer::Submit(m_Model, Glacier::TexureSamplingPipelineState.m_InputLayout);
 }
 
 void SandBox3D::OnImGuiRender()

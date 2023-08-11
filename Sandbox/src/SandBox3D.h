@@ -16,8 +16,7 @@ public:
 	void OnEvent(Glacier::Event& e) override;
 
 private:
-	std::shared_ptr<Glacier::VertexBuffer> m_VertexBuffer;
-	std::shared_ptr<Glacier::IndexBuffer> m_IndexBuffer;
+	std::shared_ptr<Glacier::Model> m_Model;
 	std::shared_ptr<Glacier::ShaderBuffer> m_WorldTransformBuffer;
 	std::shared_ptr<Glacier::ShaderBuffer> m_CameraTransformBuffer;
 	std::shared_ptr<Glacier::Texture2D> m_TextureResource;

@@ -25,3 +25,9 @@
 #include "Glacier/Renderer/Camera.h"
 #include "Glacier/Renderer/CameraController.h"
 //---------------------------------
+
+//--------------¸ðµ¨----------------
+#include "Glacier/Model/Model.h"
+#include "Glacier/Model/MeshGenerator.h"
+
+//---------------------------------
