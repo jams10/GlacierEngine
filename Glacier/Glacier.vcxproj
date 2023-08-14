@@ -180,8 +180,10 @@
     <ClInclude Include="src\Glacier\Renderer\CameraController.h" />
     <ClInclude Include="src\Glacier\Renderer\GraphicsAPI.h" />
     <ClInclude Include="src\Glacier\Renderer\GraphicsManager.h" />
+    <ClInclude Include="src\Glacier\Renderer\Material.h" />
     <ClInclude Include="src\Glacier\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Glacier\Renderer\Renderer.h" />
+    <ClInclude Include="src\Glacier\Renderer\RenderPipelineState.h" />
     <ClInclude Include="src\Glacier\Renderer\Shader.h" />
     <ClInclude Include="src\Glacier\Renderer\Texture.h" />
     <ClInclude Include="src\Glacier\Renderer\VertexLayout.h" />
@@ -201,6 +203,7 @@
     <ClInclude Include="src\Platform\DirectX\DirectX11Manager.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11PipelineState.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11RenderContext.h" />
+    <ClInclude Include="src\Platform\DirectX\Material\DirectX11Material.h" />
     <ClInclude Include="src\Platform\DirectX\Shader\DirectX11PixelShader.h" />
     <ClInclude Include="src\Platform\DirectX\Shader\DirectX11VertexShader.h" />
     <ClInclude Include="src\Platform\DirectX\Texture\DirectX11Texture2D.h" />
@@ -245,8 +248,10 @@
     <ClCompile Include="src\Glacier\Renderer\Camera.cpp" />
     <ClCompile Include="src\Glacier\Renderer\CameraController.cpp" />
     <ClCompile Include="src\Glacier\Renderer\GraphicsAPI.cpp" />
+    <ClCompile Include="src\Glacier\Renderer\Material.cpp" />
     <ClCompile Include="src\Glacier\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Glacier\Renderer\RenderPipelineState.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Shader.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Texture.cpp" />
     <ClCompile Include="src\Glacier\Renderer\VertexLayout.cpp" />
@@ -262,6 +267,7 @@
     <ClCompile Include="src\Platform\DirectX\DirectX11Manager.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11PipelineState.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11RenderContext.cpp" />
+    <ClCompile Include="src\Platform\DirectX\Material\DirectX11Material.cpp" />
     <ClCompile Include="src\Platform\DirectX\Shader\DirectX11PixelShader.cpp" />
     <ClCompile Include="src\Platform\DirectX\Shader\DirectX11VertexShader.cpp" />
     <ClCompile Include="src\Platform\DirectX\Texture\DirectX11Texture2D.cpp" />

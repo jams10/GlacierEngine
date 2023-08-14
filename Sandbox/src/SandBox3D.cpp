@@ -37,7 +37,7 @@ void SandBox3D::OnUpdate(float dt)
 	Glacier::Renderer::BeginRenderScene(); // set render target, viewport.
 
 	// 텍스쳐 샘플링 쉐이더를 사용하는 파이프라인으로 세팅.
-	Glacier::TexureSamplingPipelineState.Bind();
+	Glacier::TexureSamplingPipelineState->Bind();
 
 	// 텍스쳐 자원 바인딩.
 	m_TextureResource->Bind(0);
@@ -52,7 +52,7 @@ void SandBox3D::OnUpdate(float dt)
 
 	// 정점, 인덱스 버퍼 바인딩. draw indexed 호출.
 	//Glacier::Renderer::Submit(m_VertexBuffer, m_IndexBuffer, Glacier::TexureSamplingPipelineState.m_InputLayout);
-	Glacier::Renderer::Submit(m_Model, Glacier::TexureSamplingPipelineState.m_InputLayout);
+	Glacier::Renderer::Submit(m_Model, Glacier::TexureSamplingPipelineState->GetVertexLayout());
 }
 
 void SandBox3D::OnImGuiRender()

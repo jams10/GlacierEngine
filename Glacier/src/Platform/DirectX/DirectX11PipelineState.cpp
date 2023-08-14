@@ -6,6 +6,14 @@
 
 namespace Glacier
 {
+    DirectX11PipelineState::DirectX11PipelineState()
+    {
+    }
+
+    DirectX11PipelineState::~DirectX11PipelineState()
+    {
+    }
+
     void DirectX11PipelineState::operator=(const DirectX11PipelineState& ps)
     {
         m_VertexShader = ps.m_VertexShader;
@@ -36,5 +44,10 @@ namespace Glacier
         m_InputLayout->Unbind();
         DirectX11Device::GetDeviceContext()->OMSetDepthStencilState(nullptr, 0);
         DirectX11Device::GetDeviceContext()->RSSetState(nullptr);
+    }
+
+    std::shared_ptr<VertexLayout> DirectX11PipelineState::GetVertexLayout()
+    {
+        return m_InputLayout;
     }
 }

@@ -2,6 +2,8 @@
 #include "DirectX11Common.h"
 #include "DirectX11Device.h"
 
+#include "DirectX11PipelineState.h"
+
 #include <d3dcompiler.h>
 
 namespace Glacier
@@ -31,9 +33,9 @@ namespace Glacier
 	std::shared_ptr<VertexLayout> InputLayout_TextureSample;
 
 	// Pipeline States
-	DirectX11PipelineState VertexColorPipelineState;
-	DirectX11PipelineState VertexColorWirePipelineState;
-	DirectX11PipelineState TexureSamplingPipelineState;
+	std::unique_ptr<RenderPipelineState> VertexColorPipelineState;
+	std::unique_ptr<RenderPipelineState> VertexColorWirePipelineState;
+	std::unique_ptr<RenderPipelineState> TexureSamplingPipelineState;
 
 	void Glacier::InitCommonStates()
 	{
@@ -113,20 +115,32 @@ namespace Glacier
 
 	void Glacier::InitPipelineStates()
 	{
-		VertexColorPipelineState.m_VertexShader = VertexShader_Color;
-		VertexColorPipelineState.m_PixelShader = PixelShader_Color;
-		VertexColorPipelineState.m_InputLayout = InputLayout_Color;
-		VertexColorPipelineState.m_DepthStencilState = DepthStencilState_Default;
-		VertexColorPipelineState.m_RasterizerState = RasterizerState_SolidCW;
-		VertexColorPipelineState.m_PrimitiveTopology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+		DirectX11PipelineState* VertexColorPS = nullptr;
+		VertexColorPipelineState.reset(Glacier::RenderPipelineState::Create());
+		VertexColorPS = reinterpret_cast<DirectX11PipelineState*>(VertexColorPipelineState.get());
 
-		VertexColorWirePipelineState = VertexColorPipelineState;
-		VertexColorWirePipelineState.m_RasterizerState = RasterizerState_WireCW;
+		VertexColorPS->m_VertexShader = VertexShader_Color;
+		VertexColorPS->m_PixelShader = PixelShader_Color;
+		VertexColorPS->m_InputLayout = InputLayout_Color;
+		VertexColorPS->m_DepthStencilState = DepthStencilState_Default;
+		VertexColorPS->m_RasterizerState = RasterizerState_SolidCW;
+		VertexColorPS->m_PrimitiveTopology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 
-		TexureSamplingPipelineState = VertexColorPipelineState;
-		TexureSamplingPipelineState.m_VertexShader = VertexShader_TextureSample;
-		TexureSamplingPipelineState.m_InputLayout = InputLayout_TextureSample;
-		TexureSamplingPipelineState.m_PixelShader = PixelShader_TextureSample;
+		DirectX11PipelineState* VertexColorWirePS = nullptr;
+		VertexColorWirePipelineState.reset(Glacier::RenderPipelineState::Create());
+		VertexColorWirePS = reinterpret_cast<DirectX11PipelineState*>(VertexColorWirePipelineState.get());
+
+		*VertexColorWirePS = *VertexColorPS;
+		VertexColorWirePS->m_RasterizerState = RasterizerState_WireCW;
+
+		DirectX11PipelineState* TextureSamplingPS = nullptr;
+		TexureSamplingPipelineState.reset(Glacier::RenderPipelineState::Create());
+		TextureSamplingPS = reinterpret_cast<DirectX11PipelineState*>(TexureSamplingPipelineState.get());
+
+		*TextureSamplingPS = *VertexColorPS;
+		TextureSamplingPS->m_VertexShader = VertexShader_TextureSample;
+		TextureSamplingPS->m_InputLayout = InputLayout_TextureSample;
+		TextureSamplingPS->m_PixelShader = PixelShader_TextureSample;
 
 		GR_CORE_WARN("DirectX11 Pipeline states have initialized successfully!");
 	}

@@ -1,15 +1,20 @@
 #pragma once
 
 #include "Glacier/Core/Core.h"
-#include "DirectX11PipelineState.h"
 
 #include "Glacier/Renderer/Shader.h"
 #include "Glacier/Renderer/VertexLayout.h"
+#include "Glacier/Renderer/RenderPipelineState.h"
+
+#include <d3d11.h>
+#include <wrl.h>
 
 #include <vector>
 
 namespace Glacier
 {
+	using Microsoft::WRL::ComPtr;
+
 	// Samplers
 	extern ComPtr<ID3D11SamplerState> SamplerState_LinearWrap;
 	extern ComPtr<ID3D11SamplerState> SamplerState_LinearClamp;
@@ -35,9 +40,9 @@ namespace Glacier
 	extern std::shared_ptr<VertexLayout> InputLayout_TextureSample;
 
 	// Pipeline States
-	extern DirectX11PipelineState VertexColorPipelineState;
-	extern DirectX11PipelineState VertexColorWirePipelineState;
-	extern DirectX11PipelineState TexureSamplingPipelineState;
+	extern std::unique_ptr<RenderPipelineState> VertexColorPipelineState;
+	extern std::unique_ptr<RenderPipelineState> VertexColorWirePipelineState;
+	extern std::unique_ptr<RenderPipelineState> TexureSamplingPipelineState;
 
 	void InitCommonStates();
 
