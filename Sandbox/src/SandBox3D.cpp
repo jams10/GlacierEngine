@@ -13,6 +13,13 @@ void SandBox3D::OnAttach()
 	// 텍스쳐 자원 생성.
 	m_TextureResource = Glacier::Texture2D::Create(L"../Resources/Texture/rabbit.png");
 
+	// Material 생성.
+	m_Material.reset(Glacier::Material::Create());
+	m_Material->AddTexture(m_TextureResource);
+	m_Material->SetPipelineState(Glacier::TexureSamplingPipelineState);
+	
+	m_Model->SetMaterial(m_Material);
+
 	// 상수 버퍼 세팅.
 	m_WorldTransformConstant.world = Glacier::Matrix::CreateTranslation(Glacier::Vector3::Zero);
 	m_CameraTransformConstant.view = m_CameraController.GetCamera().GetViewMatrix();
@@ -36,11 +43,7 @@ void SandBox3D::OnUpdate(float dt)
 
 	Glacier::Renderer::BeginRenderScene(); // set render target, viewport.
 
-	// 텍스쳐 샘플링 쉐이더를 사용하는 파이프라인으로 세팅.
-	Glacier::TexureSamplingPipelineState->Bind();
-
-	// 텍스쳐 자원 바인딩.
-	m_TextureResource->Bind(0);
+	//Glacier::TexureSamplingPipelineState->Bind();
 
 	// 상수 버퍼 업데이트 & 바인딩.
 	m_CameraTransformConstant.view = m_CameraController.GetCamera().GetViewMatrix();
@@ -52,7 +55,7 @@ void SandBox3D::OnUpdate(float dt)
 
 	// 정점, 인덱스 버퍼 바인딩. draw indexed 호출.
 	//Glacier::Renderer::Submit(m_VertexBuffer, m_IndexBuffer, Glacier::TexureSamplingPipelineState.m_InputLayout);
-	Glacier::Renderer::Submit(m_Model, Glacier::TexureSamplingPipelineState->GetVertexLayout());
+	Glacier::Renderer::Submit(m_Model);
 }
 
 void SandBox3D::OnImGuiRender()

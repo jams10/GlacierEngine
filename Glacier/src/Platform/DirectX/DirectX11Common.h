@@ -39,11 +39,6 @@ namespace Glacier
 	extern std::shared_ptr<VertexLayout> InputLayout_Color;
 	extern std::shared_ptr<VertexLayout> InputLayout_TextureSample;
 
-	// Pipeline States
-	extern std::unique_ptr<RenderPipelineState> VertexColorPipelineState;
-	extern std::unique_ptr<RenderPipelineState> VertexColorWirePipelineState;
-	extern std::unique_ptr<RenderPipelineState> TexureSamplingPipelineState;
-
 	void InitCommonStates();
 
 	// 내부적으로 InitCommonStates()에서 사용

@@ -33,9 +33,9 @@ namespace Glacier
 	std::shared_ptr<VertexLayout> InputLayout_TextureSample;
 
 	// Pipeline States
-	std::unique_ptr<RenderPipelineState> VertexColorPipelineState;
-	std::unique_ptr<RenderPipelineState> VertexColorWirePipelineState;
-	std::unique_ptr<RenderPipelineState> TexureSamplingPipelineState;
+	std::shared_ptr<RenderPipelineState> VertexColorPipelineState;
+	std::shared_ptr<RenderPipelineState> VertexColorWirePipelineState;
+	std::shared_ptr<RenderPipelineState> TexureSamplingPipelineState;
 
 	void Glacier::InitCommonStates()
 	{

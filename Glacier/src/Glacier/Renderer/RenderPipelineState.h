@@ -18,4 +18,9 @@ namespace Glacier
 
 		static RenderPipelineState* Create();
 	};
+
+	// Pipeline States
+	extern std::shared_ptr<RenderPipelineState> VertexColorPipelineState;
+	extern std::shared_ptr<RenderPipelineState> VertexColorWirePipelineState;
+	extern std::shared_ptr<RenderPipelineState> TexureSamplingPipelineState;
 }

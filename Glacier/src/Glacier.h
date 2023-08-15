@@ -19,7 +19,9 @@
 #include "Glacier/Renderer/Buffer.h"
 #include "Glacier/Renderer/Shader.h"
 #include "Glacier/Renderer/Texture.h"
-#include "Platform/DirectX/DirectX11Common.h"
+#include "Glacier/Renderer/RenderPipelineState.h"
+#include "Glacier/Renderer/Material.h"
+
 #include "Platform/DirectX/Buffer/ConstantBufferData.h"
 
 #include "Glacier/Renderer/Camera.h"

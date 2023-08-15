@@ -17,9 +17,9 @@ namespace Glacier
 		RenderCommand::ReizeWindow(width, height);
 	}
 
-	void Renderer::Submit(const std::shared_ptr<Model>& model, const std::shared_ptr<VertexLayout>& vertexLayout)
+	void Renderer::Submit(const std::shared_ptr<Model>& model)
 	{
-		model->Submit(vertexLayout->GetVertexStride());
+		model->Submit();
 	}
 
 	void Renderer::Submit(const std::shared_ptr<VertexBuffer>& vertexBuffer, const std::shared_ptr<IndexBuffer>& indexBuffer,
