@@ -20,7 +20,6 @@ namespace Glacier
 		virtual void Unbind() const override;
 
 		virtual void UpdateData(void* data, uint32 size) override;
-		virtual void SetLayout(const BufferLayout& layout) override;
 
 		inline const ShaderBufferType& GetBufferType() const { return m_BufferType; }
 		inline const ComPtr<ID3D11Buffer>& GetGPUBuffer() const { return m_GpuBuffer; }

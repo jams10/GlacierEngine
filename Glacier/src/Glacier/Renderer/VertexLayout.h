@@ -2,7 +2,7 @@
 
 #include "Glacier/Core/Core.h"
 
-#include "Shader.h"
+#include "Shading/Shader.h"
 
 namespace Glacier
 {

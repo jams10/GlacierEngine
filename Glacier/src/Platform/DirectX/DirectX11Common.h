@@ -2,7 +2,7 @@
 
 #include "Glacier/Core/Core.h"
 
-#include "Glacier/Renderer/Shader.h"
+#include "Glacier/Renderer/Shading/Shader.h"
 #include "Glacier/Renderer/VertexLayout.h"
 #include "Glacier/Renderer/RenderPipelineState.h"
 

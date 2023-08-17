@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Glacier/Renderer/Shader.h"
+#include "Glacier/Renderer/Shading/Shader.h"
 
 #include <d3d11.h>
 #include <wrl.h>

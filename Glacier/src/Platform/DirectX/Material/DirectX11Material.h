@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Glacier/Renderer/Material.h"
+#include "Glacier/Renderer/Shading/Material.h"
 
 #include "Platform/DirectX/Texture/DirectX11Texture2D.h"
 #include "Platform/DirectX/DirectX11PipelineState.h"

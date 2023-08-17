@@ -16,7 +16,6 @@ public:
 	void OnEvent(Glacier::Event& e) override;
 
 private:
-	std::shared_ptr<Glacier::ShaderBuffer> m_WorldTransformBuffer;
 	std::shared_ptr<Glacier::ShaderBuffer> m_CameraTransformBuffer;
 
 	std::shared_ptr<Glacier::Model> m_Model;
@@ -25,6 +24,5 @@ private:
 
 	Glacier::CameraController m_CameraController;
 
-	Glacier::WorldTransformConstant m_WorldTransformConstant;
 	Glacier::CameraTransformConstant m_CameraTransformConstant;
 };

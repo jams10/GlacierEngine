@@ -7,7 +7,7 @@
 #include <exception>
 
 #include "Glacier/Renderer/RenderPipelineState.h"
-#include "Glacier/Renderer/Shader.h"
+#include "Glacier/Renderer/Shading/Shader.h"
 #include "Glacier/Renderer/VertexLayout.h"
 
 namespace Glacier

@@ -64,8 +64,4 @@ namespace Glacier
 		memcpy(ms.pData, data, size);
 		DirectX11Device::GetDeviceContext()->Unmap(m_GpuBuffer.Get(), NULL);
 	}
-
-	void DirectX11ConstantBuffer::SetLayout(const BufferLayout& layout)
-	{
-	}
 }

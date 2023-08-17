@@ -163,7 +163,6 @@ namespace Glacier
 		virtual void Unbind() const = 0;
 
 		virtual void UpdateData(void* data, uint32 size) = 0;
-		virtual void SetLayout(const BufferLayout& layout) = 0;
 
 		static ShaderBuffer* Create(void* data, uint32 size, ShaderBufferType type);
 	};

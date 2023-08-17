@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Glacier/Core/Core.h"
-#include "Glacier/Renderer/Texture.h"
+#include "Glacier/Renderer/Shading/Texture.h"
 
 #include <d3d11.h>
 #include <wrl.h>

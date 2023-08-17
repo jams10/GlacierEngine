@@ -21,11 +21,9 @@ void SandBox3D::OnAttach()
 	m_Model->SetMaterial(m_Material);
 
 	// 상수 버퍼 세팅.
-	m_WorldTransformConstant.world = Glacier::Matrix::CreateTranslation(Glacier::Vector3::Zero);
 	m_CameraTransformConstant.view = m_CameraController.GetCamera().GetViewMatrix();
 	m_CameraTransformConstant.proj = m_CameraController.GetCamera().GetProjectionMatrix();
 
-	m_WorldTransformBuffer.reset(Glacier::ShaderBuffer::Create(&m_WorldTransformConstant, sizeof(m_WorldTransformConstant), Glacier::ShaderBufferType::VERTEX));
 	m_CameraTransformBuffer.reset(Glacier::ShaderBuffer::Create(&m_CameraTransformConstant, sizeof(m_CameraTransformConstant), Glacier::ShaderBufferType::VERTEX));
 }
 
@@ -37,24 +35,26 @@ void SandBox3D::OnUpdate(float dt)
 {
 	m_CameraController.OnUpdate(dt);
 
+	Glacier::Vector3 rotation = m_Model->GetTransform()->GetRotation();
+
+	if (Glacier::Input::IsKeyPressed(GR_VK_RIGHT))
+		rotation.y += dt;
+
+	m_Model->GetTransform()->SetRotation(rotation.x, rotation.y, rotation.z);
+
 	float color[4] = { 0.1f, 0.1f, 0.1f, 1 };
 	Glacier::RenderCommand::SetClearColor(color);
 	Glacier::RenderCommand::Clear();
 
 	Glacier::Renderer::BeginRenderScene(); // set render target, viewport.
 
-	//Glacier::TexureSamplingPipelineState->Bind();
-
 	// 상수 버퍼 업데이트 & 바인딩.
 	m_CameraTransformConstant.view = m_CameraController.GetCamera().GetViewMatrix();
 	m_CameraTransformConstant.proj = m_CameraController.GetCamera().GetProjectionMatrix();
-	//m_WorldTransformBuffer->UpdateData(&m_WorldTransformConstant, sizeof(m_WorldTransformBuffer));
 	m_CameraTransformBuffer->UpdateData(&m_CameraTransformConstant, sizeof(m_CameraTransformConstant));
-	m_WorldTransformBuffer->Bind(0);
 	m_CameraTransformBuffer->Bind(1);
 
 	// 정점, 인덱스 버퍼 바인딩. draw indexed 호출.
-	//Glacier::Renderer::Submit(m_VertexBuffer, m_IndexBuffer, Glacier::TexureSamplingPipelineState.m_InputLayout);
 	Glacier::Renderer::Submit(m_Model);
 }
 

@@ -17,19 +17,25 @@
 #include "Glacier/Renderer/RenderCommand.h"
 
 #include "Glacier/Renderer/Buffer.h"
-#include "Glacier/Renderer/Shader.h"
-#include "Glacier/Renderer/Texture.h"
+#include "Glacier/Renderer/Shading/Shader.h"
+#include "Glacier/Renderer/Shading/Texture.h"
 #include "Glacier/Renderer/RenderPipelineState.h"
-#include "Glacier/Renderer/Material.h"
+#include "Glacier/Renderer/Shading/Material.h"
 
 #include "Platform/DirectX/Buffer/ConstantBufferData.h"
 
-#include "Glacier/Renderer/Camera.h"
-#include "Glacier/Renderer/CameraController.h"
+#include "Glacier/Renderer/Camera/Camera.h"
+#include "Glacier/Renderer/Camera/CameraController.h"
 //---------------------------------
 
 //--------------¸ðµ¨----------------
 #include "Glacier/Model/Model.h"
 #include "Glacier/Model/MeshGenerator.h"
+
+//---------------------------------
+
+//-------------ÄÄÆ÷³ÍÆ®-------------
+#include "Glacier/Components/TransformComponent.h"
+
 
 //---------------------------------
