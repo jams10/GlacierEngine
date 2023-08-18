@@ -8,9 +8,9 @@ namespace Glacier
 {
     using DirectX::SimpleMath::Matrix;
 
-    // 모델 transform 버퍼는 무조건 제일 첫 번째 슬롯에 바인딩.
-    const uint8 WorldTransformSlot = 0;
-    const uint8 CameraTransformSlot = 1;
+    // 모델 카메라 변환 행렬 버퍼는 무조건 제일 첫 번째 슬롯에 바인딩.
+    const uint8 CameraTransformSlot = 0;
+    const uint8 WorldTransformSlot = 1;
 
     struct WorldTransformConstant
     {

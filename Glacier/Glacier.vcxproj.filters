@@ -278,6 +278,7 @@
     <ClInclude Include="src\Glacier\Renderer\RenderPipelineState.h" />
     <ClInclude Include="src\Glacier\Components\TransformComponent.h" />
     <ClInclude Include="src\Platform\DirectX\Components\DirectX11TransformComponent.h" />
+    <ClInclude Include="src\Platform\DirectX\Camera\DirectX11CameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -390,6 +391,7 @@
     <ClCompile Include="src\Glacier\Renderer\RenderPipelineState.cpp" />
     <ClCompile Include="src\Glacier\Components\TransformComponent.cpp" />
     <ClCompile Include="src\Platform\DirectX\Components\DirectX11TransformComponent.cpp" />
+    <ClCompile Include="src\Platform\DirectX\Camera\DirectX11CameraController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resources\shaders\TextureSample_PS.hlsl">

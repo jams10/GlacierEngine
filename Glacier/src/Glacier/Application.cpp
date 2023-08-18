@@ -2,8 +2,6 @@
 #include "Application.h"
 
 #include "Glacier/Renderer/Renderer.h"
-#include "Platform/DirectX/DirectX11Device.h"
-#include "Platform/DirectX/Buffer/DirectX11ConstantBuffer.h"
 
 namespace Glacier
 {

@@ -1,14 +1,14 @@
 
-cbuffer WorldTransformConstant : register(b0)
-{
-    matrix world;
-}
-
-cbuffer CameraTransformConstant : register(b1)
+cbuffer CameraTransformConstant : register(b0)
 {
     matrix view;
     matrix proj;
     matrix viewProj;
+}
+
+cbuffer WorldTransformConstant : register(b1)
+{
+    matrix world;
 }
 
 struct VertexShaderInput

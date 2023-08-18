@@ -197,6 +197,7 @@
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11ConstantBuffer.h" />
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11IndexBuffer.h" />
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.h" />
+    <ClInclude Include="src\Platform\DirectX\Camera\DirectX11CameraController.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11Common.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11Device.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11GraphicsAPI.h" />
@@ -263,6 +264,7 @@
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11ConstantBuffer.cpp" />
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11IndexBuffer.cpp" />
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.cpp" />
+    <ClCompile Include="src\Platform\DirectX\Camera\DirectX11CameraController.cpp" />
     <ClCompile Include="src\Platform\DirectX\Components\DirectX11TransformComponent.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11Common.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11Device.cpp" />

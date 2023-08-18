@@ -22,8 +22,6 @@
 #include "Glacier/Renderer/RenderPipelineState.h"
 #include "Glacier/Renderer/Shading/Material.h"
 
-#include "Platform/DirectX/Buffer/ConstantBufferData.h"
-
 #include "Glacier/Renderer/Camera/Camera.h"
 #include "Glacier/Renderer/Camera/CameraController.h"
 //---------------------------------

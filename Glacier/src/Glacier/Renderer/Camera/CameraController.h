@@ -12,19 +12,22 @@ namespace Glacier
 	{
 	public:
 		CameraController(float aspectRatio);
+		virtual ~CameraController() {}
 
-		void OnUpdate(float dt);
-		void OnEvent(Event& e);
+		virtual void OnUpdate(float dt);
+		virtual void OnEvent(Event& e);
 
 		Camera& GetCamera() { return m_Camera; }
 		const Camera& GetCamera() const { return m_Camera; }
 
-	private:
+		static CameraController* Create(float aspectRatio);
+
+	protected:
 		bool OnMouseWheelUp(MouseWheelUpEvent& e);
 		bool OnMouseWheelDown(MouseWheelDownEvent& e);
 		bool OnWindowResized(WindowResizeEvent& e);
 
-	private:
+	protected:
 		Camera m_Camera;
 		float m_AspectRatio;
 		float m_ZoomFactor = 1.0f; // ortho 카메라 zoom에 사용. 

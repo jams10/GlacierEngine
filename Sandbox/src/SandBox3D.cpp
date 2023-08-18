@@ -2,12 +2,16 @@
 #include "imgui.h"
 
 SandBox3D::SandBox3D()
-	: Layer("SandBox3D"), m_CameraController(1280.f / 720.f)
+	: Layer("SandBox3D")
 {
 }
 
 void SandBox3D::OnAttach()
 {
+	// 카메라 생성.
+	m_SceneCameraController.reset(Glacier::CameraController::Create(1280.f / 720.f));
+
+	// 모델 생성.
 	m_Model = std::make_shared<Glacier::Model>(Glacier::MeshGenerator::MakeSqaure());
 
 	// 텍스쳐 자원 생성.
@@ -19,12 +23,6 @@ void SandBox3D::OnAttach()
 	m_Material->SetPipelineState(Glacier::TexureSamplingPipelineState);
 	
 	m_Model->SetMaterial(m_Material);
-
-	// 상수 버퍼 세팅.
-	m_CameraTransformConstant.view = m_CameraController.GetCamera().GetViewMatrix();
-	m_CameraTransformConstant.proj = m_CameraController.GetCamera().GetProjectionMatrix();
-
-	m_CameraTransformBuffer.reset(Glacier::ShaderBuffer::Create(&m_CameraTransformConstant, sizeof(m_CameraTransformConstant), Glacier::ShaderBufferType::VERTEX));
 }
 
 void SandBox3D::OnDetach()
@@ -33,7 +31,7 @@ void SandBox3D::OnDetach()
 
 void SandBox3D::OnUpdate(float dt)
 {
-	m_CameraController.OnUpdate(dt);
+	m_SceneCameraController->OnUpdate(dt);
 
 	Glacier::Vector3 rotation = m_Model->GetTransform()->GetRotation();
 
@@ -48,11 +46,6 @@ void SandBox3D::OnUpdate(float dt)
 
 	Glacier::Renderer::BeginRenderScene(); // set render target, viewport.
 
-	// 상수 버퍼 업데이트 & 바인딩.
-	m_CameraTransformConstant.view = m_CameraController.GetCamera().GetViewMatrix();
-	m_CameraTransformConstant.proj = m_CameraController.GetCamera().GetProjectionMatrix();
-	m_CameraTransformBuffer->UpdateData(&m_CameraTransformConstant, sizeof(m_CameraTransformConstant));
-	m_CameraTransformBuffer->Bind(1);
 
 	// 정점, 인덱스 버퍼 바인딩. draw indexed 호출.
 	Glacier::Renderer::Submit(m_Model);
@@ -65,5 +58,5 @@ void SandBox3D::OnImGuiRender()
 
 void SandBox3D::OnEvent(Glacier::Event& e)
 {
-	m_CameraController.OnEvent(e);
+	m_SceneCameraController->OnEvent(e);
 }
