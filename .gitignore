@@ -4,3 +4,8 @@
 
 /.vs/Glacier
 /bin-int/Debug-windows-x86_64
+/bin/Debug-windows-x86_64/Glacier/Glacier.idb
+/bin/Debug-windows-x86_64/Glacier/Glacier.lib
+/bin/Debug-windows-x86_64/Glacier/Glacier.pdb
+/bin/Debug-windows-x86_64/Sandbox/Sandbox.exe
+/bin/Debug-windows-x86_64/Sandbox/Sandbox.pdb
