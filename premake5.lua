@@ -152,5 +152,58 @@ project "Sandbox"      -- Sandbox 프로젝트
 		runtime "Release"
 		optimize "on"
 
+project "Glacier-Editor"      -- Glacier Editor 프로젝트.
+	location "Glacier-Editor"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files       -- ** : 해당 폴더 부터 재귀적으로 하위 폴더를 탐색함.
+	{	
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
+	}
+
+	includedirs -- Additional Include Directories
+	{
+		"Glacier/src",
+		"Glacier/vendor/spdlog/include",
+		"Glacier/vendor/imgui",
+		"Glacier/vendor/directxtk",
+		"Glacier/vendor/stb_image"
+	}
+
+	links -- 프로젝트 참조
+	{
+		"Glacier"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+		
+		defines -- 전처리기 정의
+		{
+			"GR_PLATFORM_WINDOWS"
+		}
+
+	filter "configurations:Debug"
+		defines "GR_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "GR_RELEASE"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		defines "GR_DIST"
+		runtime "Release"
+		optimize "on"
+
 -- 프로젝트 경로에 빈칸이 포함되어 있는 이름이 있으면 오류가 발생 했음. 
 -- https://stackoverflow.com/questions/19914339/error-msb3073-how-do-i-fix-this

@@ -40,6 +40,7 @@ namespace Glacier
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 		virtual void* GetNativeWindow() const = 0;
+		virtual void SetTitle(const wstring& title) = 0;
 
 		static Window* Create(const EventCallbackFn& callback, const WindowInfo& infos = WindowInfo());
 	};

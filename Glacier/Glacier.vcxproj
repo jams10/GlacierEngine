@@ -181,10 +181,10 @@
     <ClInclude Include="src\Glacier\Renderer\Camera\CameraController.h" />
     <ClInclude Include="src\Glacier\Renderer\GraphicsAPI.h" />
     <ClInclude Include="src\Glacier\Renderer\GraphicsManager.h" />
-    <ClInclude Include="src\Glacier\Renderer\Shading\Material.h" />
     <ClInclude Include="src\Glacier\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Glacier\Renderer\Renderer.h" />
     <ClInclude Include="src\Glacier\Renderer\RenderPipelineState.h" />
+    <ClInclude Include="src\Glacier\Renderer\Renderer.h" />
+    <ClInclude Include="src\Glacier\Renderer\Shading\Material.h" />
     <ClInclude Include="src\Glacier\Renderer\Shading\Shader.h" />
     <ClInclude Include="src\Glacier\Renderer\Shading\Texture.h" />
     <ClInclude Include="src\Glacier\Renderer\VertexLayout.h" />
@@ -198,6 +198,7 @@
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11IndexBuffer.h" />
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.h" />
     <ClInclude Include="src\Platform\DirectX\Camera\DirectX11CameraController.h" />
+    <ClInclude Include="src\Platform\DirectX\Components\DirectX11TransformComponent.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11Common.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11Device.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11GraphicsAPI.h" />
@@ -205,7 +206,6 @@
     <ClInclude Include="src\Platform\DirectX\DirectX11Manager.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11PipelineState.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11RenderContext.h" />
-    <ClInclude Include="src\Platform\DirectX\Components\DirectX11TransformComponent.h" />
     <ClInclude Include="src\Platform\DirectX\Material\DirectX11Material.h" />
     <ClInclude Include="src\Platform\DirectX\Shader\DirectX11PixelShader.h" />
     <ClInclude Include="src\Platform\DirectX\Shader\DirectX11VertexShader.h" />
@@ -252,10 +252,10 @@
     <ClCompile Include="src\Glacier\Renderer\Camera\Camera.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Camera\CameraController.cpp" />
     <ClCompile Include="src\Glacier\Renderer\GraphicsAPI.cpp" />
-    <ClCompile Include="src\Glacier\Renderer\Shading\Material.cpp" />
     <ClCompile Include="src\Glacier\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Glacier\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Glacier\Renderer\RenderPipelineState.cpp" />
+    <ClCompile Include="src\Glacier\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Glacier\Renderer\Shading\Material.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Shading\Shader.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Shading\Texture.cpp" />
     <ClCompile Include="src\Glacier\Renderer\VertexLayout.cpp" />

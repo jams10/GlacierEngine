@@ -3,40 +3,25 @@
 
 #include "SandBox3D.h"
 
-class ExampleLayer : public Glacier::Layer
+namespace Glacier
 {
-public:
-	ExampleLayer() : Layer("Example")
+	class Sandbox : public Glacier::Application
 	{
-	}
+	public:
+		Sandbox() : Application(L"Sandbox")
+		{
+			PushLayer(new SandBox3D());
+		}
 
-	void OnUpdate(float dt) override
+		~Sandbox()
+		{
+
+		}
+	};
+
+	Glacier::Application* Glacier::CreateApplication()
 	{
+		return new Sandbox();
 	}
-
-	void OnEvent(Glacier::Event& event) override
-	{	
-	}
-
-private:
-};
-
-class Sandbox : public Glacier::Application
-{
-public:
-	Sandbox()
-	{
-		// PushLayer(new ExampleLayer());
-		PushLayer(new SandBox3D());
-	}
-
-	~Sandbox()
-	{
-
-	}
-};
-
-Glacier::Application* Glacier::CreateApplication()
-{
-	return new Sandbox();
 }
+

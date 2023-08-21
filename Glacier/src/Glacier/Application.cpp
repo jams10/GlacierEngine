@@ -2,13 +2,14 @@
 #include "Application.h"
 
 #include "Glacier/Renderer/Renderer.h"
+#include "Glacier/Window/Window.h"
 
 namespace Glacier
 {
 
 	Application* Application::s_Instance = nullptr;
 
-	Application::Application()
+	Application::Application(std::wstring appName)
 	{
 		GR_CORE_ASSERT(s_Instance == nullptr, "Application already exists!");
 		s_Instance = this;
@@ -18,6 +19,7 @@ namespace Glacier
 		// 이 시점에서는 콜백 함수가 바인딩 되어 있지 않기 때문에 빈 함수 객체를 호출하기 때문에 bad_function_call 오류 발생.
 		// 따라서, 윈도우 클래스 객체 생성 시점에 콜백 함수도 같이 바인딩 해줌.
 		m_Window = std::unique_ptr<Window>(Window::Create(BIND_EVENT_CALLBACK(&Application::ProcessEvent)));
+		m_Window->SetTitle(appName);
 
 		m_ImGuiLayer = new ImGuiLayer(); // ImGuiLayer 생성.
 		PushOverlay(m_ImGuiLayer);       // ImGuiLayer를 Overlay 레이어에 추가.
@@ -52,6 +54,11 @@ namespace Glacier
 			// swap buffer
 			m_Window->OnUpdate();
 		}
+	}
+
+	void Application::Close()
+	{
+		m_IsRunning = false;
 	}
 
 	void Application::PushLayer(Layer* layer)

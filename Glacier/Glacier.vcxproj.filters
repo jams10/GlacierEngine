@@ -13,6 +13,12 @@
     <Filter Include="src\Glacier">
       <UniqueIdentifier>{73F96069-DFAE-D95E-68A3-D335D457D062}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Glacier\Components">
+      <UniqueIdentifier>{A830B3DD-942A-DC2F-7D97-72406930429C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Glacier\Core">
+      <UniqueIdentifier>{ABFD9E29-97F6-BD7B-C028-A300AC809D87}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Glacier\Event">
       <UniqueIdentifier>{0485A65D-709B-A4F3-B912-30152568757B}</UniqueIdentifier>
     </Filter>
@@ -25,8 +31,17 @@
     <Filter Include="src\Glacier\Layer">
       <UniqueIdentifier>{7F001A5E-EB16-18F4-348E-A315A0E3E87B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Glacier\Model">
+      <UniqueIdentifier>{F36C335E-5F83-31F4-A8FA-BC151450027C}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Glacier\Renderer">
       <UniqueIdentifier>{798ED383-651D-5D4D-0E3C-7148FAA96DF3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Glacier\Renderer\Camera">
+      <UniqueIdentifier>{D100F98C-3D0E-2773-C6F4-225E3201F329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Glacier\Renderer\Shading">
+      <UniqueIdentifier>{C62C370B-B2E7-26B7-5B9F-9F0147397147}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Glacier\Utils">
       <UniqueIdentifier>{1305C75E-7F1B-C5F4-C892-501634E8957C}</UniqueIdentifier>
@@ -42,6 +57,15 @@
     </Filter>
     <Filter Include="src\Platform\DirectX\Buffer">
       <UniqueIdentifier>{6CE21816-D8EF-46FC-61D6-42E7CDE212B3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\DirectX\Camera">
+      <UniqueIdentifier>{FBF40717-6702-36FD-F0E8-31E85CF501B4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\DirectX\Components">
+      <UniqueIdentifier>{18CF533B-84B2-627B-8DB5-90B7F91729CC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\DirectX\Material">
+      <UniqueIdentifier>{E1BBBF43-4DD4-A66D-1681-360782583B07}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\DirectX\Shader">
       <UniqueIdentifier>{2990D23C-959D-0023-1E84-FC0D8A90CCD9}</UniqueIdentifier>
@@ -69,11 +93,14 @@
     <ClInclude Include="src\Glacier\Application.h">
       <Filter>src\Glacier</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glacier\Components\TransformComponent.h">
+      <Filter>src\Glacier\Components</Filter>
+    </ClInclude>
     <ClInclude Include="src\Glacier\Core\Core.h">
-      <Filter>src\Glacier</Filter>
+      <Filter>src\Glacier\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Core\EntryPoint.h">
-      <Filter>src\Glacier</Filter>
+      <Filter>src\Glacier\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Event\ApplicationEvent.h">
       <Filter>src\Glacier\Event</Filter>
@@ -105,14 +132,23 @@
     <ClInclude Include="src\Glacier\Log.h">
       <Filter>src\Glacier</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glacier\Model\Mesh.h">
+      <Filter>src\Glacier\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Model\MeshGenerator.h">
+      <Filter>src\Glacier\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glacier\Model\Model.h">
+      <Filter>src\Glacier\Model</Filter>
+    </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\Buffer.h">
       <Filter>src\Glacier\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\Camera\Camera.h">
-      <Filter>src\Glacier\Renderer</Filter>
+      <Filter>src\Glacier\Renderer\Camera</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\Camera\CameraController.h">
-      <Filter>src\Glacier\Renderer</Filter>
+      <Filter>src\Glacier\Renderer\Camera</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\GraphicsAPI.h">
       <Filter>src\Glacier\Renderer</Filter>
@@ -123,14 +159,20 @@
     <ClInclude Include="src\Glacier\Renderer\RenderCommand.h">
       <Filter>src\Glacier\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\RenderPipelineState.h">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\Renderer.h">
       <Filter>src\Glacier\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glacier\Renderer\Shading\Material.h">
+      <Filter>src\Glacier\Renderer\Shading</Filter>
+    </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\Shading\Shader.h">
-      <Filter>src\Glacier\Renderer</Filter>
+      <Filter>src\Glacier\Renderer\Shading</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\Shading\Texture.h">
-      <Filter>src\Glacier\Renderer</Filter>
+      <Filter>src\Glacier\Renderer\Shading</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\VertexLayout.h">
       <Filter>src\Glacier\Renderer</Filter>
@@ -162,6 +204,12 @@
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.h">
       <Filter>src\Platform\DirectX\Buffer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\Camera\DirectX11CameraController.h">
+      <Filter>src\Platform\DirectX\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\Components\DirectX11TransformComponent.h">
+      <Filter>src\Platform\DirectX\Components</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\DirectX\DirectX11Common.h">
       <Filter>src\Platform\DirectX</Filter>
     </ClInclude>
@@ -182,6 +230,9 @@
     </ClInclude>
     <ClInclude Include="src\Platform\DirectX\DirectX11RenderContext.h">
       <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\Material\DirectX11Material.h">
+      <Filter>src\Platform\DirectX\Material</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\DirectX\Shader\DirectX11PixelShader.h">
       <Filter>src\Platform\DirectX\Shader</Filter>
@@ -270,19 +321,13 @@
     <ClInclude Include="vendor\stb_image\stb_voxel_render.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Model\Model.h" />
-    <ClInclude Include="src\Glacier\Model\Mesh.h" />
-    <ClInclude Include="src\Glacier\Model\MeshGenerator.h" />
-    <ClInclude Include="src\Glacier\Renderer\Shading\Material.h" />
-    <ClInclude Include="src\Platform\DirectX\Material\DirectX11Material.h" />
-    <ClInclude Include="src\Glacier\Renderer\RenderPipelineState.h" />
-    <ClInclude Include="src\Glacier\Components\TransformComponent.h" />
-    <ClInclude Include="src\Platform\DirectX\Components\DirectX11TransformComponent.h" />
-    <ClInclude Include="src\Platform\DirectX\Camera\DirectX11CameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
       <Filter>src\Glacier</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Components\TransformComponent.cpp">
+      <Filter>src\Glacier\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\ImGui\ImGuiBuild.cpp">
       <Filter>src\Glacier\ImGui</Filter>
@@ -299,14 +344,23 @@
     <ClCompile Include="src\Glacier\Log.cpp">
       <Filter>src\Glacier</Filter>
     </ClCompile>
+    <ClCompile Include="src\Glacier\Model\Mesh.cpp">
+      <Filter>src\Glacier\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Model\MeshGenerator.cpp">
+      <Filter>src\Glacier\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glacier\Model\Model.cpp">
+      <Filter>src\Glacier\Model</Filter>
+    </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\Buffer.cpp">
       <Filter>src\Glacier\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\Camera\Camera.cpp">
-      <Filter>src\Glacier\Renderer</Filter>
+      <Filter>src\Glacier\Renderer\Camera</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\Camera\CameraController.cpp">
-      <Filter>src\Glacier\Renderer</Filter>
+      <Filter>src\Glacier\Renderer\Camera</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\GraphicsAPI.cpp">
       <Filter>src\Glacier\Renderer</Filter>
@@ -314,14 +368,20 @@
     <ClCompile Include="src\Glacier\Renderer\RenderCommand.cpp">
       <Filter>src\Glacier\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\RenderPipelineState.cpp">
+      <Filter>src\Glacier\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\Renderer.cpp">
       <Filter>src\Glacier\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Glacier\Renderer\Shading\Material.cpp">
+      <Filter>src\Glacier\Renderer\Shading</Filter>
+    </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\Shading\Shader.cpp">
-      <Filter>src\Glacier\Renderer</Filter>
+      <Filter>src\Glacier\Renderer\Shading</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\Shading\Texture.cpp">
-      <Filter>src\Glacier\Renderer</Filter>
+      <Filter>src\Glacier\Renderer\Shading</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\VertexLayout.cpp">
       <Filter>src\Glacier\Renderer</Filter>
@@ -340,6 +400,12 @@
     </ClCompile>
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.cpp">
       <Filter>src\Platform\DirectX\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\Camera\DirectX11CameraController.cpp">
+      <Filter>src\Platform\DirectX\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\Components\DirectX11TransformComponent.cpp">
+      <Filter>src\Platform\DirectX\Components</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\DirectX\DirectX11Common.cpp">
       <Filter>src\Platform\DirectX</Filter>
@@ -362,6 +428,9 @@
     <ClCompile Include="src\Platform\DirectX\DirectX11RenderContext.cpp">
       <Filter>src\Platform\DirectX</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\Material\DirectX11Material.cpp">
+      <Filter>src\Platform\DirectX\Material</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\DirectX\Shader\DirectX11PixelShader.cpp">
       <Filter>src\Platform\DirectX\Shader</Filter>
     </ClCompile>
@@ -383,15 +452,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Glacier\Model\Model.cpp" />
-    <ClCompile Include="src\Glacier\Model\Mesh.cpp" />
-    <ClCompile Include="src\Glacier\Model\MeshGenerator.cpp" />
-    <ClCompile Include="src\Glacier\Renderer\Shading\Material.cpp" />
-    <ClCompile Include="src\Platform\DirectX\Material\DirectX11Material.cpp" />
-    <ClCompile Include="src\Glacier\Renderer\RenderPipelineState.cpp" />
-    <ClCompile Include="src\Glacier\Components\TransformComponent.cpp" />
-    <ClCompile Include="src\Platform\DirectX\Components\DirectX11TransformComponent.cpp" />
-    <ClCompile Include="src\Platform\DirectX\Camera\DirectX11CameraController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resources\shaders\TextureSample_PS.hlsl">

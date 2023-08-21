@@ -14,7 +14,7 @@ namespace Glacier
 	class GLACIER_API Application
 	{
 	public:
-		Application();
+		Application(std::wstring appName);
 		virtual ~Application();
 
 		void Run();
@@ -26,6 +26,7 @@ namespace Glacier
 		inline static Application& Get() { return *s_Instance; }
 
 		void ProcessEvent(Event& event);
+		void Close();
 
 	private:
 		bool OnWindowClose(WindowCloseEvent event);

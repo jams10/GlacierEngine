@@ -48,8 +48,9 @@ namespace Glacier
 		static int ProcessMessages(); // 모든 윈도우에 대한 메시지를 처리해야 하므로 static으로 선언함.
 
 		void Initialize(const wchar_t* name, int width, int height);
+		virtual void SetTitle(const wstring& title) override;
+
 	private:
-		void SetTitle(const wstring& title);
 
 		static LRESULT CALLBACK HandleMsgSetup(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 		static LRESULT CALLBACK HandleMsgThunk(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);

@@ -24,8 +24,8 @@ namespace Glacier
 		if (m_Material != nullptr)
 		{
 			m_Material->Bind();
+			m_Mesh->Bind(m_Material->m_PipelineState->GetVertexLayout()->GetVertexStride());
 		}
-		m_Mesh->Bind(m_Material->m_PipelineState->GetVertexLayout()->GetVertexStride());
 		m_Transform->Bind();
 	}
 	
