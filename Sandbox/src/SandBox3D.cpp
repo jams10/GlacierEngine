@@ -53,7 +53,16 @@ void SandBox3D::OnUpdate(float dt)
 
 void SandBox3D::OnImGuiRender()
 {
-	
+	ImGui::Begin("Stats");
+
+	Glacier::Stat stats = Glacier::Renderer::GetStats();
+	ImGui::Text("Scene Stats");
+	ImGui::Text("Draw Calls : %d", stats.DrawCalls);
+	ImGui::Text("Quads : %d", stats.Quads);
+	ImGui::Text("Vertices : %d", stats.Vertices);
+	ImGui::Text("Indices : %d", stats.Indices);
+
+	ImGui::End();
 }
 
 void SandBox3D::OnEvent(Glacier::Event& e)

@@ -19,6 +19,7 @@ namespace Glacier
 		virtual void Unbind() const override;
 
 		virtual uint32 GetCount() const { return m_Count; }
+
 	private:
 		ComPtr<ID3D11Buffer> m_gpuBuffer;
 		uint32 m_Count;

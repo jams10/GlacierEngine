@@ -35,6 +35,8 @@ namespace Glacier
 		{
 			m_GameTimer.Tick();
 
+			Renderer::ResetStat();
+
 			if (!m_Minimized)
 			{
 				for (Layer* layer : m_LayerStack) // 레이어들의 update 호출.

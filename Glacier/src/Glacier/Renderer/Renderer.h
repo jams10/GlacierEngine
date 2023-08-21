@@ -9,6 +9,14 @@
 
 namespace Glacier
 {
+	struct GLACIER_API Stat
+	{
+		uint16 DrawCalls = 0;
+		uint32 Quads = 0;
+		uint32 Vertices = 0;
+		uint32 Indices = 0;
+	};
+
 	class GLACIER_API Renderer
 	{
 	public:
@@ -19,6 +27,10 @@ namespace Glacier
 		static void Submit(const std::shared_ptr<Model>& model);
 		static void Submit(const std::shared_ptr<VertexBuffer>& vertexBuffer, const std::shared_ptr<IndexBuffer>& indexBuffer,
 			const std::shared_ptr<VertexLayout>& vertexLayout);
+
+		static Stat stat;
+		static void ResetStat() { stat = Stat{ 0,0,0,0 }; }
+		inline static Stat GetStats() { return stat; }
 
 		inline static GraphicsAPI::API GetAPI() { return GraphicsAPI::GetAPI(); }
 	};

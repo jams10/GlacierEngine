@@ -3,6 +3,8 @@
 
 namespace Glacier
 {
+	Stat Renderer::stat;
+
 	void Renderer::BeginRenderScene()
 	{
 		RenderCommand::SetRenderTarget();

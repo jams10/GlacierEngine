@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Mesh.h"
+#include "Glacier/Renderer/Renderer.h"
 #include "Glacier/Renderer/RenderCommand.h"
 
 namespace Glacier
@@ -17,6 +18,10 @@ namespace Glacier
 	{
 		m_VertexBuffer->Bind(stride);
 		m_IndexBuffer->Bind();
+		Renderer::stat.Vertices += m_VertexBuffer->GetCount();
+		Renderer::stat.Indices += m_IndexBuffer->GetCount();
+		Renderer::stat.Quads = Renderer::stat.Vertices / 4;
 		RenderCommand::DrawIndexed(m_IndexBuffer);
+		Renderer::stat.DrawCalls++;
 	}
 }

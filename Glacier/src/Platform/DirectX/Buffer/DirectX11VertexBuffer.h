@@ -23,11 +23,15 @@ namespace Glacier
 
 		virtual const BufferLayout& GetLayout() const override { return m_Layout; }
 		virtual void SetLayout(const BufferLayout& layout) override { m_Layout = layout; }
+
+		virtual uint32 GetCount() const override;
+
 	private:
-		ComPtr<ID3D11Buffer> m_gpuBuffer;
+		ComPtr<ID3D11Buffer> m_GpuBuffer;
 		BufferLayout m_Layout;
 
-		uint32 m_stride; // stride는 vertex buffer 안에 들어 있는 각 정점의 크기.
-		uint32 m_offset; // offset은 vertex buffer array 사용시 사용. vertex buffer array에서 vertex buffer간의 오프셋 크기.
+		uint32 m_Size;   // 전체 정점 데이터 크기.
+		uint32 m_Stride; // stride는 vertex buffer 안에 들어 있는 각 정점의 크기.
+		uint32 m_Offset; // offset은 vertex buffer array 사용시 사용. vertex buffer array에서 vertex buffer간의 오프셋 크기.
 	};
 }
