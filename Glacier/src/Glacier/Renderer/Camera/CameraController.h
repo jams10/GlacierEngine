@@ -19,6 +19,8 @@ namespace Glacier
 
 		Camera& GetCamera() { return m_Camera; }
 		const Camera& GetCamera() const { return m_Camera; }
+		
+		void SetAspectRation(float aspectRatio) { m_Camera.SetAspectRatio(aspectRatio); }
 
 		static CameraController* Create(float aspectRatio);
 

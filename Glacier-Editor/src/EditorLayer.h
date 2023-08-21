@@ -17,6 +17,8 @@ namespace Glacier
 		virtual void OnImGuiRender() override;
 		void OnEvent(Glacier::Event& e) override;
 
+		void SceneViewPort();
+
 	private:
 		std::shared_ptr<Glacier::Model> m_Model;
 		std::shared_ptr<Glacier::Model> m_Model2;

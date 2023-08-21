@@ -7,11 +7,22 @@ namespace Glacier
 
 	void Renderer::BeginRenderScene()
 	{
-		RenderCommand::SetRenderTarget();
+		float color[4] = { 0.1f, 0.1f, 0.1f, 1 };
+		RenderCommand::ClearForRenderScene(color);
+		RenderCommand::SetSceneRenderTarget();
 	}
 
 	void Renderer::EndRenderScene()
 	{
+		RenderCommand::PrepareSceneRenderedTexture();
+		BeginRenderUI();
+	}
+
+	void Renderer::BeginRenderUI()
+	{
+		float color[4] = { 0.1f, 0.1f, 0.1f, 1 };
+		RenderCommand::ClearForRenderUI(color);
+		RenderCommand::SetUIRenderTarget();
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)

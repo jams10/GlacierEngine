@@ -22,6 +22,7 @@ namespace Glacier
 	public:
 		static void BeginRenderScene();
 		static void EndRenderScene();
+		static void BeginRenderUI();
 		static void OnWindowResize(uint32_t width, uint32_t height);
 
 		static void Submit(const std::shared_ptr<Model>& model);

@@ -44,9 +44,9 @@ namespace Glacier
 
 		m_Model->GetTransform()->SetRotation(rotation.x, rotation.y, rotation.z);
 
-		float color[4] = { 0.1f, 0.1f, 0.1f, 1 };
-		Glacier::RenderCommand::SetClearColor(color);
-		Glacier::RenderCommand::Clear();
+		//float color[4] = { 0.1f, 0.1f, 0.1f, 1 };
+		//Glacier::RenderCommand::SetClearColor(color);
+		//Glacier::RenderCommand::Clear();
 
 		Glacier::Renderer::BeginRenderScene(); // set render target, viewport.
 		//Glacier::Renderer::BeginRenderUI();
@@ -55,7 +55,7 @@ namespace Glacier
 		Glacier::Renderer::Submit(m_Model);
 		Glacier::Renderer::Submit(m_Model2);
 
-		//Glacier::Renderer::EndRenderScene(); // set render target, viewport.
+		Glacier::Renderer::EndRenderScene(); // set render target, viewport.
 
 	}
 
@@ -74,14 +74,18 @@ namespace Glacier
 		ImGui::End();
 	}
 
-	void SceneViewPort()
+	void EditorLayer::SceneViewPort()
 	{
 		ImGui::Begin("Viewport");
 
 		ImVec2 windowSize = ImGui::GetContentRegionAvail();
 		ImVec2 windowPosition = ImGui::GetCursorScreenPos();
 
-		//ImGui::Image((ImTextureID)RenderCommand::GetSceneRenderedTexture(), ImVec2{windowSize.x, windowSize.y});
+		uint32 width = windowSize.x;
+		uint32 height = windowSize.y;
+		m_SceneCameraController->SetAspectRation((float)width / (float)height);
+
+		ImGui::Image(RenderCommand::GetSceneRenderedTexture(), ImVec2{windowSize.x, windowSize.y});
 		//ImGui::Text("Size : %f , %f", m_windowData.windowSize.x, m_windowData.windowSize.y);
 
 		ImGui::End();

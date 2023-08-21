@@ -19,34 +19,76 @@ namespace Glacier
 		SetViewport(0, 0, m_WholeScreenWidth, m_WholeScreenHeight);
 		CreateDepthBuffer(m_WholeScreenWidth, m_WholeScreenHeight, m_DepthStencilBuffer, m_DepthStencilView);
 
+		m_SceneViewportWidth = m_WholeScreenWidth;
+		m_SceneViewportHeight = m_WholeScreenHeight;
+
+		CreateSceneRenderTexturesAndViews();
+		CreateDepthBuffer(m_SceneViewportWidth, m_SceneViewportHeight, m_DepthStencilBufferForSceneRender, m_DepthStencilViewForSceneRender);
+
 		GR_CORE_WARN("DirectX11RenderContext has initialized successfully!");
 	}
 
-	void DirectX11RenderContext::SetClearColor(float clearColor[4])
+	void DirectX11RenderContext::SetClearColorForSceneRender(float clearColor[4])
 	{
 		for (int i = 0; i < 4; ++i)
-			m_ClearColor[i] = clearColor[i];
+			m_ClearColorForSceneRender[i] = clearColor[i];
 	}
 
-	void DirectX11RenderContext::ClearRenderTargetView()
+	void DirectX11RenderContext::SetClearColorForUIRender(float clearColor[4])
 	{
-		DirectX11Device::GetDeviceContext()->ClearRenderTargetView(m_BackbufferRTV.Get(), m_ClearColor);
+		for (int i = 0; i < 4; ++i)
+			m_ClearColorForUIRender[i] = clearColor[i];
 	}
 
-	void DirectX11RenderContext::ClearDepthStencilView()
+	void DirectX11RenderContext::ClearRenderTargetViewForSceneRender()
+	{
+		DirectX11Device::GetDeviceContext()->ClearRenderTargetView(m_SceneRenderTexture2DMSRTV.Get(), m_ClearColorForSceneRender);
+	}
+
+	void DirectX11RenderContext::ClearDepthStencilViewForSceneRender()
+	{
+		DirectX11Device::GetDeviceContext()->ClearDepthStencilView(m_DepthStencilViewForSceneRender.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	}
+
+	void DirectX11RenderContext::ClearRenderTargetViewForUIRender()
+	{
+		DirectX11Device::GetDeviceContext()->ClearRenderTargetView(m_BackbufferRTV.Get(), m_ClearColorForUIRender);
+	}
+
+	void DirectX11RenderContext::ClearDepthStencilViewForUIRender()
 	{
 		DirectX11Device::GetDeviceContext()->ClearDepthStencilView(m_DepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	}
 
-	void DirectX11RenderContext::SetRenderTarget()
+	void DirectX11RenderContext::SetSceneRenderTarget()
 	{
+		SetViewport(0, 0, m_SceneViewportWidth, m_SceneViewportHeight);
+		ID3D11RenderTargetView* targets[] = { m_SceneRenderTexture2DMSRTV.Get() };
+		DirectX11Device::GetDeviceContext()->OMSetRenderTargets(1, targets, m_DepthStencilViewForSceneRender.Get());
+	}
+
+	void DirectX11RenderContext::SetUIRenderTarget()
+	{
+		SetViewport(0, 0, m_WholeScreenWidth, m_WholeScreenHeight);
 		ID3D11RenderTargetView* targets[] = { m_BackbufferRTV.Get() };
 		DirectX11Device::GetDeviceContext()->OMSetRenderTargets(1, targets, m_DepthStencilView.Get());
+	}
+
+	void DirectX11RenderContext::PrepareSceneRenderedTexture()
+	{
+		// 씬이 렌더링 된 Texture2DMS 타입의 텍스쳐를 Texture2D 타입으로 변환.
+		DirectX11Device::GetDeviceContext()->ResolveSubresource(m_SceneRenderTexture2D.Get(), 0, m_SceneRenderTexture2DMS.Get(), 0, DXGI_FORMAT_R8G8B8A8_UNORM);
+	}
+
+	void* DirectX11RenderContext::GetSceneRenderedTextureSRV()
+	{
+		return m_SceneRenderTexture2DSRV.Get();
 	}
 
 	void DirectX11RenderContext::ResizeWindow(uint32 width, uint32 height)
 	{
 		if (width == 0 || height == 0) return;
+		if (m_WholeScreenWidth == width && m_WholeScreenHeight == height) return;
 
 		m_DepthStencilView = nullptr;
 		m_DepthStencilBuffer = nullptr;
@@ -54,8 +96,25 @@ namespace Glacier
 		m_BackbufferRTV = nullptr; // swapchain의 back buffer resize를 수행하기 위해서는 swapchain의 back buffer에 대한 모든 참조를 제거해야 함.
 		DirectX11Device::ResizeSwapchainBuffer(width, height);
 		CreateBackbufferViews();
-		SetViewport(0, 0, m_WholeScreenWidth, m_WholeScreenHeight);
+		//SetViewport(0, 0, m_WholeScreenWidth, m_WholeScreenHeight);
 		CreateDepthBuffer(width, height, m_DepthStencilBuffer, m_DepthStencilView);
+	}
+
+	void DirectX11RenderContext::ResizeSceneViewport(uint32 width, uint32 height)
+	{
+		if (width == 0 || height == 0) return;
+		if (m_SceneViewportWidth == width && m_SceneViewportHeight == height) return;
+
+		m_SceneRenderTexture2DMS = nullptr;
+		m_SceneRenderTexture2DMSRTV = nullptr;
+		m_SceneRenderTexture2D = nullptr;
+		m_SceneRenderTexture2DRTV = nullptr;
+		m_SceneRenderTexture2DSRV = nullptr;
+
+		m_DepthStencilViewForSceneRender = nullptr;
+		m_DepthStencilBufferForSceneRender = nullptr;
+
+
 	}
 
 	void DirectX11RenderContext::CreateBackbufferViews()
@@ -81,6 +140,45 @@ namespace Glacier
 		{
 			GR_CORE_ERROR("Backbuffer is null");
 		}
+	}
+
+	void DirectX11RenderContext::CreateSceneRenderTexturesAndViews()
+	{
+		D3D11_TEXTURE2D_DESC textureDesc;
+		ZeroMemory(&textureDesc, sizeof(textureDesc));
+		textureDesc.Width = m_SceneViewportWidth;
+		textureDesc.Height = m_SceneViewportHeight;
+		textureDesc.MipLevels = textureDesc.ArraySize = 1;
+		textureDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		textureDesc.SampleDesc.Count = 1;
+		textureDesc.Usage = D3D11_USAGE_DEFAULT;
+		textureDesc.BindFlags = D3D11_BIND_RENDER_TARGET;
+		textureDesc.MiscFlags = 0;
+		textureDesc.CPUAccessFlags = 0;
+		if (DirectX11Device::GetQualityLevels() > 0)  // MSAA 사용 여부에 따라 다르게 설정.
+		{
+			textureDesc.SampleDesc.Count = 4; // how many multisamples
+			textureDesc.SampleDesc.Quality = DirectX11Device::GetQualityLevels() - 1;
+		}
+		else
+		{
+			textureDesc.SampleDesc.Count = 1; // how many multisamples
+			textureDesc.SampleDesc.Quality = 0;
+		}
+
+		// 씬이 렌더링될 텍스쳐와 렌더 타겟으로 설정하기 위한 렌더 타겟 뷰를 생성.
+		THROWFAILED(DirectX11Device::GetDevice()->CreateTexture2D(&textureDesc, nullptr, &m_SceneRenderTexture2DMS));
+		THROWFAILED(DirectX11Device::GetDevice()->CreateRenderTargetView(m_SceneRenderTexture2DMS.Get(), nullptr, &m_SceneRenderTexture2DMSRTV));
+
+		textureDesc.SampleDesc.Count = 1;
+		textureDesc.SampleDesc.Quality = 0;
+		textureDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_RENDER_TARGET;
+		textureDesc.MiscFlags = 0;
+
+		// 후처리를 위해 쉐이더 입력으로 사용할 Texture2D 타입 텍스쳐를 만들어줌.
+		THROWFAILED(DirectX11Device::GetDevice()->CreateTexture2D(&textureDesc, nullptr, &m_SceneRenderTexture2D));
+		THROWFAILED(DirectX11Device::GetDevice()->CreateRenderTargetView(m_SceneRenderTexture2D.Get(), nullptr, &m_SceneRenderTexture2DRTV));
+		THROWFAILED(DirectX11Device::GetDevice()->CreateShaderResourceView(m_SceneRenderTexture2D.Get(), nullptr, &m_SceneRenderTexture2DSRV));
 	}
 
 	void DirectX11RenderContext::SetViewport(UINT topLeftX, UINT topLeftY, UINT width, UINT height)

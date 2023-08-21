@@ -23,25 +23,42 @@ namespace Glacier
 			s_GraphicsAPI->SetViewport(x, y, width, height);
 		}
 
-		inline static void SetClearColor(float colors[4])
+		inline static void ClearForRenderScene(float colors[4])
 		{
-			s_GraphicsAPI->SetClearColor(colors);
+			s_GraphicsAPI->ClearForRenderScene(colors);
 		}
 
-		inline static void Clear()
+		inline static void ClearForRenderUI(float colors[4])
 		{
-			s_GraphicsAPI->Clear();
+			s_GraphicsAPI->ClearForRenderUI(colors);
 		}
 
-		inline static void SetRenderTarget()
+		inline static void SetSceneRenderTarget()
 		{
-			s_GraphicsAPI->SetRenderTarget();
+			s_GraphicsAPI->SetSceneRenderTarget();
+		}
+
+		inline static void SetUIRenderTarget()
+		{
+			s_GraphicsAPI->SetUIRenderTarget();
 		}
 
 		inline static void DrawIndexed(const std::shared_ptr<IndexBuffer>& indexBuffer)
 		{
 			s_GraphicsAPI->DrawIndexed(indexBuffer);
 		}
+
+		inline static void PrepareSceneRenderedTexture()
+		{
+			s_GraphicsAPI->PrepareSceneRenderedTexture();
+		}
+
+		inline static void* GetSceneRenderedTexture()
+		{
+			return s_GraphicsAPI->GetSceneRenderedTexture();
+		}
+
+
 	private:
 		static GraphicsAPI* s_GraphicsAPI;
 	};

@@ -47,7 +47,7 @@ namespace Glacier
 		float m_Yaw = 0.f;
 
 		// Projection 변환 행렬 관련 변수.
-		float m_Fov = 90.f;
+		float m_Fov = 60.f;
 		float m_AspectRatio = 16.f / 9.f;
 		float m_NearZ = 0.01f;
 		float m_FarZ = 100.0f;
