@@ -12,7 +12,7 @@ void SandBox3D::OnAttach()
 	m_SceneCameraController.reset(Glacier::CameraController::Create(1280.f / 720.f));
 
 	// 모델 생성.
-	m_Model = std::make_shared<Glacier::Model>(Glacier::MeshGenerator::MakeSqaure());
+	m_Model = std::make_shared<Glacier::Model>(Glacier::MeshGenerator::MakeCube());
 
 	// 텍스쳐 자원 생성.
 	m_TextureResource = Glacier::Texture2D::Create(L"../Resources/Texture/rabbit.png");

@@ -14,5 +14,6 @@ namespace Glacier
 	public:
 		static shared_ptr<Mesh> MakeTriangle();
 		static shared_ptr<Mesh> MakeSqaure();
+		static shared_ptr<Mesh> MakeCube();
 	};
 }

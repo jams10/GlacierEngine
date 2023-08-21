@@ -40,6 +40,11 @@ namespace Glacier
 		m_ViewDir = Vector3::Transform(m_ViewDir, Matrix::CreateRotationY(this->m_Yaw));
 		// 카메라 시점 벡터와 up 벡터를 외적하여 오른쪽 방향 벡터를 얻어줌. view 변환 행렬 생성 시 필요.
 		m_RightDir = m_UpDir.Cross(m_ViewDir);
+		m_RightDir = m_UpDir.Cross(m_ViewDir);
+		// 여기서 viewDir과 upDir 벡터는 단위 벡터임이 보장되지만, 단위 벡터 끼리 수직을 이루지 않으면 외적의 결과가 1보다 작을 수 있음. 따라서 정규화를 해줌.
+		// 더 자세히 설명하면, 두 벡터가 단위 벡터이면, 외적 결과 벡터의 크기는 두 벡터의 sin 값이 되기 때문에 두 벡터가 수직인 경우 sin = 1로 단위 벡터가 되지만,
+		// 두 벡터가 30도를 이루는 경우에는 결과 벡터의 크기가 0.5가 됨.
+		m_RightDir.Normalize();
 	}
 
 	void Camera::MoveForward(float dt)
