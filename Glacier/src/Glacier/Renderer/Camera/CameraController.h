@@ -3,11 +3,14 @@
 #include "Glacier/Core/Core.h"
 #include "Camera.h"
 
+#include "Glacier/Renderer/ConstantBufferData.h"
 #include "Glacier/Event/ApplicationEvent.h"
 #include "Glacier/Event/MouseEvent.h"
 
 namespace Glacier
 {
+	class ShaderBuffer;
+
 	class CameraController
 	{
 	public:
@@ -22,8 +25,6 @@ namespace Glacier
 		
 		void SetAspectRation(float aspectRatio) { m_Camera.SetAspectRatio(aspectRatio); }
 
-		static CameraController* Create(float aspectRatio);
-
 	protected:
 		bool OnMouseWheelUp(MouseWheelUpEvent& e);
 		bool OnMouseWheelDown(MouseWheelDownEvent& e);
@@ -36,5 +37,8 @@ namespace Glacier
 		float m_ZoomSpeed = 5.0f;  // perspective 카메라 zoom에 사용.
 
 		bool m_CanRotate = true;
+
+		CameraTransformConstant m_CameraTransformConstant;
+		std::unique_ptr<ShaderBuffer> m_ConstantBuffer;
 	};
 }

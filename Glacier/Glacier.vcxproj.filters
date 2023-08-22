@@ -132,13 +132,13 @@
     <ClInclude Include="src\Glacier\Log.h">
       <Filter>src\Glacier</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Model\Mesh.h">
+    <ClInclude Include="src\Glacier\Mesh\Mesh.h">
       <Filter>src\Glacier\Model</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Model\MeshGenerator.h">
+    <ClInclude Include="src\Glacier\Mesh\MeshGenerator.h">
       <Filter>src\Glacier\Model</Filter>
     </ClInclude>
-    <ClInclude Include="src\Glacier\Model\Model.h">
+    <ClInclude Include="src\Glacier\Components\ModelComponent.h">
       <Filter>src\Glacier\Model</Filter>
     </ClInclude>
     <ClInclude Include="src\Glacier\Renderer\Buffer.h">
@@ -192,7 +192,7 @@
     <ClInclude Include="src\Glacier\Window\Window.h">
       <Filter>src\Glacier\Window</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\DirectX\Buffer\ConstantBufferData.h">
+    <ClInclude Include="src\Glacier\Renderer\ConstantBufferData.h">
       <Filter>src\Platform\DirectX\Buffer</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11ConstantBuffer.h">
@@ -203,12 +203,6 @@
     </ClInclude>
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.h">
       <Filter>src\Platform\DirectX\Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\DirectX\Camera\DirectX11CameraController.h">
-      <Filter>src\Platform\DirectX\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\DirectX\Components\DirectX11TransformComponent.h">
-      <Filter>src\Platform\DirectX\Components</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\DirectX\DirectX11Common.h">
       <Filter>src\Platform\DirectX</Filter>
@@ -321,6 +315,8 @@
     <ClInclude Include="vendor\stb_image\stb_voxel_render.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Glacier\Components\BaseComponent.h" />
+    <ClInclude Include="src\Glacier\Object\Object.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -344,13 +340,13 @@
     <ClCompile Include="src\Glacier\Log.cpp">
       <Filter>src\Glacier</Filter>
     </ClCompile>
-    <ClCompile Include="src\Glacier\Model\Mesh.cpp">
+    <ClCompile Include="src\Glacier\Mesh\Mesh.cpp">
       <Filter>src\Glacier\Model</Filter>
     </ClCompile>
-    <ClCompile Include="src\Glacier\Model\MeshGenerator.cpp">
+    <ClCompile Include="src\Glacier\Mesh\MeshGenerator.cpp">
       <Filter>src\Glacier\Model</Filter>
     </ClCompile>
-    <ClCompile Include="src\Glacier\Model\Model.cpp">
+    <ClCompile Include="src\Glacier\Components\ModelComponent.cpp">
       <Filter>src\Glacier\Model</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\Renderer\Buffer.cpp">
@@ -401,12 +397,6 @@
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.cpp">
       <Filter>src\Platform\DirectX\Buffer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\DirectX\Camera\DirectX11CameraController.cpp">
-      <Filter>src\Platform\DirectX\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platform\DirectX\Components\DirectX11TransformComponent.cpp">
-      <Filter>src\Platform\DirectX\Components</Filter>
-    </ClCompile>
     <ClCompile Include="src\Platform\DirectX\DirectX11Common.cpp">
       <Filter>src\Platform\DirectX</Filter>
     </ClCompile>
@@ -452,6 +442,7 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Glacier\Object\Object.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resources\shaders\TextureSample_PS.hlsl">

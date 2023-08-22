@@ -11,11 +11,10 @@ namespace Glacier
 	void EditorLayer::OnAttach()
 	{
 		// 카메라 생성.
-		m_SceneCameraController.reset(Glacier::CameraController::Create(1280.f / 720.f));
+		m_SceneCameraController = std::make_unique<CameraController>(1280.f / 720.f);
 
 		// 모델 생성.
-		m_Model = std::make_shared<Glacier::Model>(Glacier::MeshGenerator::MakeCube());
-		m_Model2 = std::make_shared<Glacier::Model>(Glacier::MeshGenerator::MakeCube());
+		m_Model = std::make_shared<Glacier::ModelComponent>(Glacier::MeshGenerator::MakeCube());
 
 		// 텍스쳐 자원 생성.
 		m_TextureResource = Glacier::Texture2D::Create(L"../Resources/Texture/rabbit.png");
@@ -26,7 +25,9 @@ namespace Glacier
 		m_Material->SetPipelineState(Glacier::TexureSamplingPipelineState);
 
 		m_Model->SetMaterial(m_Material);
-		m_Model2->SetMaterial(m_Material);
+
+		m_Object = std::make_shared<Object>();
+		m_Object->ModelComp = m_Model;
 	}
 
 	void EditorLayer::OnDetach()
@@ -44,16 +45,10 @@ namespace Glacier
 
 		m_Model->GetTransform()->SetRotation(rotation.x, rotation.y, rotation.z);
 
-		//float color[4] = { 0.1f, 0.1f, 0.1f, 1 };
-		//Glacier::RenderCommand::SetClearColor(color);
-		//Glacier::RenderCommand::Clear();
-
 		Glacier::Renderer::BeginRenderScene(); // set render target, viewport.
-		//Glacier::Renderer::BeginRenderUI();
 
 		// 정점, 인덱스 버퍼 바인딩. draw indexed 호출.
-		Glacier::Renderer::Submit(m_Model);
-		Glacier::Renderer::Submit(m_Model2);
+		Glacier::Renderer::Submit(m_Object);
 
 		Glacier::Renderer::EndRenderScene(); // set render target, viewport.
 

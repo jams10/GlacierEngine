@@ -14,7 +14,7 @@ namespace Glacier
 
     struct WorldTransformConstant
     {
-        Matrix world;
+        Matrix world = Matrix::Identity;
     };
 
     static_assert((sizeof(WorldTransformConstant) % 16) == 0,
@@ -22,9 +22,9 @@ namespace Glacier
 
     struct CameraTransformConstant
     {
-        Matrix view;
-        Matrix proj;
-        Matrix viewProj;
+        Matrix view = Matrix::Identity;
+        Matrix proj = Matrix::Identity;
+        Matrix viewProj = Matrix::Identity;
     };
 
     static_assert((sizeof(CameraTransformConstant) % 16) == 0,

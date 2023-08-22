@@ -5,10 +5,11 @@
 
 #include "Buffer.h"
 #include "VertexLayout.h"
-#include "Glacier/Model/Model.h"
 
 namespace Glacier
 {
+	class Object;
+
 	struct GLACIER_API Stat
 	{
 		uint16 DrawCalls = 0;
@@ -25,7 +26,7 @@ namespace Glacier
 		static void BeginRenderUI();
 		static void OnWindowResize(uint32_t width, uint32_t height);
 
-		static void Submit(const std::shared_ptr<Model>& model);
+		static void Submit(const std::shared_ptr<Object>& object);
 		static void Submit(const std::shared_ptr<VertexBuffer>& vertexBuffer, const std::shared_ptr<IndexBuffer>& indexBuffer,
 			const std::shared_ptr<VertexLayout>& vertexLayout);
 

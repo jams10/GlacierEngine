@@ -20,10 +20,11 @@ namespace Glacier
 		void SceneViewPort();
 
 	private:
-		std::shared_ptr<Glacier::Model> m_Model;
-		std::shared_ptr<Glacier::Model> m_Model2;
+		std::shared_ptr<Glacier::ModelComponent> m_Model;
 		std::shared_ptr<Glacier::Texture2D> m_TextureResource;
 		std::shared_ptr<Glacier::Material> m_Material;
+
+		std::shared_ptr<Glacier::Object> m_Object;
 
 		std::unique_ptr<Glacier::CameraController> m_SceneCameraController;
 	};

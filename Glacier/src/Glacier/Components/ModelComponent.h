@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Glacier/Core/Core.h"
+#include "Glacier/Components/BaseComponent.h"
 
 #include <memory>
 
@@ -10,13 +11,13 @@ namespace Glacier
 	class Material;
 	class TransformComponent;
 
-	class GLACIER_API Model
+	class GLACIER_API ModelComponent : public BaseComponent
 	{
 	public:
-		Model(std::shared_ptr<Mesh>& mesh);
-		~Model();
+		ModelComponent(std::shared_ptr<Mesh>& mesh);
+		~ModelComponent();
 
-		void Submit() const;
+		virtual void Bind() override;
 		void SetMaterial(std::shared_ptr<Material> material);
 		TransformComponent* GetTransform() { return m_Transform.get(); }
 

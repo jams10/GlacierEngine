@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "Renderer.h"
 
+#include "Glacier/Object/Object.h"
+
 namespace Glacier
 {
 	Stat Renderer::stat;
@@ -30,9 +32,9 @@ namespace Glacier
 		RenderCommand::ReizeWindow(width, height);
 	}
 
-	void Renderer::Submit(const std::shared_ptr<Model>& model)
+	void Renderer::Submit(const std::shared_ptr<Object>& object)
 	{
-		model->Submit();
+		object->Submit();
 	}
 
 	void Renderer::Submit(const std::shared_ptr<VertexBuffer>& vertexBuffer, const std::shared_ptr<IndexBuffer>& indexBuffer,

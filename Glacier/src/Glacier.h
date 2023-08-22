@@ -26,14 +26,16 @@
 #include "Glacier/Renderer/Camera/CameraController.h"
 //---------------------------------
 
-//--------------모델----------------
-#include "Glacier/Model/Model.h"
-#include "Glacier/Model/MeshGenerator.h"
+//--------------메쉬----------------
+#include "Glacier/Mesh/Mesh.h"
+#include "Glacier/Mesh/MeshGenerator.h"
 
 //---------------------------------
 
 //-------------컴포넌트-------------
+#include "Glacier/Components/ModelComponent.h"
 #include "Glacier/Components/TransformComponent.h"
 
 
-//---------------------------------
+//-------------오브젝트-------------
+#include "Glacier/Object/Object.h"

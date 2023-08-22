@@ -5,25 +5,18 @@
 #include "Glacier/Input/InputKeys.h"
 
 #include "Glacier/Renderer/Renderer.h"
-#include "Platform/DirectX/Camera/DirectX11CameraController.h"
+#include "Glacier/Renderer/Buffer.h"
 
 namespace Glacier
 {
-	CameraController* CameraController::Create(float aspectRatio)
-	{
-		switch (Renderer::GetAPI())
-		{
-		case GraphicsAPI::API::None:    GR_CORE_ASSERT(false, "RendererAPI::None is currently not supported!"); return nullptr;
-		case GraphicsAPI::API::DirectX11:  return new DirectX11CameraController(aspectRatio);
-		}
-
-		GR_CORE_ASSERT(false, "Unknown RendererAPI!");
-		return nullptr;
-	}
-
 	CameraController::CameraController(float aspectRatio)
 		:m_Camera(aspectRatio)
 	{
+		// 상수 버퍼 세팅.
+		m_CameraTransformConstant.view = m_Camera.GetViewMatrix();
+		m_CameraTransformConstant.proj = m_Camera.GetProjectionMatrix();
+
+		m_ConstantBuffer.reset(Glacier::ShaderBuffer::Create(&m_CameraTransformConstant, sizeof(m_CameraTransformConstant), ShaderBufferType::VERTEX));
 	}
 
 	void CameraController::OnUpdate(float dt)
@@ -47,6 +40,12 @@ namespace Glacier
 		}
 
 		m_Camera.UpdateDirection();
+
+		// 상수 버퍼 업데이트 & 바인딩.
+		m_CameraTransformConstant.view = m_Camera.GetViewMatrix();
+		m_CameraTransformConstant.proj = m_Camera.GetProjectionMatrix();
+		m_ConstantBuffer->UpdateData(&m_CameraTransformConstant, sizeof(m_CameraTransformConstant));
+		m_ConstantBuffer->Bind(CameraTransformSlot);
 	}
 
 	void CameraController::OnEvent(Event& e)

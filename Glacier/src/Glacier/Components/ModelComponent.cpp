@@ -1,24 +1,25 @@
 #include "pch.h"
-#include "Model.h"
+#include "ModelComponent.h"
 
-#include "Glacier/Model/Mesh.h"
+#include "Glacier/Mesh/Mesh.h"
 #include "Glacier/Renderer/Shading/Material.h"
 #include "Glacier/Components/TransformComponent.h"
 
 namespace Glacier
 {
-	Model::Model(std::shared_ptr<Mesh>& mesh)
+	ModelComponent::ModelComponent(std::shared_ptr<Mesh>& mesh)
 		:m_Mesh(mesh), m_Material(nullptr)
 	{
-		m_Transform.reset(Glacier::TransformComponent::Create());
+		m_Transform = std::make_unique<TransformComponent>();
 	}
 
-	Model::~Model()
+	ModelComponent::~ModelComponent()
 	{
-
+		m_Material = nullptr;
+		m_Mesh = nullptr;
 	}
 
-	void Model::Submit() const
+	void ModelComponent::Bind()
 	{
 		// 각종 파이프라인 state, shader, input layout을 먼저 bind하고 vertex, index 버퍼 바인딩.
 		if (m_Material != nullptr)
@@ -29,7 +30,7 @@ namespace Glacier
 		m_Transform->Bind();
 	}
 	
-	void Model::SetMaterial(std::shared_ptr<Material> material)
+	void ModelComponent::SetMaterial(std::shared_ptr<Material> material)
 	{
 		m_Material = material;
 	}

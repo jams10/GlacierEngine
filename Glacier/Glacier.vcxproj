@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="src\Glacier.h" />
     <ClInclude Include="src\Glacier\Application.h" />
+    <ClInclude Include="src\Glacier\Components\BaseComponent.h" />
     <ClInclude Include="src\Glacier\Components\TransformComponent.h" />
     <ClInclude Include="src\Glacier\Core\Core.h" />
     <ClInclude Include="src\Glacier\Core\EntryPoint.h" />
@@ -173,9 +174,10 @@
     <ClInclude Include="src\Glacier\Layer\Layer.h" />
     <ClInclude Include="src\Glacier\Layer\LayerStack.h" />
     <ClInclude Include="src\Glacier\Log.h" />
-    <ClInclude Include="src\Glacier\Model\Mesh.h" />
-    <ClInclude Include="src\Glacier\Model\MeshGenerator.h" />
-    <ClInclude Include="src\Glacier\Model\Model.h" />
+    <ClInclude Include="src\Glacier\Mesh\Mesh.h" />
+    <ClInclude Include="src\Glacier\Mesh\MeshGenerator.h" />
+    <ClInclude Include="src\Glacier\Components\ModelComponent.h" />
+    <ClInclude Include="src\Glacier\Object\Object.h" />
     <ClInclude Include="src\Glacier\Renderer\Buffer.h" />
     <ClInclude Include="src\Glacier\Renderer\Camera\Camera.h" />
     <ClInclude Include="src\Glacier\Renderer\Camera\CameraController.h" />
@@ -193,12 +195,10 @@
     <ClInclude Include="src\Glacier\Utils\GameTimer.h" />
     <ClInclude Include="src\Glacier\Utils\StringEncode.h" />
     <ClInclude Include="src\Glacier\Window\Window.h" />
-    <ClInclude Include="src\Platform\DirectX\Buffer\ConstantBufferData.h" />
+    <ClInclude Include="src\Glacier\Renderer\ConstantBufferData.h" />
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11ConstantBuffer.h" />
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11IndexBuffer.h" />
     <ClInclude Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.h" />
-    <ClInclude Include="src\Platform\DirectX\Camera\DirectX11CameraController.h" />
-    <ClInclude Include="src\Platform\DirectX\Components\DirectX11TransformComponent.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11Common.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11Device.h" />
     <ClInclude Include="src\Platform\DirectX\DirectX11GraphicsAPI.h" />
@@ -245,9 +245,10 @@
     <ClCompile Include="src\Glacier\Layer\Layer.cpp" />
     <ClCompile Include="src\Glacier\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Glacier\Log.cpp" />
-    <ClCompile Include="src\Glacier\Model\Mesh.cpp" />
-    <ClCompile Include="src\Glacier\Model\MeshGenerator.cpp" />
-    <ClCompile Include="src\Glacier\Model\Model.cpp" />
+    <ClCompile Include="src\Glacier\Mesh\Mesh.cpp" />
+    <ClCompile Include="src\Glacier\Mesh\MeshGenerator.cpp" />
+    <ClCompile Include="src\Glacier\Components\ModelComponent.cpp" />
+    <ClCompile Include="src\Glacier\Object\Object.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Camera\Camera.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Camera\CameraController.cpp" />
@@ -264,8 +265,6 @@
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11ConstantBuffer.cpp" />
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11IndexBuffer.cpp" />
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11VertexBuffer.cpp" />
-    <ClCompile Include="src\Platform\DirectX\Camera\DirectX11CameraController.cpp" />
-    <ClCompile Include="src\Platform\DirectX\Components\DirectX11TransformComponent.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11Common.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11Device.cpp" />
     <ClCompile Include="src\Platform\DirectX\DirectX11GraphicsAPI.cpp" />

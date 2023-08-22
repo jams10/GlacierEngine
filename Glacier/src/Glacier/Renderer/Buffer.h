@@ -161,7 +161,7 @@ namespace Glacier
 	public:
 		virtual ~ShaderBuffer() {}
 
-		virtual void Bind(uint8 slot) = 0;
+		virtual void Bind(const uint8& slot) = 0;
 		virtual void Unbind() const = 0;
 
 		virtual void UpdateData(void* data, uint32 size) = 0;

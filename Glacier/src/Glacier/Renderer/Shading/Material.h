@@ -9,7 +9,7 @@ namespace Glacier
 {
 	class GLACIER_API Material
 	{
-		friend class Model;
+		friend class ModelComponent;
 	public:
 		virtual ~Material() {}
 

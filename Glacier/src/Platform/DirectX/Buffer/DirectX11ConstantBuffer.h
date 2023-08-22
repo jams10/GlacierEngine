@@ -14,9 +14,9 @@ namespace Glacier
 	{
 	public:
 		DirectX11ConstantBuffer(void* data, uint32 size, ShaderBufferType type);
-		virtual ~DirectX11ConstantBuffer();
+		~DirectX11ConstantBuffer();
 
-		virtual void Bind(uint8 slot) override;
+		virtual void Bind(const uint8& slot) override;
 		virtual void Unbind() const override;
 
 		virtual void UpdateData(void* data, uint32 size) override;
