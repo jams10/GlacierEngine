@@ -190,6 +190,7 @@
     <ClInclude Include="src\Glacier\Renderer\Shading\Shader.h" />
     <ClInclude Include="src\Glacier\Renderer\Shading\Texture.h" />
     <ClInclude Include="src\Glacier\Renderer\VertexLayout.h" />
+    <ClInclude Include="src\Glacier\Scene\Scene.h" />
     <ClInclude Include="src\Glacier\Types.h" />
     <ClInclude Include="src\Glacier\Utils\CustomDelegate.h" />
     <ClInclude Include="src\Glacier\Utils\GameTimer.h" />
@@ -260,6 +261,7 @@
     <ClCompile Include="src\Glacier\Renderer\Shading\Shader.cpp" />
     <ClCompile Include="src\Glacier\Renderer\Shading\Texture.cpp" />
     <ClCompile Include="src\Glacier\Renderer\VertexLayout.cpp" />
+    <ClCompile Include="src\Glacier\Scene\Scene.cpp" />
     <ClCompile Include="src\Glacier\Utils\CustomDelegate.cpp" />
     <ClCompile Include="src\Glacier\Utils\GameTimer.cpp" />
     <ClCompile Include="src\Platform\DirectX\Buffer\DirectX11ConstantBuffer.cpp" />

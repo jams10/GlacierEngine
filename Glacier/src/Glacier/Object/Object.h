@@ -12,14 +12,17 @@ namespace Glacier
 	class GLACIER_API Object
 	{
 	public:
-		Object();
+		Object(const uint32 objectID);
 		~Object();
 
 		void Submit();
+		void SetName(std::wstring name);
 
 		std::shared_ptr<ModelComponent> ModelComp;
 		std::unique_ptr<TransformComponent> TransformComp;
-	private:
 
+	private:
+		uint32 m_ObjectID;
+		std::wstring m_ObjectName;
 	};
 }

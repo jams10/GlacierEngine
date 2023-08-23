@@ -17,7 +17,9 @@ namespace Glacier
 		virtual void OnImGuiRender() override;
 		void OnEvent(Glacier::Event& e) override;
 
+		void SceneHierarchy();
 		void SceneViewPort();
+		void SceneProperty();
 
 	private:
 		std::shared_ptr<Glacier::ModelComponent> m_Model;
@@ -25,6 +27,8 @@ namespace Glacier
 		std::shared_ptr<Glacier::Material> m_Material;
 
 		std::shared_ptr<Glacier::Object> m_Object;
+
+		std::unique_ptr<Glacier::Scene> m_Scene;
 
 		std::unique_ptr<Glacier::CameraController> m_SceneCameraController;
 	};

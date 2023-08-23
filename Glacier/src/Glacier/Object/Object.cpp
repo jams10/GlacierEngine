@@ -6,9 +6,13 @@
 
 namespace Glacier
 {
-	Object::Object()
+	Object::Object(const uint32 objectID)
 	{
 		TransformComp = std::make_unique<TransformComponent>();
+		m_ObjectID = objectID;
+		std::wostringstream ws;
+		ws << L"Object" << objectID;
+		m_ObjectName = ws.str();
 	}
 
 	Object::~Object()
@@ -27,5 +31,10 @@ namespace Glacier
 		{
 			TransformComp->Bind();
 		}
+	}
+
+	void Object::SetName(std::wstring name)
+	{
+		m_ObjectName = name;
 	}
 }

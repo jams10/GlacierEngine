@@ -13,21 +13,8 @@ namespace Glacier
 		// 카메라 생성.
 		m_SceneCameraController = std::make_unique<CameraController>(1280.f / 720.f);
 
-		// 모델 생성.
-		m_Model = std::make_shared<Glacier::ModelComponent>(Glacier::MeshGenerator::MakeCube(Glacier::Vector3::Zero));
-
-		// 텍스쳐 자원 생성.
-		m_TextureResource = Glacier::Texture2D::Create(L"../Resources/Texture/rabbit.png");
-
-		// Material 생성.
-		m_Material.reset(Glacier::Material::Create());
-		m_Material->AddTexture(m_TextureResource);
-		m_Material->SetPipelineState(Glacier::TexureSamplingPipelineState);
-
-		m_Model->SetMaterial(m_Material);
-
-		m_Object = std::make_shared<Object>();
-		m_Object->ModelComp = m_Model;
+		m_Scene = std::make_unique<Scene>();
+		m_Scene->AddObject();
 	}
 
 	void EditorLayer::OnDetach()
@@ -38,27 +25,40 @@ namespace Glacier
 	{
 		m_SceneCameraController->OnUpdate(dt);
 
-		//Glacier::Vector3 rotation = m_Model->GetTransform()->GetRotation();
-		Glacier::Vector3 rotation = m_Object->TransformComp->GetRotation();
+		Glacier::Vector3 rotation;
+		if (m_Scene->GetSelectedObject())
+		{
+			rotation = m_Scene->GetSelectedObject()->TransformComp->GetRotation();
+		}
 
 		if (Glacier::Input::IsKeyPressed(GR_VK_RIGHT))
 			rotation.y += dt;
 
-		m_Object->TransformComp->SetRotation(rotation.x, rotation.y, rotation.z);
-
+		if (m_Scene->GetSelectedObject())
+		{
+			m_Scene->GetSelectedObject()->TransformComp->SetRotation(rotation.x, rotation.y, rotation.z);
+		}
+		
 		Glacier::Renderer::BeginRenderScene(); // set render target, viewport.
 
-		// 정점, 인덱스 버퍼 바인딩. draw indexed 호출.
-		Glacier::Renderer::Submit(m_Object);
+		m_Scene->Render();
 
 		Glacier::Renderer::EndRenderScene(); // set render target, viewport.
 
 	}
 
 #pragma region GUI Windows
-	void StatWindow()
+	void EditorLayer::SceneHierarchy()
 	{
-		ImGui::Begin("Stats");
+		ImGui::Begin("Scene Hierarchy");
+
+
+		ImGui::End();
+	}
+
+	void EditorLayer::SceneProperty()
+	{
+		ImGui::Begin("Scene Property");
 
 		Glacier::Stat stats = Glacier::Renderer::GetStats();
 		ImGui::Text("Scene Stats");
@@ -66,6 +66,11 @@ namespace Glacier
 		ImGui::Text("Quads : %d", stats.Quads);
 		ImGui::Text("Vertices : %d", stats.Vertices);
 		ImGui::Text("Indices : %d", stats.Indices);
+
+		if (ImGui::Button("Add Object"))
+		{
+			m_Scene->AddObject();
+		}
 
 		ImGui::End();
 	}
@@ -86,6 +91,7 @@ namespace Glacier
 
 		ImGui::End();
 	}
+
 
 #pragma endregion
 
@@ -153,7 +159,8 @@ namespace Glacier
 				ImGui::EndMenuBar();
 			}
 
-			StatWindow();
+			SceneHierarchy();
+			SceneProperty();
 			SceneViewPort();
 
 			ImGui::End();

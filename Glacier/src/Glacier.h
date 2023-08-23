@@ -35,7 +35,14 @@
 //-------------ÄÄÆ÷³ÍÆ®-------------
 #include "Glacier/Components/ModelComponent.h"
 #include "Glacier/Components/TransformComponent.h"
-
+//---------------------------------
 
 //-------------¿ÀºêÁ§Æ®-------------
 #include "Glacier/Object/Object.h"
+//---------------------------------
+
+//---------------¾À----------------
+#include "Glacier/Scene/Scene.h"
+//---------------------------------
+
+

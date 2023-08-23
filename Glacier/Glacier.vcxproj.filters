@@ -317,6 +317,7 @@
     </ClInclude>
     <ClInclude Include="src\Glacier\Components\BaseComponent.h" />
     <ClInclude Include="src\Glacier\Object\Object.h" />
+    <ClInclude Include="src\Glacier\Scene\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Glacier\Application.cpp">
@@ -443,6 +444,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\Glacier\Object\Object.cpp" />
+    <ClCompile Include="src\Glacier\Scene\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resources\shaders\TextureSample_PS.hlsl">
