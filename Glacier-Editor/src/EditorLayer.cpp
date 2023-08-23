@@ -14,7 +14,7 @@ namespace Glacier
 		m_SceneCameraController = std::make_unique<CameraController>(1280.f / 720.f);
 
 		// 모델 생성.
-		m_Model = std::make_shared<Glacier::ModelComponent>(Glacier::MeshGenerator::MakeCube());
+		m_Model = std::make_shared<Glacier::ModelComponent>(Glacier::MeshGenerator::MakeCube(Glacier::Vector3::Zero));
 
 		// 텍스쳐 자원 생성.
 		m_TextureResource = Glacier::Texture2D::Create(L"../Resources/Texture/rabbit.png");
@@ -38,12 +38,13 @@ namespace Glacier
 	{
 		m_SceneCameraController->OnUpdate(dt);
 
-		Glacier::Vector3 rotation = m_Model->GetTransform()->GetRotation();
+		//Glacier::Vector3 rotation = m_Model->GetTransform()->GetRotation();
+		Glacier::Vector3 rotation = m_Object->TransformComp->GetRotation();
 
 		if (Glacier::Input::IsKeyPressed(GR_VK_RIGHT))
 			rotation.y += dt;
 
-		m_Model->GetTransform()->SetRotation(rotation.x, rotation.y, rotation.z);
+		m_Object->TransformComp->SetRotation(rotation.x, rotation.y, rotation.z);
 
 		Glacier::Renderer::BeginRenderScene(); // set render target, viewport.
 

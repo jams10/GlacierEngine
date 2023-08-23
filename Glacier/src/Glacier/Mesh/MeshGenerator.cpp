@@ -5,16 +5,16 @@
 
 namespace Glacier
 {
-	std::shared_ptr<Mesh> MeshGenerator::MakeTriangle()
+	std::shared_ptr<Mesh> MeshGenerator::MakeTriangle(Vector3 location)
 	{
 		std::shared_ptr<VertexBuffer> vertexBuffer;
 		std::shared_ptr<IndexBuffer> indexBuffer;
 		
 		// 정점 버퍼 생성.
 		float vertices[3 * 8] = {
-			 0.0f,  0.5f, 0.0f, 0.5f, 0.0f, 0.0f, 0.0f, -1.0f,
-			 0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f,
-			-0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f,
+			 0.0f + location.x,  0.5f + location.y, 0.0f + location.z, 0.5f, 0.0f, 0.0f, 0.0f, -1.0f,
+			 0.5f + location.x, -0.5f + location.y, 0.0f + location.z, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f,
+			-0.5f + location.x, -0.5f + location.y, 0.0f + location.z, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f,
 		};
 
 		vertexBuffer.reset(Glacier::VertexBuffer::Create(vertices, sizeof(vertices)));
@@ -33,17 +33,17 @@ namespace Glacier
 		return std::make_shared<Mesh>(vertexBuffer, indexBuffer);
 	}
 
-	shared_ptr<Mesh> MeshGenerator::MakeSqaure()
+	shared_ptr<Mesh> MeshGenerator::MakeSqaure(Vector3 location)
 	{
 		std::shared_ptr<VertexBuffer> vertexBuffer;
 		std::shared_ptr<IndexBuffer> indexBuffer;
 
 		// 정점 버퍼 생성.
 		float vertices[4 * 8] = {
-			-0.5f,  0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f,
-			 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f,
-			 0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f,
-			-0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f,
+			-0.5f + location.x,  0.5f + location.y, 0.0f + location.z, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f,
+			 0.5f + location.x,  0.5f + location.y, 0.0f + location.z, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f,
+			 0.5f + location.x, -0.5f + location.y, 0.0f + location.z, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f,
+			-0.5f + location.x, -0.5f + location.y, 0.0f + location.z, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f,
 		};
 
 		vertexBuffer.reset(Glacier::VertexBuffer::Create(vertices, sizeof(vertices)));
@@ -62,37 +62,37 @@ namespace Glacier
 		return std::make_shared<Mesh>(vertexBuffer, indexBuffer);
 	}
 
-	shared_ptr<Mesh> MeshGenerator::MakeCube()
+	shared_ptr<Mesh> MeshGenerator::MakeCube(Vector3 location)
 	{
 		std::shared_ptr<VertexBuffer> vertexBuffer;
 		std::shared_ptr<IndexBuffer> indexBuffer;
 
 		// 정점 버퍼 생성.
 		float vertices[] = {
-			-0.5f,  0.5f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, // front
-			 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f,
-			 0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f,
-			-0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f,
-			-0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f,  1.0f, // back
-			-0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,  1.0f,
-			 0.5f, -0.5f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f,  1.0f,
-			 0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f,  1.0f,
-			-0.5f,  0.5f, 1.0f, 0.0f, 0.0f,-1.0f, 0.0f,  0.0f, // left
-			-0.5f,  0.5f, 0.0f, 1.0f, 0.0f,-1.0f, 0.0f,  0.0f,
-			-0.5f, -0.5f, 0.0f, 1.0f, 1.0f,-1.0f, 0.0f,  0.0f,
-			-0.5f, -0.5f, 1.0f, 0.0f, 1.0f,-1.0f, 0.0f,  0.0f,
-			 0.5f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,  0.0f, // right
-			 0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,  0.0f,
-			 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,  0.0f,
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,  0.0f,
-			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,  0.0f, // top
-			-0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,  0.0f,
-			 0.5f,  0.5f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,  0.0f,
-			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,  0.0f,
-			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.0f,-1.0f,  0.0f, // down
-			-0.5f, -0.5f, 1.0f, 0.0f, 1.0f, 0.0f,-1.0f,  0.0f,
-			 0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f,-1.0f,  0.0f,
-			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,-1.0f,  0.0f,
+			-0.5f + location.x,  0.5f + location.y, -0.5f + location.z, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, // front
+			 0.5f + location.x,  0.5f + location.y, -0.5f + location.z, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f,
+			 0.5f + location.x, -0.5f + location.y, -0.5f + location.z, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f,
+			-0.5f + location.x, -0.5f + location.y, -0.5f + location.z, 0.0f, 1.0f, 0.0f, 0.0f, -1.0f,
+			-0.5f + location.x,  0.5f + location.y, 0.5f + location.z, 1.0f, 0.0f, 0.0f, 0.0f,  1.0f, // back
+			-0.5f + location.x, -0.5f + location.y, 0.5f + location.z, 1.0f, 1.0f, 0.0f, 0.0f,  1.0f,
+			 0.5f + location.x, -0.5f + location.y, 0.5f + location.z, 0.0f, 1.0f, 0.0f, 0.0f,  1.0f,
+			 0.5f + location.x,  0.5f + location.y, 0.5f + location.z, 0.0f, 0.0f, 0.0f, 0.0f,  1.0f,
+			-0.5f + location.x,  0.5f + location.y, 0.5f + location.z, 0.0f, 0.0f,-1.0f, 0.0f,  0.0f, // left
+			-0.5f + location.x,  0.5f + location.y, -0.5f + location.z, 1.0f, 0.0f,-1.0f, 0.0f,  0.0f,
+			-0.5f + location.x, -0.5f + location.y, -0.5f + location.z, 1.0f, 1.0f,-1.0f, 0.0f,  0.0f,
+			-0.5f + location.x, -0.5f + location.y, 0.5f + location.z, 0.0f, 1.0f,-1.0f, 0.0f,  0.0f,
+			 0.5f + location.x,  0.5f + location.y, -0.5f + location.z, 0.0f, 0.0f, 1.0f, 0.0f,  0.0f, // right
+			 0.5f + location.x,  0.5f + location.y, 0.5f + location.z, 1.0f, 0.0f, 1.0f, 0.0f,  0.0f,
+			 0.5f + location.x, -0.5f + location.y, 0.5f + location.z, 1.0f, 1.0f, 1.0f, 0.0f,  0.0f,
+			 0.5f + location.x, -0.5f + location.y, -0.5f + location.z, 0.0f, 1.0f, 1.0f, 0.0f,  0.0f,
+			-0.5f + location.x,  0.5f + location.y, -0.5f + location.z, 0.0f, 1.0f, 0.0f, 1.0f,  0.0f, // top
+			-0.5f + location.x,  0.5f + location.y, 0.5f + location.z, 0.0f, 0.0f, 0.0f, 1.0f,  0.0f,
+			 0.5f + location.x,  0.5f + location.y, 0.5f + location.z, 1.0f, 0.0f, 0.0f, 1.0f,  0.0f,
+			 0.5f + location.x,  0.5f + location.y, -0.5f + location.z, 1.0f, 1.0f, 0.0f, 1.0f,  0.0f,
+			-0.5f + location.x, -0.5f + location.y, -0.5f + location.z, 0.0f, 0.0f, 0.0f,-1.0f,  0.0f, // down
+			-0.5f + location.x, -0.5f + location.y, 0.5f + location.z, 0.0f, 1.0f, 0.0f,-1.0f,  0.0f,
+			 0.5f + location.x, -0.5f + location.y, 0.5f + location.z, 1.0f, 1.0f, 0.0f,-1.0f,  0.0f,
+			 0.5f + location.x, -0.5f + location.y, -0.5f + location.z, 1.0f, 0.0f, 0.0f,-1.0f,  0.0f,
 		};
 
 		vertexBuffer.reset(Glacier::VertexBuffer::Create(vertices, sizeof(vertices)));

@@ -6,6 +6,9 @@ namespace Glacier
 {
 	TransformComponent::TransformComponent()
 	{
+		m_Location = Vector3::Zero;
+		m_Rotation = Vector3::Zero;
+		m_Scale = Vector3(1.0f, 1.0f, 1.0f);
 		m_ConstantBuffer.reset(Glacier::ShaderBuffer::Create(&m_worldTransform, sizeof(m_worldTransform), ShaderBufferType::VERTEX));
 	}
 

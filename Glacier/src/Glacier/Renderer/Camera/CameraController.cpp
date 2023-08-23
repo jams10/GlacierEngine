@@ -62,7 +62,7 @@ namespace Glacier
 		{
 			float fov = m_Camera.GetFov();
 			fov -= m_ZoomSpeed;
-			fov = std::max(fov, 20.f);
+			fov = std::max(fov, 10.f);
 			m_Camera.SetFov(fov);
 		}
 		else
@@ -80,7 +80,7 @@ namespace Glacier
 		{
 			float fov = m_Camera.GetFov();
 			fov += m_ZoomSpeed;
-			fov = std::min(fov, 90.f);
+			fov = std::min(fov, 60.f);
 			m_Camera.SetFov(fov);
 		}
 		else

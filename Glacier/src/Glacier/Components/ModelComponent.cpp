@@ -10,7 +10,6 @@ namespace Glacier
 	ModelComponent::ModelComponent(std::shared_ptr<Mesh>& mesh)
 		:m_Mesh(mesh), m_Material(nullptr)
 	{
-		m_Transform = std::make_unique<TransformComponent>();
 	}
 
 	ModelComponent::~ModelComponent()
@@ -27,7 +26,6 @@ namespace Glacier
 			m_Material->Bind();
 			m_Mesh->Bind(m_Material->m_PipelineState->GetVertexLayout()->GetVertexStride());
 		}
-		m_Transform->Bind();
 	}
 	
 	void ModelComponent::SetMaterial(std::shared_ptr<Material> material)

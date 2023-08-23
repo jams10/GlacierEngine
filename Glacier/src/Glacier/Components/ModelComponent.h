@@ -19,11 +19,9 @@ namespace Glacier
 
 		virtual void Bind() override;
 		void SetMaterial(std::shared_ptr<Material> material);
-		TransformComponent* GetTransform() { return m_Transform.get(); }
 
 	private:
 		std::shared_ptr<Mesh> m_Mesh;
 		std::shared_ptr<Material> m_Material;
-		std::unique_ptr<TransformComponent> m_Transform;
 	};
 }
