@@ -2,6 +2,8 @@
 
 #include "Glacier.h"
 
+#include "EditorWindows/SceneHierarchyWindow.h"
+
 namespace Glacier
 {
 	class EditorLayer : public Glacier::Layer
@@ -28,8 +30,10 @@ namespace Glacier
 
 		std::shared_ptr<Glacier::Object> m_Object;
 
-		std::unique_ptr<Glacier::Scene> m_Scene;
+		std::shared_ptr<Glacier::Scene> m_Scene;
 
 		std::unique_ptr<Glacier::CameraController> m_SceneCameraController;
+
+		SceneHierarchyWindow m_SceneHierarchy;
 	};
 }

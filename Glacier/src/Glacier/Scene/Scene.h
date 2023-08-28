@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Glacier/Core/Core.h"
+#include "Glacier/Types.h"
 
 #include <map>
 #include <memory>
+#include <string>
 
 namespace Glacier
 {
@@ -17,16 +19,17 @@ namespace Glacier
 
 		void Update(float dt);
 		void Render();
-		void AddObject();
+		void AddObject(std::shared_ptr<Object>& parent);
 		void RemoveObject(const uint32& objectID);
 
-		std::shared_ptr<Object> GetSelectedObject();
+		std::shared_ptr<Object>& GetSceneRootObject() { return m_SceneRoot; }
 
 	private:
-		std::map<uint32, std::shared_ptr<Object>> m_Objects;
-		uint32 m_ObjectCounts;
+		void RemoveObjectRecursively(std::shared_ptr<Object>& objectToRemove);
 
-	public:
-		uint32 selectedObjectID;
+	private:
+		std::shared_ptr<Object> m_SceneRoot;
+		std::map<uint32, std::shared_ptr<Object>> m_Objects;
+		uint32 m_ObjectIDCounter = 0;
 	};
 }

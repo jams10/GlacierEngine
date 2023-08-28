@@ -13,8 +13,9 @@ namespace Glacier
 		// 朝五虞 持失.
 		m_SceneCameraController = std::make_unique<CameraController>(1280.f / 720.f);
 
-		m_Scene = std::make_unique<Scene>();
-		m_Scene->AddObject();
+		m_Scene = std::make_shared<Scene>();
+		m_SceneHierarchy.SetCurrentScene(m_Scene);
+		//m_Scene->AddObject();
 	}
 
 	void EditorLayer::OnDetach()
@@ -26,18 +27,18 @@ namespace Glacier
 		m_SceneCameraController->OnUpdate(dt);
 
 		Glacier::Vector3 rotation;
-		if (m_Scene->GetSelectedObject())
-		{
-			rotation = m_Scene->GetSelectedObject()->TransformComp->GetRotation();
-		}
+		//if (m_Scene->GetSelectedObject())
+		//{
+		//	rotation = m_Scene->GetSelectedObject()->TransformComp->GetRotation();
+		//}
 
 		if (Glacier::Input::IsKeyPressed(GR_VK_RIGHT))
 			rotation.y += dt;
 
-		if (m_Scene->GetSelectedObject())
-		{
-			m_Scene->GetSelectedObject()->TransformComp->SetRotation(rotation.x, rotation.y, rotation.z);
-		}
+		//if (m_Scene->GetSelectedObject())
+		//{
+		//	m_Scene->GetSelectedObject()->TransformComp->SetRotation(rotation.x, rotation.y, rotation.z);
+		//}
 		
 		Glacier::Renderer::BeginRenderScene(); // set render target, viewport.
 
@@ -50,10 +51,7 @@ namespace Glacier
 #pragma region GUI Windows
 	void EditorLayer::SceneHierarchy()
 	{
-		ImGui::Begin("Scene Hierarchy");
 
-
-		ImGui::End();
 	}
 
 	void EditorLayer::SceneProperty()
@@ -66,11 +64,6 @@ namespace Glacier
 		ImGui::Text("Quads : %d", stats.Quads);
 		ImGui::Text("Vertices : %d", stats.Vertices);
 		ImGui::Text("Indices : %d", stats.Indices);
-
-		if (ImGui::Button("Add Object"))
-		{
-			m_Scene->AddObject();
-		}
 
 		ImGui::End();
 	}
@@ -147,7 +140,7 @@ namespace Glacier
 
 			if (ImGui::BeginMenuBar())
 			{
-				if (ImGui::BeginMenu("File"))
+				if (ImGui::BeginMenu("Menu"))
 				{
 					// Disabling fullscreen would allow the window to be moved to the front of other windows, 
 					// which we can't undo at the moment without finer window depth/z control.
@@ -159,8 +152,9 @@ namespace Glacier
 				ImGui::EndMenuBar();
 			}
 
-			SceneHierarchy();
+			//SceneHierarchy();
 			SceneProperty();
+			m_SceneHierarchy.Render();
 			SceneViewPort();
 
 			ImGui::End();
