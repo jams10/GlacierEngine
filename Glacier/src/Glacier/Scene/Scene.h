@@ -22,6 +22,7 @@ namespace Glacier
 		void AddObject(std::shared_ptr<Object>& parent);
 		void RemoveObject(const uint32& objectID);
 
+		std::shared_ptr<Object> SelectedObject;
 		std::shared_ptr<Object>& GetSceneRootObject() { return m_SceneRoot; }
 
 	private:

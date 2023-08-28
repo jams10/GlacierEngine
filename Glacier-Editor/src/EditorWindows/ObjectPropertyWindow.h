@@ -5,22 +5,24 @@
 namespace Glacier
 {
 	/*
-	*	씬에 배치된 오브젝트들을 보여주는 에디터 창.
+	*	오브젝트를 선택 했을 때 선택한 오브젝트의 정보를 보여주는 창.
 	*/
-	class SceneHierarchyWindow : public EditorWindow
+	class ObjectPropertyWindow : public EditorWindow
 	{
 	public:
-		SceneHierarchyWindow();
-		~SceneHierarchyWindow();
+		ObjectPropertyWindow();
+		~ObjectPropertyWindow();
 
 		virtual void Update(float dt) override;
 		virtual void Render() override;
 
 		void SetCurrentScene(std::shared_ptr<Scene> scene);
-		void DisplayObjects(std::shared_ptr<Object>& object);
-		void OnRightClickedBackground();
+
+	private:
+		void PrintAndChangeObjectName();
 
 	private:
 		std::shared_ptr<Scene> m_CurrentScene;
+		char m_InputText[100];
 	};
 }

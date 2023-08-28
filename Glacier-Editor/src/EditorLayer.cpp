@@ -15,7 +15,7 @@ namespace Glacier
 
 		m_Scene = std::make_shared<Scene>();
 		m_SceneHierarchy.SetCurrentScene(m_Scene);
-		//m_Scene->AddObject();
+		m_ObjectProperty.SetCurrentScene(m_Scene);
 	}
 
 	void EditorLayer::OnDetach()
@@ -155,6 +155,7 @@ namespace Glacier
 			//SceneHierarchy();
 			SceneProperty();
 			m_SceneHierarchy.Render();
+			m_ObjectProperty.Render();
 			SceneViewPort();
 
 			ImGui::End();

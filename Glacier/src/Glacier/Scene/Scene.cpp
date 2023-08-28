@@ -13,6 +13,7 @@ namespace Glacier
 	Scene::Scene()
 	{
 		m_SceneRoot = std::make_shared<Object>(L"Scene Root", 0);
+		SelectedObject = nullptr;
 	}
 
 	Scene::~Scene()

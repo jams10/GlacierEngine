@@ -136,10 +136,12 @@
   <ItemGroup>
     <ClInclude Include="src\EditorLayer.h" />
     <ClInclude Include="src\EditorWindows\EditorWindow.h" />
+    <ClInclude Include="src\EditorWindows\ObjectPropertyWindow.h" />
     <ClInclude Include="src\EditorWindows\SceneHierarchyWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EditorLayer.cpp" />
+    <ClCompile Include="src\EditorWindows\ObjectPropertyWindow.cpp" />
     <ClCompile Include="src\EditorWindows\SceneHierarchyWindow.cpp" />
     <ClCompile Include="src\GlacierEditorApp.cpp" />
   </ItemGroup>

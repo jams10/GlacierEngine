@@ -5,12 +5,10 @@ namespace Glacier
 {
 	SceneHierarchyWindow::SceneHierarchyWindow()
 	{
-		m_HasSelectedObject = false;
 	}
 
 	SceneHierarchyWindow::~SceneHierarchyWindow()
 	{
-		m_SelectedObject = nullptr;
 		m_CurrentScene = nullptr;
 	}
 
@@ -31,7 +29,7 @@ namespace Glacier
 		ImGui::End();
 	}
 
-	void SceneHierarchyWindow::SetCurrentScene(const std::shared_ptr<Scene>& scene)
+	void SceneHierarchyWindow::SetCurrentScene(std::shared_ptr<Scene> scene)
 	{
 		m_CurrentScene = scene;
 	}
@@ -39,24 +37,30 @@ namespace Glacier
 	// hierarchy 창에 씬에 배치된 오브젝트들을 표시하는 작업을 처리하는 함수.
 	void SceneHierarchyWindow::DisplayObjects(std::shared_ptr<Object>& object)
 	{
-		bool nodeOpen = ImGui::TreeNodeEx(WideToMultiU8(object->Name).c_str(), ImGuiTreeNodeFlags_DefaultOpen);
-		if (ImGui::IsItemClicked(ImGuiMouseButton_Right)) {
-			m_SelectedObject = object; // 오른쪽 마우스 클릭 시 클릭된 오브젝트를 선택.
+		// 선택한 오브젝트 항목에 하이라이트 효과를 주기 위해 선택한 오브젝트의 재귀 단계에서는 ImGuiTreeNodeFlags_Selected를 추가한 플래그를 사용.
+		ImGuiTreeNodeFlags flag = ImGuiTreeNodeFlags_DefaultOpen;
+		if (m_CurrentScene->SelectedObject && m_CurrentScene->SelectedObject->ID == object->ID)
+			flag |= ImGuiTreeNodeFlags_Selected;
+
+		bool nodeOpen = ImGui::TreeNodeEx(WideToMultiU8(object->Name).c_str(), flag);
+		if (ImGui::IsItemClicked(ImGuiMouseButton_Right) || ImGui::IsItemClicked(ImGuiMouseButton_Left))
+		{
+			m_CurrentScene->SelectedObject = object; // 오른쪽 마우스 클릭 시 클릭된 오브젝트를 선택.
 		}
 
-		if (m_SelectedObject)
+		if (m_CurrentScene->SelectedObject)
 		{
 			if (ImGui::BeginPopupContextItem()) 
 			{
 				if (ImGui::MenuItem("Create Object")) 
 				{
-					m_CurrentScene->AddObject(m_SelectedObject);
+					m_CurrentScene->AddObject(m_CurrentScene->SelectedObject);
 				}
-				if (m_SelectedObject->ID != 0 && ImGui::MenuItem("Delete Object"))
+				if (m_CurrentScene->SelectedObject->ID != 0 && ImGui::MenuItem("Delete Object"))
 				{
-					m_CurrentScene->RemoveObject(m_SelectedObject->ID);
+					m_CurrentScene->RemoveObject(m_CurrentScene->SelectedObject->ID);
 					object = nullptr;
-					m_SelectedObject = nullptr;
+					m_CurrentScene->SelectedObject = nullptr;
 				}
 				ImGui::EndPopup();
 			}
@@ -84,7 +88,7 @@ namespace Glacier
 		if (ImGui::IsWindowHovered() && ImGui::IsMouseClicked(ImGuiMouseButton_Right))
 		{
 			ImGui::OpenPopup("BackgroundContextMenu");
-			m_SelectedObject = false;
+			m_CurrentScene->SelectedObject = nullptr;
 		}
 
 		// 배경 클릭 시 표시되는 컨텍스트 메뉴.

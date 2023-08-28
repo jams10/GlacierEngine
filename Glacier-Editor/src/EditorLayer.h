@@ -3,6 +3,7 @@
 #include "Glacier.h"
 
 #include "EditorWindows/SceneHierarchyWindow.h"
+#include "EditorWindows/ObjectPropertyWindow.h"
 
 namespace Glacier
 {
@@ -35,5 +36,6 @@ namespace Glacier
 		std::unique_ptr<Glacier::CameraController> m_SceneCameraController;
 
 		SceneHierarchyWindow m_SceneHierarchy;
+		ObjectPropertyWindow m_ObjectProperty;
 	};
 }
